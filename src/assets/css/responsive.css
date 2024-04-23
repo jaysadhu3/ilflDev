@@ -1,0 +1,223 @@
+:root {
+  --white: #ffffff;
+  --black: #303030;
+  --theme-violet: #582a84;
+  --theme-yellow: #ffdd00;
+}
+
+/* max */
+
+@media (max-width: 1399px) {
+}
+
+@media (max-width: 1199px) {
+    .dropdown-menu a{
+        text-wrap: balance;
+    }
+    
+}
+
+@media (max-width: 991px) {
+  .index_banner {
+    height: auto;
+    padding: 5rem 0rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .x_mark_footer {
+    display: none;
+  }
+  footer {
+    padding: 1rem 0rem;
+  }
+}
+
+@media (max-width: 575px) {
+}
+
+@media (max-width: 359px) {
+}
+
+/* min */
+
+@media (min-width: 360px) {
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .footer::after {
+    height: 3rem;
+    width: 95vw;
+  }
+  .all_company_box {
+   /* height: 14rem;*/
+  }
+  .x_mark_footer img {
+    height: 11rem;
+  }
+  footer {
+    padding: 5rem 0rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .index_banner {
+    height: auto;
+    padding: 10rem 0rem;
+  }
+}
+
+/* @media (min-width:992px) and (max-width:1199px) {
+    .vis_mis_box {
+        display: block;
+        padding-top: 1rem;
+    }
+    .vis_icon {
+        margin: 0rem 0 0 1rem;
+    }
+    .vis_mis_main {
+        padding-left: 0rem;
+    }
+    .vis_mis_cont {
+        width: 100%;
+    }
+    .vis_icon {
+        height: 5rem;
+        width: 5rem;
+        background-color: var(--theme-blue);
+        border-radius: 50rem;
+    }
+    .vis_icon img {
+        height: 3rem;
+    }
+} */
+
+@media (min-width: 1200px) {
+    
+.header_bg {
+    background-image: url("../img/gradient-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+.navbar-nav .nav-link {
+    color: var(--white);
+  }
+  .all_company_box {
+  /*  height: 13rem;*/
+  }
+  /* .index_banner {
+    height: auto;
+    padding: 7rem 0rem;
+  } */
+  .index_banner {
+    height: 30rem;
+    padding: 7rem 0rem;
+}
+  .offcanvas {
+    visibility: visible;
+    position: relative;
+    background: none;
+    border: none;
+    justify-content: end;
+    /* color: red; */
+  }
+  .navbar-nav > .nav-item::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    height: 4px;
+    width: 0;
+    background-color: var(--theme-yellow);
+    bottom: 0px;
+    transition: 0.3s;
+  }
+  .navbar-nav > .nav-item:hover::before {
+    left: 10%;
+    width: 80%;
+  }
+  .navbar-nav .nav-item.reg_btn_header::before {
+    content: none;
+  }
+  .dropdown:hover > .dropdown-menu {
+    display: block;
+    /* animation: fadeIn 0.3s alternate;
+        */
+  }
+  .dropend:hover > .dropdown-menu {
+    display: block;
+    /* animation: fadeIn 0.3s alternate;
+        */
+  }
+  .nav-item.dropdown:hover > .dropdown-menu {
+    /* animation: fadeIn 0.3s alternate;
+        */
+    display: block;
+  }
+  .dropend:hover > .dropdown-menu {
+    /* animation: fadeIn 0.3s alternate;
+        */
+    display: block;
+  }
+  .dropend .dropdown-menu {
+    top: 0;
+    /* animation: fadeIn 0.3s alternate;
+        */
+    left: 100%;
+  }
+  .g-recaptcha_inquire {
+    transform: scale(0.8) !important;
+    /* transform-origin: left center;
+    */
+  }
+  .navbar .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+  .navbar .nav-item .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    margin-top: 0;
+  }
+  .navbar .dropend:hover > .nav-link,
+  .navbar .nav-item:hover > .nav-link {
+    color: var(--theme-yellow);
+  }
+  .navbar .dropdown-menu.fade-down {
+    top: 80%;
+    transform: rotateX(-75deg);
+    transform-origin: 0% 0%;
+  }
+  .navbar .dropdown-menu.fade-up {
+    top: 140%;
+  }
+  .dropend:hover > .dropdown-menu {
+    top: 0% !important;
+  }
+  .navbar .dropend:hover > .dropdown-menu,
+  .navbar .nav-item:hover > .dropdown-menu {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0deg);
+  }
+  .header_ul > li > a {
+    /* color: var(--white); */
+  }
+  .program_accordion .accordion-item:nth-child(even) {
+    transform: translateX(2rem);
+  }
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (min-width: 1921px) {
+}
