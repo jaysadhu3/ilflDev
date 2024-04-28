@@ -1,0 +1,56 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-dark" href="#">Admin Panel</a>
+    <a class="navbar-brand" href="#">
+      <img alt="Brand" src="./assets/img/x-marks.png" height="25px">
+    </a>
+    <button type="button" class="btn btn-secondary navbar-btn navbar-right ">Sign Out</button>
+  </div>
+</nav>
+<div class="accordion" id="accordionExample" style="margin: 5px;">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Upload Contents
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form>
+          <div class="row mb-1">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Content to Display</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Content to Display">
+            </div>
+          </div>
+          <div class="row mb-1">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Select file</label>
+            <div class="col-sm-10">
+              <div class="mb-1">
+                <input type="file" class="form-control input-upload" id="inputGroupFile01">
+              </div>
+            </div>
+          </div>
+          <div class="row mb-1">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Section</label>
+            <div class="col-sm-10">
+              <select class="form-select form-control" aria-label="Default select example">
+                <option selected>Open this to select section</option>
+                <option value="Annual Report">Annual Report</option>
+                <option value="Audited Accounts of Subsidiaries">Audited Accounts of Subsidiaries</option>
+                <option value="E-Voting Results">E-Voting Results</option>
+                <option value="Notice to Shareholders">Notice to Shareholders</option>
+                <option value="Transfer of Shares to IEPF">Transfer of Shares to IEPF</option>
+                <option value="Unclaimed Dividend">Unclaimed Dividend</option>
+                <option value="Form MGT 7">Form MGT 7</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-grid col-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

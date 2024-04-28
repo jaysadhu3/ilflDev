@@ -14,6 +14,8 @@ import { FormMgt7Component } from './public/form-mgt-7/form-mgt-7.component';
 import { BoardOfDirectorsComponent } from './public/board-of-directors/board-of-directors.component';
 import { ResignationOfDirectorComponent } from './public/resignation-of-director/resignation-of-director.component';
 import { CorporateSocialResponsibilityComponent } from './public/corporate-social-responsibility/corporate-social-responsibility.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { LoginComponent } from './admin/login/login.component';
 
 export const routes: Routes = [
     { path : '' , component : HomeComponent},
@@ -31,5 +33,7 @@ export const routes: Routes = [
     { path : 'Form-MGT-7' , component : FormMgt7Component},
     { path : 'Board-Of-Directors' , component : BoardOfDirectorsComponent},
     { path : 'Resignation-Of-Director' , component : ResignationOfDirectorComponent},
-    { path : 'Corporate-Social-Responsibility' , component : CorporateSocialResponsibilityComponent}
+    { path : 'Corporate-Social-Responsibility' , component : CorporateSocialResponsibilityComponent},
+    { path : 'Admin/Dashboard' , component : DashboardComponent},
+    { path : 'Admin' , component : LoginComponent}
 ];
