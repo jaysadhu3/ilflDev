@@ -1,0 +1,6 @@
+@ilfl.API_HostAddress = http://localhost:5174
+
+GET {{ilfl.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
