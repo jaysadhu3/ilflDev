@@ -14,5 +14,5 @@ public class Content
 
     public required string Ifctsection { get; set; }
 
-    public required byte[] Ifctfile { get; set; }
+    public required string Ifctfile { get; set; }
 }

@@ -31,7 +31,7 @@ public class ContentController : Controller
     /// <param name="section">section</param>
     /// <returns>Content</returns>
     [HttpPost]
-    public IActionResult GetContent(string section)
+    public IActionResult GetContent([FromBody]string section)
     {
         if (string.IsNullOrWhiteSpace(section))
         {
@@ -56,6 +56,24 @@ public class ContentController : Controller
             var result = _contentService.AddContent(content);
 
             return StatusCode(StatusCodes.Status201Created, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpDelete]
+    public IActionResult DeleteContent(int id)
+    {
+        try
+        {
+            if (id == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, "ID is empty");
+            }
+            _contentService.DeleteContent(id);
+            return StatusCode(StatusCodes.Status200OK);
         }
         catch (Exception ex)
         {

@@ -33,6 +33,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("IFCTDisplayName");
             entity.Property(e => e.Ifctfile)
                 .IsRequired()
+                .IsUnicode(false)
                 .HasColumnName("IFCTFile");
             entity.Property(e => e.Ifctsection)
                 .IsRequired()

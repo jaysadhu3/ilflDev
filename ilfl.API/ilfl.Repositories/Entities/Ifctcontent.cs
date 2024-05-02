@@ -13,5 +13,5 @@ public partial class Ifctcontent
 
     public string Ifctsection { get; set; }
 
-    public byte[] Ifctfile { get; set; }
+    public string Ifctfile { get; set; }
 }

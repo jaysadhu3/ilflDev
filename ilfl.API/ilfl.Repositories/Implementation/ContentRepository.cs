@@ -36,6 +36,13 @@ public class ContentRepository : IContentRepository
         }
     }
 
+    public void DeleteContent(int id)
+    {
+        var removedContent = _dbContext.Ifctcontents.Where(c => c.Ifctid == id).ToList();
+        _dbContext.RemoveRange(removedContent);
+        _dbContext.SaveChanges();
+    }
+
     public List<Ifctcontent>? GetContent(string section)
     {
         try

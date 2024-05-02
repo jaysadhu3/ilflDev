@@ -27,6 +27,11 @@ public class ContentService : IContentService
         return _contentRepository.AddContent(content);
     }
 
+    public void DeleteContent(int id)
+    {
+        _contentRepository.DeleteContent(id);
+    }
+
     public List<Ifctcontent>? GetContent(string section)
     {
         return _contentRepository.GetContent(section);

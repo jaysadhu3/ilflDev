@@ -43,14 +43,14 @@ export class LoginComponent implements OnInit{
           if(res.body) {
             alert();
           } else {
-            console.log(res.body);
+            alert("Username or password is wrong");
 
           }
         }
       });
     }
     else {
-      alert('not done');
+      alert("Username or password is wrong");
     }
     
   }
