@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ilflDev": {
+    "ilfl.Web": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ilfl-dev",
+            "outputPath": "dist/ilfl.web",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,18 +25,15 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "src/assets/css/sohel.css"
+              "src/assets/css/sohel.css",
+              "src/assets/css/responsive.css"
             ],
             "scripts": [
-              "src/assets/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/sohel.js"
-            ],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -66,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ilflDev:build:production"
+              "buildTarget": "ilfl.Web:build:production"
             },
             "development": {
-              "buildTarget": "ilflDev:build:development"
+              "buildTarget": "ilfl.Web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "ilflDev:build"
+            "buildTarget": "ilfl.Web:build"
           }
         },
         "test": {
@@ -102,6 +99,6 @@
     }
   },
   "cli": {
-    "analytics": "1727cd24-8b09-4d4f-8bb3-ee817787c168"
+    "analytics": false
   }
 }

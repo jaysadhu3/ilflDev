@@ -9,18 +9,23 @@
               <h3 class="login-heading mb-4">Welcome back!</h3>
 
               <!-- Sign In Form -->
-              <form>
+              <form #credentialform="ngForm" [formGroup]="credentialForm" (ngSubmit)="processLogin()">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                  <label for="floatingInput">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" formControlName="username" maxlength="15"
+                    autocomplete="disabled" placeholder="Username">
+                  <label for="username">Username</label>
+                  <div class="text-error" [hidden]="credentialForm.controls['username'].untouched">
+                    <span>Please enter username.</span>
+                  </div>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                  <label for="floatingPassword">Password</label>
+                  <input type="password" class="form-control"  id="password" name="password" formControlName="password" placeholder="Password">
+                  <label for="password">Password</label>
                 </div>
 
                 <div class="d-grid">
-                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" name="" id="">Sign
+                    in</button>
                 </div>
 
               </form>
@@ -29,5 +34,14 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
 </div>

@@ -18,7 +18,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './admin/login/login.component';
 
 export const routes: Routes = [
-    { path : '' , component : HomeComponent},
+    { path : '' , redirectTo: '/Home', pathMatch: 'full'},
     { path : 'Home' , component : HomeComponent},
     { path : 'Contact-Us' , component : ContactUsComponent},
     { path : 'About' , component : AboutComponent},

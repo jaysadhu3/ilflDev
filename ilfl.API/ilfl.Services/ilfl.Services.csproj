@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementation\" />
-    <Folder Include="Interface\" />
+    <ProjectReference Include="..\ilfl.Models\ilfl.Models.csproj" />
+    <ProjectReference Include="..\ilfl.Repositories\ilfl.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
