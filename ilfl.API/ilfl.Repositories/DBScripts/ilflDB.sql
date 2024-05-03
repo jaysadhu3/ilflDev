@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [ilfl]    Script Date: 4/29/2024 11:30:18 PM ******/
+/****** Object:  Database [ilfl]    Script Date: 5/4/2024 12:58:14 AM ******/
 CREATE DATABASE [ilfl]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [ilfl] SET QUERY_STORE = OFF
 GO
 USE [ilfl]
 GO
-/****** Object:  Table [dbo].[IFCTContent]    Script Date: 4/29/2024 11:30:18 PM ******/
+/****** Object:  Table [dbo].[IFCTContent]    Script Date: 5/4/2024 12:58:15 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -91,14 +91,25 @@ CREATE TABLE [dbo].[IFCTContent](
 	[IFCTId] [int] IDENTITY(1,1) NOT NULL,
 	[IFCTDisplayName] [varchar](100) NOT NULL,
 	[IFCTSection] [varchar](100) NOT NULL,
-	[IFCTFile] [varbinary](max) NOT NULL,
+	[IFCTFile] [varchar](max) NOT NULL,
  CONSTRAINT [PK_IFCTContent] PRIMARY KEY CLUSTERED 
 (
 	[IFCTId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IFULUsers]    Script Date: 4/29/2024 11:30:18 PM ******/
+/****** Object:  Table [dbo].[IFDDDirectorDetails]    Script Date: 5/4/2024 12:58:15 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IFDDDirectorDetails](
+	[IFDDName] [varchar](100) NOT NULL,
+	[IFDDPosition] [varchar](100) NOT NULL,
+	[IFDDFile] [varchar](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[IFULUsers]    Script Date: 5/4/2024 12:58:15 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
