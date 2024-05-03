@@ -32,6 +32,11 @@ public class ContentService : IContentService
         _contentRepository.DeleteContent(id);
     }
 
+    public List<IfdddirectorDetail>? DirectorDetail()
+    {
+        return _contentRepository.DirectorDetail();
+    }
+
     public List<Ifctcontent>? GetContent(string section)
     {
         return _contentRepository.GetContent(section);

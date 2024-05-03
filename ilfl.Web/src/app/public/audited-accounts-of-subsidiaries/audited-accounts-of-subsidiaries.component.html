@@ -37,76 +37,13 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-                                    <th>Annual Result</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-
-                                </tr>
-                            </thead> -->
-
-
-                            <tr>
-                                <td>
-                                    ANNUAL REPORT 2022-23 </td>
-                                <td class="text-center"><a
-                                        href="./wp-content/uploads/2023/10/Gujarat Fluorochremicals Limited ANNUAL REPORT 2022-23.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
+                            <tr *ngFor="let value of tableValue">
+                                <td scope="row">{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
                                         <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
                                     </a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-content/uploads/2023/10/Gujarat Fluorochremicals Limited ANNUAL REPORT 2022-23.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
                             </tr>
-
-
-                            <tr>
-                                <td>ANNUAL REPORT 2021-22</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/gujarat-fluorochemicals-limited-annual-report-2021-22.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/gujarat-fluorochemicals-limited-annual-report-2021-22.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>ANNUAL REPORT 2020-21</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/GFCL Annual Report 2019-20.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/GFCL Annual Report 2019-20.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>ANNUAL REPORT 2019-20 </td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/gfl-annual-report-2020-21.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/gfl-annual-report-2020-21.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -120,63 +57,12 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-
-                                    <th>Annual Result</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-
-                                </tr>
-
-                            </thead> -->
-                            <tr>
-                                <td>
-                                    ANNUAL REPORT 2022-23</td>
-                                <td class="text-center"><a
-                                        href="./wp-content/uploads/2023/10/Inox Wind Energy Limited AR 2022-23.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
+                            <tr *ngFor="let value of tableValue2">
+                                <td scope="row">{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
                                         <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-content/uploads/2023/10/Inox Wind Energy Limited AR 2022-23.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
-                            </tr>
-
-
-                            <tr>
-                                <td>ANNUAL REPORT 2021-22</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/inox-wind-energy-limited-annual-report-2021-22.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/inox-wind-energy-limited-annual-report-2021-22.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>ANNUAL REPORT 2020-21</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/inox-wind-energy-limited-annual-report-2020-21.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/audited-accounts of-subsidiaries/inox-wind-energy-limited-annual-report-2020-21.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;">
-                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
-                                    </a>
-                                </td> -->
+                                    </a></td>
                             </tr>
                         </tbody>
                     </table>

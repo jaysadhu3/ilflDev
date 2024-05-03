@@ -13,4 +13,5 @@ public interface IContentRepository
     List<Ifctcontent>? GetContent(string section);
     bool AddContent(Content content);
     void DeleteContent(int id);
+    List<IfdddirectorDetail>? DirectorDetail();
 }

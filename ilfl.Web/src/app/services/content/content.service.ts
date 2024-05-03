@@ -19,6 +19,10 @@ export class ContentService {
     return this.httpClient.post<any>(this.apiAddress + 'GetContent', JSON.stringify(section), {headers: this.httpHeaders, observe: 'response'});
    }
 
+   GetDirectorDetail(): Observable<HttpResponse<any>> {
+    return this.httpClient.get<any>(this.apiAddress + 'GetDirectorDetail', {headers: this.httpHeaders, observe: 'response'});
+   }
+
    AddContent(content: Content): Observable<HttpResponse<any>> {
     return this.httpClient.post<any>(this.apiAddress + 'AddContent', JSON.stringify(content), {headers: this.httpHeaders, observe: 'response'});
    }

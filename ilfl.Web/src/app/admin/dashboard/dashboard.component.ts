@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   contentForm: FormGroup;
   content: Content = new Content();
   base64File: string = '';
-  tableValue: any = [];
+  tableValue: any = null;
   sectionForTable: string = '';
 
   constructor(private formbuilder: FormBuilder,

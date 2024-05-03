@@ -34,51 +34,13 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-                                    <th>Name of Director</th>
-                                    <th>Designation</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-
-
-                                </tr>
-                            </thead> -->
-                            <tr>
-
-                            </tr>
-                            <tr>
-                                <td>Mr. Deepak Asher</td>
-                                <td>Whole-time Director</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2014/03/resignation-of-director-deepak-asher.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2014/03/resignation-of-director-deepak-asher.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>Mr. Siddharth Jain</td>
-                                <td>Director</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2021/11/resignation-of-director-siddharth-jain.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2021/11/resignation-of-director-siddharth-jain.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>Mr. Pavan Kumar Jain</td>
-                                <td>Managing Director</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2021/11/resignation-of-director-pavan-kumar-jain.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/resignation-of-director/2021/11/resignation-of-director-pavan-kumar-jain.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue">
+                                <td>{{value.ifddname}}</td>
+                                <td>{{value.ifddposition}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifddfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
                         </tbody>
                     </table>

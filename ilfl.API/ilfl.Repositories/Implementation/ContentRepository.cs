@@ -43,6 +43,12 @@ public class ContentRepository : IContentRepository
         _dbContext.SaveChanges();
     }
 
+    public List<IfdddirectorDetail>? DirectorDetail()
+    {
+        var records = _dbContext.IfdddirectorDetails.ToList();
+        return records;
+    }
+
     public List<Ifctcontent>? GetContent(string section)
     {
         try

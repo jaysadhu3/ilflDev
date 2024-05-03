@@ -10,7 +10,8 @@
 <div class="accordion" id="accordionExample" style="margin: 5px;">
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="false" aria-controls="collapseOne">
         Upload Contents
       </button>
     </h2>
@@ -20,28 +21,35 @@
           <div class="row mb-1">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Content to Display</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="displayName" name="displayName" formControlName="displayName" placeholder="Content to Display">
+              <input type="text" class="form-control" id="displayName" name="displayName" formControlName="displayName"
+                placeholder="Content to Display">
             </div>
           </div>
           <div class="row mb-1">
             <label for="inputPassword3" class="col-sm-2 col-form-label">Select file</label>
             <div class="col-sm-10">
               <div class="mb-1">
-                <input type="file" id="file" name="file" formControlName="file" class="form-control input-upload" (change)="onFileSelection($event)">
+                <input type="file" id="file" name="file" formControlName="file" class="form-control input-upload"
+                  (change)="onFileSelection($event)">
               </div>
             </div>
           </div>
           <div class="row mb-1">
             <label for="inputPassword3" class="col-sm-2 col-form-label">Section</label>
             <div class="col-sm-10">
-              <select class="form-select form-control" id="section" name="section" formControlName="section" aria-label="Default select example">
+              <select class="form-select form-control" id="section" name="section" formControlName="section"
+                aria-label="Default select example">
+                <option value="">Select Section</option>
                 <option value="Annual Report">Annual Report</option>
-                <option value="Audited Accounts of Subsidiaries">Audited Accounts of Subsidiaries</option>
+                <option value="Audited Accounts of Subsidiaries GFL">Audited Accounts of Subsidiaries (GFL)</option>
+                <option value="Audited Accounts of Subsidiaries IWEL">Audited Accounts of Subsidiaries (IWEL)</option>
                 <option value="E-Voting Results">E-Voting Results</option>
                 <option value="Notice to Shareholders">Notice to Shareholders</option>
-                <option value="Transfer of Shares to IEPF">Transfer of Shares to IEPF</option>
+                <option value="Transfer of Shares to IEPF 1">Transfer of Shares to IEPF (List 1)</option>
+                <option value="Transfer of Shares to IEPF 2">Transfer of Shares to IEPF (List 2)</option>
                 <option value="Unclaimed Dividend">Unclaimed Dividend</option>
                 <option value="Form MGT 7">Form MGT 7</option>
+                <option value="Corporate Social Responsibility Policy">Corporate Social Responsibility Policy</option>
               </select>
             </div>
           </div>
@@ -54,25 +62,30 @@
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo">
         View Contents
       </button>
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse  " data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        
+
         <div class="row mb-1">
           <label for="inputPassword3" class="col-sm-2 col-form-label">Section</label>
           <div class="col-sm-10">
-            <select class="form-select form-control" id="sectionView" name="sectionView" aria-label="Default select example" (change)="ViewTable($event)">
+            <select class="form-select form-control" id="sectionView" name="sectionView"
+              aria-label="Default select example" (change)="ViewTable($event)">
               <option value="">Select Section</option>
               <option value="Annual Report">Annual Report</option>
-              <option value="Audited Accounts of Subsidiaries">Audited Accounts of Subsidiaries</option>
+              <option value="Audited Accounts of Subsidiaries GFL">Audited Accounts of Subsidiaries (GFL)</option>
+              <option value="Audited Accounts of Subsidiaries IWEL">Audited Accounts of Subsidiaries (IWEL)</option>
               <option value="E-Voting Results">E-Voting Results</option>
               <option value="Notice to Shareholders">Notice to Shareholders</option>
-              <option value="Transfer of Shares to IEPF">Transfer of Shares to IEPF</option>
+              <option value="Transfer of Shares to IEPF 1">Transfer of Shares to IEPF (List 1)</option>
+              <option value="Transfer of Shares to IEPF 2">Transfer of Shares to IEPF (List 2)</option>
               <option value="Unclaimed Dividend">Unclaimed Dividend</option>
               <option value="Form MGT 7">Form MGT 7</option>
+              <option value="Corporate Social Responsibility Policy">Corporate Social Responsibility Policy</option>
             </select>
           </div>
         </div>
@@ -88,8 +101,10 @@
             <tbody>
               <tr *ngFor="let value of tableValue">
                 <th scope="row">{{value.ifctdisplayName}}</th>
-                <td><i class="bi bi-filetype-pdf" (click)="viewPDF(value.ifctfile)" style=" display: flex; font-size: 2rem; color: red;"></i></td>
-                <td><button type="button" class="btn btn-danger" (click)="deleteValue(value.ifctid)">Delete</button></td>
+                <td><i class="bi bi-filetype-pdf" (click)="viewPDF(value.ifctfile)"
+                    style=" display: flex; font-size: 2rem; color: red;"></i></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteValue(value.ifctid)">Delete</button>
+                </td>
               </tr>
             </tbody>
           </table>

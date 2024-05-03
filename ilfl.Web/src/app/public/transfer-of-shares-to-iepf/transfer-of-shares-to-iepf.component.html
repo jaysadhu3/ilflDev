@@ -47,45 +47,12 @@
                     </table>
                     <table class="table table-bordered table-hover border-secondary mt-5">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-
-
-
-                                    <th>List of shares transferred</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-                                </tr>
-                            </thead> -->
-                            <tr>
-                                <td>List of shares transferred on 29th September, 2020</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/list-of-shares-transferred-on-29-sep-2020.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/list-of-shares-transferred-on-29-sep-2020.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>List of shares transferred on 03rd December, 2018</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/list-of-shares-transferred-on-03-dec-2018.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/list-of-shares-transferred-on-03-dec-2018.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>List of shares transferred on 08th December, 2017</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/list-of-shares-transferred-on-8-dec-2017.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/list-of-shares-transferred-on-8-dec-2017.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue2">
+                                <td>{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
                         </tbody>
                     </table>

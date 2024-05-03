@@ -13,4 +13,5 @@ public interface IContentService
     List<Ifctcontent>? GetContent(string section);
     bool AddContent(Content content);
     void DeleteContent(int id);
+    List<IfdddirectorDetail>? DirectorDetail();
 }

@@ -13,13 +13,18 @@ import { ContentService } from '../../services/content/content.service';
 export class TransferOfSharesToIEPFComponent {
 
     tableValue: any = [];
+    tableValue2: any = [];
     constructor(private contentService: ContentService) {
 
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Transfer of Shares to IEPF').subscribe(res => {
-            this.tableValue = res.body;
+      this.contentService.GetContent('Transfer of Shares to IEPF 1').subscribe(res => {
+          this.tableValue = res.body;
+          console.log(res.body);
+        });
+        this.contentService.GetContent('Transfer of Shares to IEPF 2').subscribe(res => {
+            this.tableValue2 = res.body;
             console.log(res.body);
           });
     }

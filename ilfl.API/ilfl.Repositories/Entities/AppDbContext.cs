@@ -15,6 +15,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Ifctcontent> Ifctcontents { get; set; }
 
+    public virtual DbSet<IfdddirectorDetail> IfdddirectorDetails { get; set; }
+
     public virtual DbSet<Ifuluser> Ifulusers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +42,28 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("IFCTSection");
+        });
+
+        modelBuilder.Entity<IfdddirectorDetail>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("IFDDDirectorDetails");
+
+            entity.Property(e => e.Ifddfile)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasColumnName("IFDDFile");
+            entity.Property(e => e.Ifddname)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("IFDDName");
+            entity.Property(e => e.Ifddposition)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("IFDDPosition");
         });
 
         modelBuilder.Entity<Ifuluser>(entity =>

@@ -12,14 +12,18 @@ import { CommonModule } from '@angular/common';
 })
 export class AuditedAccountsOfSubsidiariesComponent {
     tableValue: any = [];
+    tableValue2: any = [];
     constructor(private contentService: ContentService) {
 
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Audited Accounts of Subsidiaries').subscribe(res => {
+        this.contentService.GetContent('Audited Accounts of Subsidiaries GFL').subscribe(res => {
             this.tableValue = res.body;
-            console.log(res.body);
+          });
+        
+          this.contentService.GetContent('Audited Accounts of Subsidiaries IWEL').subscribe(res => {
+            this.tableValue2 = res.body;
           });
     }
 

@@ -31,42 +31,12 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-                                    <th>Documents</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-                                </tr>
-                            </thead> -->
-                            <tr>
-                                <td>Corporate Social Responsibility (CSR) Policy</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/ilfl-csr-policy.pdf"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/ilfl-csr-policy.zip"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>CSR Committee of Directors</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/ilfl-csr-committee-of-directors.pdf"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/ilfl-csr-committee-of-directors.zip"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>CSR Activities for 2021-22</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/Report on CSR Activities 2021-22.pdf"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/corporate-overview/csr-policy/2022/03/Report on CSR Activities 2021-22.zip"
-                                        target="_blank"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue">
+                                <td scope="row">{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
                         </tbody>
                     </table>

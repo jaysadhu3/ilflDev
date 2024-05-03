@@ -19,6 +19,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[IFDDDirectorDetails]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[IFULUsers]",
          "ObjectType": 0
       }

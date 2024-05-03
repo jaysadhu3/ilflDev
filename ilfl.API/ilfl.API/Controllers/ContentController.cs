@@ -63,8 +63,13 @@ public class ContentController : Controller
         }
     }
 
+    /// <summary>
+    ///     Delete record
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>Status codes</returns>
     [HttpDelete]
-    public IActionResult DeleteContent(int id)
+    public IActionResult DeleteContent([FromBody]int id)
     {
         try
         {
@@ -76,6 +81,20 @@ public class ContentController : Controller
             return StatusCode(StatusCodes.Status200OK);
         }
         catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult GetDirectorDetail()
+    {
+        try
+        {
+            var results = _contentService.DirectorDetail();
+            return StatusCode(StatusCodes.Status200OK, results);
+        }
+        catch(Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
