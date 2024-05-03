@@ -35,46 +35,13 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-                                <th>Year</th>
-                                <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-
-                                </tr>
-                            </thead> -->
-                            
-                            <tr>
-                                <td>2023</td>
-                                <td class="text-center"><a
-                                        [href]="'../../../../src/wp-content/uploads/2023/10/Annual Return MGT 7 2023.pdf'"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-content/uploads/2023/10/Annual Return MGT 7 2023.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue">
+                                <td scope="row">{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
-                            <tr>
-                                <td>2022</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/form-mgt-7/form-mgt-7-2022.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/form-mgt-7/form-mgt-7-2022.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>2021</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/form-mgt-7/form-mgt-7-2021.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/form-mgt-7/form-mgt-7-2021.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>

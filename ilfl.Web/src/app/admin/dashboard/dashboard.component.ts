@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } 
 import { Content } from '../../common/models/content';
 import { fileType } from '../../common/constants';
 import { ContentService } from '../../services/content/content.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
   sectionForTable: string = '';
 
   constructor(private formbuilder: FormBuilder,
-    private contentService: ContentService
+    private contentService: ContentService,
+    private router: Router
   ) {
     this.contentForm = this.formbuilder.group({
       displayName: [null, [Validators.required]],
@@ -141,5 +143,9 @@ export class DashboardComponent implements OnInit {
         return base64String.slice(prefixIndex + 8); // Skip prefix and comma
     }
     return base64String;
+  }
+
+  signOut() {
+    this.router.navigate(['']);
   }
 }

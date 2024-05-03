@@ -36,43 +36,12 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-
-                                    <th>Intimation of shares to be transferred</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-                                </tr>
-                            </thead> -->
-                            <tr>
-                                <td>Intimation for shares to be transferred in September, 2020</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/intimation-for-shares-to-be-transferred-in-sep-2020.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/intimation-for-shares-to-be-transferred-in-sep-2020.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>Intimation for shares to be transferred in November, 2018</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/intimation-for-shares-to-be-transferred-in-nov-2018.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/intimation-for-shares-to-be-transferred-in-nov-2018.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>Intimation for shares to be transferred in November, 2017</td>
-                                <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/transfer-of-shares-to-iepf/intimation-for-shares-to-be-transferred-in-nov-2017.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td class="text-center"><a
-                                        href="./wp-uploads/investors-relations/e-voting-results/intimation-for-shares-to-be-transferred-in-nov-2017.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue">
+                                <td>{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
                         </tbody>
                     </table>

@@ -36,89 +36,13 @@
 
                     <table class="table table-bordered table-hover border-secondary">
                         <tbody>
-                            <!-- <thead>
-                                <tr class="text-center">
-
-
-
-                                    <th>Unclaimed Dividend Year</th>
-                                    <th class="view_dwnld">View</th>
-                                    <th class="view_dwnld">Download</th>
-                                </tr>
-                            </thead> -->
-                            <tr>
-                                <td>INTERIM DIVIDEND 2022-23</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2022-23.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2022-23.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
+                            <tr *ngFor="let value of tableValue">
+                                <td scope="row">{{value.ifctdisplayName}}</td>
+                                <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                        style="cursor: pointer;">
+                                        <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                    </a></td>
                             </tr>
-                            <tr>
-                                <td>INTERIM DIVIDEND 2020-21</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2020-21.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2020-21.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>INTERIM DIVIDEND 2019-20</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2019-20.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2019-20.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>FINAL DIVIDEND 2018-19</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/FINAL-DIVIDEND-2018-19.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/FINAL-DIVIDEND-2018-19.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>INTERIM DIVIDEND 2018-19</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2018-19.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2018-19.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-                            <tr>
-                                <td>INTERIM DIVIDEND 2017-18</td>
-                                <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2017-18.pdf"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a></td>
-                                <!-- <td style="text-align:center"><a
-                                        href="./wp-uploads/investors-relations/INTERIM-DIVIDEND/INTERIM-DIVIDEND-2017-18.zip"
-                                        target="_blank" contenteditable="false" style="cursor: pointer;"> <img
-                                            class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon"></a>
-                                </td> -->
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>

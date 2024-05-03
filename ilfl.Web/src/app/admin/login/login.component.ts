@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../services/auth/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { User } from '../../common/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit{
   user: User = new User();
 
   constructor(private formbuilder: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     this.credentialForm = this.formbuilder.group({
       username: [null, [Validators.required]],
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit{
       this.auth.validateUser(this.user).subscribe(res => {
         if(res.status === 200) {
           if(res.body) {
-            alert();
+            this.router.navigate(['Admin/Dashboard']);
           } else {
             alert("Username or password is wrong");
 
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit{
       });
     }
     else {
-      alert("Username or password is wrong");
+      alert("Username or password is missing");
     }
     
   }
