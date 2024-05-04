@@ -1,14 +1,14 @@
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { fileType } from '../../common/constants';
+import { Content } from '../../common/models/content';
+import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Content } from '../../common/models/content';
-import { fileType } from '../../common/constants';
-import { ContentService } from '../../services/content/content.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-save-content',
   standalone: true,
   imports: [
     CommonModule,
@@ -16,10 +16,10 @@ import { Router } from '@angular/router';
     FormsModule,
     HttpClientModule],
   providers: [HttpClientModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  templateUrl: './save-content.component.html',
+  styleUrl: './save-content.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class SaveContentComponent {
   contentForm: FormGroup;
   content: Content = new Content();
   base64File: string = '';
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
       this.contentService.AddContent(this.content).subscribe(res => {
         if (res.status === 201) {
           if (res.body) {
-            alert('Data saved');
+            this.router.navigate(['Admin/Dashboard']);
             this.contentForm.reset();
           } else {
             alert("Details are wrong");
@@ -120,40 +120,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  viewPDF(file: string) {
-    let base64 = this.moveDataUriPrefix(file);
-    this.openPdfInNewTab(base64);
-  }
-
-  openPdfInNewTab(base64String: string) {
-    const binaryString = window.atob(base64String);
-    const binaryLen = binaryString.length;
-    const bytes = new Uint8Array(binaryLen);
-
-    for (let i = 0; i < binaryLen; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-
-    const blob = new Blob([bytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-
-    // Open PDF in new tab
-    window.open(url, '_blank');
-  }
-
-  moveDataUriPrefix(base64String: string): string {
-    const prefixIndex = base64String.indexOf(';base64,');
-    if (prefixIndex !== -1) {
-        return base64String.slice(prefixIndex + 8); // Skip prefix and comma
-    }
-    return base64String;
-  }
-
   signOut() {
     this.router.navigate(['']);
   }
-
-  addPage() {
-    this.router.navigate(['Admin/AddContent']);
+  backDashboard() {
+    this.router.navigate(['Admin/Dashboard']);
   }
 }

@@ -16,6 +16,7 @@ import { ResignationOfDirectorComponent } from './public/resignation-of-director
 import { CorporateSocialResponsibilityComponent } from './public/corporate-social-responsibility/corporate-social-responsibility.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './admin/login/login.component';
+import { SaveContentComponent } from './admin/save-content/save-content.component';
 
 export const routes: Routes = [
     { path : '' , redirectTo: '/Home', pathMatch: 'full'},
@@ -35,5 +36,6 @@ export const routes: Routes = [
     { path : 'Resignation-Of-Director' , component : ResignationOfDirectorComponent},
     { path : 'Corporate-Social-Responsibility' , component : CorporateSocialResponsibilityComponent},
     { path : 'Admin/Dashboard' , component : DashboardComponent},
+    { path : 'Admin/AddContent' , component : SaveContentComponent},
     { path : 'Admin' , component : LoginComponent}
 ];

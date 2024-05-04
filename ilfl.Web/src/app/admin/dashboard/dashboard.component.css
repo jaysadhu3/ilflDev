@@ -1,0 +1,13 @@
+.main-con {
+    padding: 5px;
+}
+
+.table-padding {
+    padding-bottom: 50px;
+}
+
+.bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+}

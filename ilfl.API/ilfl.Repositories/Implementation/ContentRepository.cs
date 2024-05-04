@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ilfl.Repositories.Implementation;
 
@@ -54,6 +55,11 @@ public class ContentRepository : IContentRepository
         try
         {
             if (string.IsNullOrEmpty(section)) return null;
+            if(section == "all")
+            {
+                var resultAll = _dbContext.Ifctcontents.ToList();
+                return resultAll;
+            }
             var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.Ifctsection == section);
             if (sectionCheck == null) return null;
             var result = _dbContext.Ifctcontents.Where(x => x.Ifctsection == section).ToList();
