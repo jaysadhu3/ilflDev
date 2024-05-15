@@ -53,4 +53,28 @@ public class AuthController : Controller
             return StatusCode(StatusCodes.Status500InternalServerError,ex.Message);
         }
     }
+
+    [HttpPost]
+    public IActionResult CreateUser([FromBody] User user)
+    {
+        try
+        {
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Username and Password is missing.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Username and Password is missing.");
+            }
+
+            var isValid = _authService.CreateUser(user);
+            return StatusCode(StatusCodes.Status200OK, isValid);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
 }

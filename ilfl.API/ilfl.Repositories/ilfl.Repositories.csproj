@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ilfl.Models\ilfl.Models.csproj" />
+    <ProjectReference Include="..\ilfl.Utilities\ilfl.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

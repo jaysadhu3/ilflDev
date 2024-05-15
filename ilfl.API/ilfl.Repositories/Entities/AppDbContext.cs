@@ -17,6 +17,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<IfdddirectorDetail> IfdddirectorDetails { get; set; }
 
+    public virtual DbSet<Ifsssection> Ifsssections { get; set; }
+
     public virtual DbSet<Ifuluser> Ifulusers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +30,7 @@ public partial class AppDbContext : DbContext
             entity.ToTable("IFCTContent");
 
             entity.Property(e => e.Ifctid).HasColumnName("IFCTId");
+            entity.Property(e => e.IfctIfss).HasColumnName("IFCT_IFSS");
             entity.Property(e => e.IfctdisplayName)
                 .IsRequired()
                 .HasMaxLength(100)
@@ -37,11 +40,11 @@ public partial class AppDbContext : DbContext
                 .IsRequired()
                 .IsUnicode(false)
                 .HasColumnName("IFCTFile");
-            entity.Property(e => e.Ifctsection)
-                .IsRequired()
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("IFCTSection");
+
+            entity.HasOne(d => d.IfctIfssNavigation).WithMany(p => p.Ifctcontents)
+                .HasForeignKey(d => d.IfctIfss)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IFCT_IFSS");
         });
 
         modelBuilder.Entity<IfdddirectorDetail>(entity =>
@@ -66,21 +69,35 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("IFDDPosition");
         });
 
+        modelBuilder.Entity<Ifsssection>(entity =>
+        {
+            entity.HasKey(e => e.Ifssid);
+
+            entity.ToTable("IFSSSection");
+
+            entity.Property(e => e.Ifssid).HasColumnName("IFSSId");
+            entity.Property(e => e.Ifssname)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("IFSSName");
+            entity.Property(e => e.Ifssparent).HasColumnName("IFSSParent");
+        });
+
         modelBuilder.Entity<Ifuluser>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("IFULUsers");
+            entity.HasKey(e => e.Ifulid);
 
+            entity.ToTable("IFULUsers");
+
+            entity.Property(e => e.Ifulid).HasColumnName("IFULId");
             entity.Property(e => e.Ifulpassword)
                 .IsRequired()
-                .HasMaxLength(10)
-                .IsUnicode(false)
+                .HasMaxLength(150)
                 .HasColumnName("IFULPassword");
             entity.Property(e => e.Ifulusername)
                 .IsRequired()
-                .HasMaxLength(10)
-                .IsUnicode(false)
+                .HasMaxLength(150)
                 .HasColumnName("IFULUsername");
         });
 

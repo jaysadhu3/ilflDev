@@ -10,4 +10,5 @@ namespace ilfl.Services.Interface;
 public interface IAuthService
 {
     bool IsValid(User user);
+    bool CreateUser(User user);
 }

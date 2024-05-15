@@ -1,12 +1,6 @@
 ﻿using ilfl.Models.Models;
 using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace ilfl.Repositories.Implementation;
 
@@ -24,7 +18,7 @@ public class ContentRepository : IContentRepository
         {
             if (content == null) { return  false; }
             var newContent = new Ifctcontent();
-            newContent.Ifctsection = content.Ifctsection;
+            //newContent.Ifctsection = content.Ifctsection;
             newContent.Ifctfile = content.Ifctfile;
             newContent.IfctdisplayName = content.IfctdisplayName;
             _dbContext.Add(newContent);
@@ -50,25 +44,39 @@ public class ContentRepository : IContentRepository
         return records;
     }
 
-    public List<Ifctcontent>? GetContent(string section)
+    public List<Ifsssection>? GetChildSection(int ParentId)
+    {
+        var result = _dbContext.Ifsssections.Where(x => x.Ifssparent == ParentId).ToList();
+        return result;
+    }
+
+    public List<Ifctcontent>? GetContent(int sectionId)
     {
         try
         {
-            if (string.IsNullOrEmpty(section)) return null;
-            if(section == "all")
+            if (sectionId == null) return null;
+            if(sectionId == 0)
             {
-                var resultAll = _dbContext.Ifctcontents.ToList();
+                var resultAll = _dbContext.Ifctcontents.OrderByDescending(x => x.Ifctid).ToList();
                 return resultAll;
             }
-            var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.Ifctsection == section);
+            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssid == sectionId).ToList();
+            if (parentCheck.Count > 0) return null;
+            var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.IfctIfss == sectionId);
             if (sectionCheck == null) return null;
-            var result = _dbContext.Ifctcontents.Where(x => x.Ifctsection == section).ToList();
-            return result;
+            var result = _dbContext.Ifctcontents.Where(x => x.IfctIfss == sectionId).OrderByDescending(x => x.Ifctid).ToList();
+            return null;
 
         }
         catch
         {
             return null;
         }
+    }
+
+    public List<Ifsssection>? GetParentSection()
+    {
+        var result = _dbContext.Ifsssections.Where(x => x.Ifssparent == null).ToList();
+        return result;
     }
 }

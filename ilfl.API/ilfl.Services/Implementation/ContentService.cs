@@ -37,8 +37,18 @@ public class ContentService : IContentService
         return _contentRepository.DirectorDetail();
     }
 
-    public List<Ifctcontent>? GetContent(string section)
+    public List<Ifsssection>? GetChildSection(int ParentId)
     {
-        return _contentRepository.GetContent(section);
+        return _contentRepository.GetChildSection(ParentId);
+    }
+
+    public List<Ifctcontent>? GetContent(int sectionId)
+    {
+        return _contentRepository.GetContent(sectionId);
+    }
+
+    public List<Ifsssection>? GetParentSection()
+    {
+        return _contentRepository.GetParentSection();
     }
 }

@@ -1,0 +1,13 @@
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\bin\Debug\net8.0\ilfl.Utilities.deps.json
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\bin\Debug\net8.0\ilfl.Utilities.dll
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\bin\Debug\net8.0\ilfl.Utilities.pdb
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.csproj.AssemblyReference.cache
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.AssemblyInfoInputs.cache
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.AssemblyInfo.cs
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.csproj.CoreCompileInputs.cache
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.sourcelink.json
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.dll
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\refint\ilfl.Utilities.dll
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ilfl.Utilities.pdb
+C:\Project\ilflDev\ilfl.API\ilfl.Utilities\obj\Debug\net8.0\ref\ilfl.Utilities.dll

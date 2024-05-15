@@ -28,16 +28,16 @@ public class ContentController : Controller
     /// <summary>
     ///     Retrive content as per section
     /// </summary>
-    /// <param name="section">section</param>
+    /// <param name="sectionId">section</param>
     /// <returns>Content</returns>
-    [HttpPost]
-    public IActionResult GetContent([FromBody]string section)
+    [HttpGet("{sectionId}")]
+    public IActionResult GetContent(int sectionId)
     {
-        if (string.IsNullOrWhiteSpace(section))
+        if (sectionId == null)
         {
             return StatusCode(StatusCodes.Status404NotFound, "Section is missing");
         }
-        var result = _contentService.GetContent(section);
+        var result = _contentService.GetContent(sectionId);
         return StatusCode(StatusCodes.Status200OK, result);
     }
 
@@ -95,6 +95,34 @@ public class ContentController : Controller
             return StatusCode(StatusCodes.Status200OK, results);
         }
         catch(Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult GetParentSection()
+    {
+        try
+        {
+            var results = _contentService.GetParentSection();
+            return StatusCode(StatusCodes.Status200OK, results);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet("{ParentId}")]
+    public IActionResult GetChildSection(int ParentId)
+    {
+        try
+        {
+            var results = _contentService.GetChildSection(ParentId);
+            return StatusCode(StatusCodes.Status200OK, results);
+        }
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }

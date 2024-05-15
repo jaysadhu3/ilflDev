@@ -116,10 +116,10 @@
 
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand text-dark" href="#">Admin Panel</a>
     <a class="navbar-brand" href="#">
       <img alt="Brand" src="./assets/img/x-marks.png" height="25px">
     </a>
+    <a class="navbar-brand text-dark" href="#">Admin Panel</a>
     <button type="button" class="btn btn-secondary navbar-btn navbar-right " (click)="signOut()">Sign Out</button>
   </div>
 </nav>
@@ -143,17 +143,17 @@
   </div>
 </div>
 <div class="main-con table-padding table-responsive">
-  <table class="table table-dark" *ngIf="tableValue != null">
+  <table class="table" *ngIf="tableValue != null">
     <thead>
-      <tr>
-        <th scope="col">Name to Disply</th>
+      <tr class="table-primary">
+        <th scope="col">Name to Display</th>
         <th scope="col">Section</th>
         <th scope="col">File</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let value of tableValue" class="table-primary">
+      <tr *ngFor="let value of tableValue">
         <th>{{value.ifctdisplayName}}</th>
         <th>{{value.ifctsection}}</th>
         <td><i class="bi bi-filetype-pdf" (click)="viewPDF(value.ifctfile)"

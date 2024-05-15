@@ -9,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ilfl.Web';
+  title = 'Unclaimed Dividend | Inox Leasing and Finance Limited (ILFL)';
 }

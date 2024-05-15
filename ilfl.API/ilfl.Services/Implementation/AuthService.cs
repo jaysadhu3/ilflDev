@@ -20,6 +20,12 @@ public class AuthService : IAuthService
         _authRepository = authRepository;
         _configuration = configuration;
     }
+
+    public bool CreateUser(User user)
+    {
+        return _authRepository.CreateUser(user);
+    }
+
     public bool IsValid(User user)
     {
         return _authRepository.IsValid(user);

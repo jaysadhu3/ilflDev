@@ -7,7 +7,9 @@ namespace ilfl.Repositories.Entities;
 
 public partial class Ifuluser
 {
-    public string Ifulusername { get; set; }
+    public int Ifulid { get; set; }
 
-    public string Ifulpassword { get; set; }
+    public byte[] Ifulusername { get; set; }
+
+    public byte[] Ifulpassword { get; set; }
 }

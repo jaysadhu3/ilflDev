@@ -19,7 +19,6 @@ import { LoginComponent } from './admin/login/login.component';
 import { SaveContentComponent } from './admin/save-content/save-content.component';
 
 export const routes: Routes = [
-    { path : '' , redirectTo: '/Home', pathMatch: 'full'},
     { path : 'Home' , component : HomeComponent},
     { path : 'Contact-Us' , component : ContactUsComponent},
     { path : 'About' , component : AboutComponent},
@@ -37,5 +36,6 @@ export const routes: Routes = [
     { path : 'Corporate-Social-Responsibility' , component : CorporateSocialResponsibilityComponent},
     { path : 'Admin/Dashboard' , component : DashboardComponent},
     { path : 'Admin/AddContent' , component : SaveContentComponent},
-    { path : 'Admin' , component : LoginComponent}
+    { path : 'Admin' , component : LoginComponent},
+    { path : '' , redirectTo: '/Home', pathMatch: 'full'},
 ];

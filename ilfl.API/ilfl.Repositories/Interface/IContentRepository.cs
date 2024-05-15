@@ -10,8 +10,10 @@ namespace ilfl.Repositories.Interface;
 
 public interface IContentRepository
 {
-    List<Ifctcontent>? GetContent(string section);
+    List<Ifctcontent>? GetContent(int sectionId);
     bool AddContent(Content content);
     void DeleteContent(int id);
     List<IfdddirectorDetail>? DirectorDetail();
+    List<Ifsssection>? GetParentSection();
+    List<Ifsssection>? GetChildSection(int ParentId);
 }

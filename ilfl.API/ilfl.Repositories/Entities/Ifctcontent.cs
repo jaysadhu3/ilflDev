@@ -9,9 +9,11 @@ public partial class Ifctcontent
 {
     public int Ifctid { get; set; }
 
+    public int IfctIfss { get; set; }
+
     public string IfctdisplayName { get; set; }
 
-    public string Ifctsection { get; set; }
-
     public string Ifctfile { get; set; }
+
+    public virtual Ifsssection IfctIfssNavigation { get; set; }
 }

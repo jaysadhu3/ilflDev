@@ -10,4 +10,5 @@ namespace ilfl.Repositories.Interface;
 public interface IAuthRepository
 {
     bool IsValid(User user);
+    bool CreateUser(User user);
 }
