@@ -19,11 +19,11 @@ export class TransferOfSharesToIEPFComponent {
     }
 
     ngOnInit(): void {
-      this.contentService.GetContent('Transfer of Shares to IEPF 1').subscribe(res => {
+      this.contentService.GetContent(10).subscribe(res => {
           this.tableValue = res.body;
           console.log(res.body);
         });
-        this.contentService.GetContent('Transfer of Shares to IEPF 2').subscribe(res => {
+        this.contentService.GetContent(11).subscribe(res => {
             this.tableValue2 = res.body;
             console.log(res.body);
           });

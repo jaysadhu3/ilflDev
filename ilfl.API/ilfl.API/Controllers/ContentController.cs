@@ -127,4 +127,39 @@ public class ContentController : Controller
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
+
+    [HttpPost]
+    public IActionResult AddSection(Section section)
+    {
+        try
+        {
+            if (!ModelState.IsValid) return StatusCode(StatusCodes.Status400BadRequest, ModelState);
+
+            if (section == null) { return  StatusCode(StatusCodes.Status404NotFound,"Details not found");}
+
+            var result = _contentService.AddSection(section);
+
+            return StatusCode(StatusCodes.Status201Created, result);
+
+
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult GetAllSection()
+    {
+        try
+        {
+            var results = _contentService.GetAllSection();
+            return StatusCode(StatusCodes.Status200OK, results);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
 }

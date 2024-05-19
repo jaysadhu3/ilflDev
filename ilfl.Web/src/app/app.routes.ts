@@ -17,25 +17,20 @@ import { CorporateSocialResponsibilityComponent } from './public/corporate-socia
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './admin/login/login.component';
 import { SaveContentComponent } from './admin/save-content/save-content.component';
+import { SaveSectionComponent } from './admin/save-section/save-section.component';
+import { MainComponent } from './public/main/main.component';
+import { ViewContentComponent } from './admin/view-content/view-content.component';
+import { ViewMenuComponent } from './admin/view-menu/view-menu.component';
+import { SavePageContentComponent } from './admin/save-page-content/save-page-content.component';
 
 export const routes: Routes = [
-    { path : 'Home' , component : HomeComponent},
-    { path : 'Contact-Us' , component : ContactUsComponent},
-    { path : 'About' , component : AboutComponent},
-    { path : 'Investors-Relations' , component : InvestorsRelationsComponent},
-    { path : 'Annual-Report' , component : AnnualReportComponent},
-    { path : 'Audited-Accounts-Of-Subsidiaries' , component : AuditedAccountsOfSubsidiariesComponent},
-    { path : 'E-Voting-Results' , component : EVotingResultsComponent},
-    { path : 'Notice-To-Shareholders' , component : NoticeToShareholdersComponent},
-    { path : 'Transfer-Of-Shares-To-iepf' , component : TransferOfSharesToIEPFComponent},
-    { path : 'Unclaimed-Dividend' , component : UnclaimedDividendComponent},
-    { path : 'Corporate-Overview' , component : CorporateOverviewComponent},
-    { path : 'Form-MGT-7' , component : FormMgt7Component},
-    { path : 'Board-Of-Directors' , component : BoardOfDirectorsComponent},
-    { path : 'Resignation-Of-Director' , component : ResignationOfDirectorComponent},
-    { path : 'Corporate-Social-Responsibility' , component : CorporateSocialResponsibilityComponent},
+    { path : '' , component : MainComponent},
     { path : 'Admin/Dashboard' , component : DashboardComponent},
     { path : 'Admin/AddContent' , component : SaveContentComponent},
     { path : 'Admin' , component : LoginComponent},
-    { path : '' , redirectTo: '/Home', pathMatch: 'full'},
+    { path : 'Admin/AddMenu' , component : SaveSectionComponent},
+    { path : 'Admin/ViewContent' , component : ViewContentComponent},
+    { path : 'Admin/ViewMenu' , component : ViewMenuComponent},
+    { path : 'Admin/savePageContent' , component : SavePageContentComponent},
+    { path : '**' , redirectTo: '', pathMatch: 'full'},
 ];

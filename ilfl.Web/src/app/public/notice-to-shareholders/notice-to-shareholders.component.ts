@@ -18,7 +18,7 @@ export class NoticeToShareholdersComponent {
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Notice to Shareholders').subscribe(res => {
+        this.contentService.GetContent(9).subscribe(res => {
             this.tableValue = res.body;
             console.log(res.body);
           });

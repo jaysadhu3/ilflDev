@@ -18,7 +18,7 @@ export class FormMgt7Component {
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Form MGT 7').subscribe(res => {
+        this.contentService.GetContent(13).subscribe(res => {
             this.tableValue = res.body;
             console.log(res.body);
           });

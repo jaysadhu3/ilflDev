@@ -13,5 +13,7 @@ public partial class Ifsssection
 
     public string Ifssname { get; set; }
 
+    public string Ifsspath { get; set; }
+
     public virtual ICollection<Ifctcontent> Ifctcontents { get; set; } = new List<Ifctcontent>();
 }

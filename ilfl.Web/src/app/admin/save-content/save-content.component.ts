@@ -6,6 +6,8 @@ import { Content } from '../../common/models/content';
 import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-save-content',
@@ -14,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule],
+    HttpClientModule,
+    ToastrModule],
   providers: [HttpClientModule],
   templateUrl: './save-content.component.html',
   styleUrl: './save-content.component.css'
@@ -25,10 +28,12 @@ export class SaveContentComponent {
   base64File: string = '';
   tableValue: any = null;
   sectionForTable: string = '';
+  dropdownValue: any = null;
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService, private spinner: NgxSpinnerService
   ) {
     this.contentForm = this.formbuilder.group({
       displayName: [null, [Validators.required]],
@@ -40,9 +45,14 @@ export class SaveContentComponent {
 
   ngOnInit(): void {
 
-    this.contentService.GetContent('all').subscribe(res => {
+    this.contentService.GetContent(0).subscribe(res => {
       this.tableValue = res.body;
-      console.log(this.tableValue);
+      this.spinner.hide();
+    });
+
+    this.contentService.GetChildSection(0).subscribe(res => {
+      this.dropdownValue = res.body;
+      this.spinner.hide();
     });
   }
 
@@ -55,15 +65,21 @@ export class SaveContentComponent {
       this.contentService.AddContent(this.content).subscribe(res => {
         if (res.status === 201) {
           if (res.body) {
-            this.router.navigate(['Admin/Dashboard']);
-            this.contentForm.reset();
+            this.toastr.success("Details saved successfully", "success");
+
+            this.spinner.hide();
+            this.router.navigate(['Admin/ViewContent']);
           } else {
-            alert("Details are wrong");
+
+            this.spinner.hide();
+            this.toastr.error("Something wrong with information, Please check and submit again", "Information Error");
           }
         }
       });
     } else {
-      alert("Somthing wrong");
+
+      this.spinner.hide();
+      this.toastr.error("Please fill all the required fields.", "Validation Error");
     }
   }
 
@@ -74,6 +90,7 @@ export class SaveContentComponent {
 
       if (!fileType.exec(filename)) {
         this.contentForm.controls['file'].setValue(undefined);
+        this.toastr.error("Only PDF file format is allowed.", "File Format Error");
         this.base64File = '';
         return;
       }
@@ -95,35 +112,10 @@ export class SaveContentComponent {
     });
   }
 
-  ViewTable(event: Event) {
-    let section = (event.target as HTMLInputElement).value;
-    this.sectionForTable = section;
-    if (section != null && section != '') {
-      this.contentService.GetContent(section).subscribe(res => {
-        this.tableValue = res.body;
-        console.log(this.tableValue);
-      });
-    } else {
-      this.tableValue = null;
-    }
-  }
-
-  deleteValue(id: number) {
-    this.contentService.DeleteContent(id).subscribe(res => {
-      if (res.status == 200) {
-        this.contentService.GetContent(this.sectionForTable).subscribe(res => {
-          this.tableValue = res.body;
-        });
-      } else {
-        alert("Something went wrong");
-      }
-    });
-  }
-
   signOut() {
     this.router.navigate(['']);
   }
   backDashboard() {
-    this.router.navigate(['Admin/Dashboard']);
+    this.router.navigate(['Admin/ViewContent']);
   }
 }

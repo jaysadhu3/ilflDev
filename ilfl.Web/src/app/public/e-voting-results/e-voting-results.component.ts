@@ -18,7 +18,7 @@ export class EVotingResultsComponent {
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('E-Voting Results').subscribe(res => {
+        this.contentService.GetContent(8).subscribe(res => {
             this.tableValue = res.body;
             console.log(res.body);
           });

@@ -16,4 +16,6 @@ public interface IContentRepository
     List<IfdddirectorDetail>? DirectorDetail();
     List<Ifsssection>? GetParentSection();
     List<Ifsssection>? GetChildSection(int ParentId);
+    List<Ifsssection>? GetAllSection();
+    bool AddSection(Section section);
 }

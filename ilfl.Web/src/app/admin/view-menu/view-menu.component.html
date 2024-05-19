@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <img alt="Brand" src="./assets/img/x-marks.png" height="25px">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Admin/Dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Admin/ViewContent">Content</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Admin/ViewMenu">Menu</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <button class="btn btn-outline-success" (click)="signOut()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="main-con table-padding table-responsive">
+  <table class="table" *ngIf="allSection != null">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Menu Name</th>
+        <th scope="col">Parent Menu</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let section of allSection">
+        <th>{{section.ifssname}}</th>
+        <th *ngIf="section.ifssparent == null"> No Parent </th>
+        <th *ngIf="section.ifssparent != null"> 
+          <span *ngFor="let section2 of allSection">
+            <span *ngIf="section2.ifssid == section.ifssparent">
+              {{section2.ifssname}}
+            </span>
+          </span> 
+        </th>
+        <td><button type="button" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<nav class="bottom navbar sticky-bottom bg-body-tertiary">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-auto">
+        <a href="Admin/AddMenu">
+          <button type="button" class="btn btn-outline-secondary">Add Menu</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</nav>

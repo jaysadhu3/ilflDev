@@ -16,4 +16,6 @@ public interface IContentService
     List<IfdddirectorDetail>? DirectorDetail();
     List<Ifsssection>? GetParentSection();
     List<Ifsssection>? GetChildSection(int ParentId);
+    bool AddSection(Section section);
+    List<Ifsssection>? GetAllSection();
 }

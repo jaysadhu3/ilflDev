@@ -1,3 +1,32 @@
 .main-con {
     padding: 15px;
 }
+
+.required {
+    color: red;
+}
+.main-con {
+    padding: 5px;
+}
+
+.table-padding {
+    padding-bottom: 50px;
+}
+
+.bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+}
+
+.curser-pointer {
+    cursor: pointer;
+}
+
+.navbar .nav-item:hover > .nav-link {
+    color: rgba(0, 0, 0, 0.534) !important;
+  }
+
+.navbar-nav > .nav-item::before {
+    background-color: black !important;
+}

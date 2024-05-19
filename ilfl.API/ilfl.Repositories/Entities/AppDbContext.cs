@@ -82,6 +82,10 @@ public partial class AppDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("IFSSName");
             entity.Property(e => e.Ifssparent).HasColumnName("IFSSParent");
+            entity.Property(e => e.Ifsspath)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("IFSSPath");
         });
 
         modelBuilder.Entity<Ifuluser>(entity =>

@@ -18,7 +18,7 @@ export class AnnualReportComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Annual Report').subscribe(res => {
+        this.contentService.GetContent(5).subscribe(res => {
             this.tableValue = res.body;
             console.log(res.body);
           });

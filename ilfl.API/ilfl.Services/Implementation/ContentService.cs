@@ -27,6 +27,11 @@ public class ContentService : IContentService
         return _contentRepository.AddContent(content);
     }
 
+    public bool AddSection(Section section)
+    {
+        return _contentRepository.AddSection(section);
+    }
+
     public void DeleteContent(int id)
     {
         _contentRepository.DeleteContent(id);
@@ -35,6 +40,11 @@ public class ContentService : IContentService
     public List<IfdddirectorDetail>? DirectorDetail()
     {
         return _contentRepository.DirectorDetail();
+    }
+
+    public List<Ifsssection>? GetAllSection()
+    {
+        return _contentRepository.GetAllSection();
     }
 
     public List<Ifsssection>? GetChildSection(int ParentId)

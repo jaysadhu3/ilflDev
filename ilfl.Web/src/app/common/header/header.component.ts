@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../services/content/content.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  manuValue: any = null;
+  subManuValue: any = null;
+  constructor(private contentService: ContentService) {
+  }
+
+  ngOnInit(): void {
+
+    this.contentService.GetParentSection().subscribe(res => {
+      this.manuValue = res.body;
+      console.log(this.manuValue);
+    });
+
+    this.contentService.GetChildSection(0).subscribe(res => {
+      this.subManuValue = res.body;
+      console.log(this.subManuValue);
+    });
+  }
+
+  subManuList(id: number) {
+    this.contentService.GetChildSection(id).subscribe(res => {
+      this.subManuValue = res.body;
+      console.log(this.subManuValue);
+    });
+  }
 
 }

@@ -1,0 +1,7 @@
+.curser-pointer {
+    cursor: pointer;
+}
+  
+  @keyframes l22{
+    100%{background-position: left}
+  }

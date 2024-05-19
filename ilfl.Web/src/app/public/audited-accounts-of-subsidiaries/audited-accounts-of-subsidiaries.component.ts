@@ -18,11 +18,11 @@ export class AuditedAccountsOfSubsidiariesComponent {
     }
 
     ngOnInit(): void {
-        this.contentService.GetContent('Audited Accounts of Subsidiaries GFL').subscribe(res => {
+        this.contentService.GetContent(6).subscribe(res => {
             this.tableValue = res.body;
           });
         
-          this.contentService.GetContent('Audited Accounts of Subsidiaries IWEL').subscribe(res => {
+          this.contentService.GetContent(7).subscribe(res => {
             this.tableValue2 = res.body;
           });
     }

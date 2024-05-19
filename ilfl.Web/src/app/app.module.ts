@@ -1,23 +1,24 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterOutlet } from "@angular/router";
-import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
+import { HttpRequestInterceptor } from "./interceptor/interceptor";
 
 @NgModule({
     declarations: [
     ],
     imports: [
-        RouterOutlet, 
-        ReactiveFormsModule, 
-        FormsModule, 
-        HttpClientModule, 
-        NgxUiLoaderModule, 
-        NgxUiLoaderHttpModule.forRoot({ 
-            showForeground: true 
-        })],
+        RouterOutlet,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule],
     providers: [
-        HttpClientModule
+        HttpClientModule,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpRequestInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [],
     schemas: [

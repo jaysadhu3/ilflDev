@@ -12,7 +12,7 @@ public class Content
 
     public required string IfctdisplayName { get; set; }
 
-    public required string Ifctsection { get; set; }
+    public required int Ifctsection { get; set; }
 
     public required string Ifctfile { get; set; }
 }

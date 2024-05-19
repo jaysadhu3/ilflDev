@@ -18,7 +18,7 @@ public class ContentRepository : IContentRepository
         {
             if (content == null) { return  false; }
             var newContent = new Ifctcontent();
-            //newContent.Ifctsection = content.Ifctsection;
+            newContent.IfctIfss = content.Ifctsection;
             newContent.Ifctfile = content.Ifctfile;
             newContent.IfctdisplayName = content.IfctdisplayName;
             _dbContext.Add(newContent);
@@ -29,6 +29,17 @@ public class ContentRepository : IContentRepository
         {
             return false;
         }
+    }
+
+    public bool AddSection(Section section)
+    {
+        if (section == null) { return false; }
+        var newSection = new Ifsssection();
+        newSection.Ifssname = section.Ifssname;
+        newSection.Ifssparent = section.Ifssparent;
+        _dbContext.Add(newSection);
+        _dbContext.SaveChanges();
+        return true;
     }
 
     public void DeleteContent(int id)
@@ -44,8 +55,19 @@ public class ContentRepository : IContentRepository
         return records;
     }
 
+    public List<Ifsssection>? GetAllSection()
+    {
+        var result = _dbContext.Ifsssections.OrderByDescending(x => x.Ifssid).ToList();
+        return result;
+    }
+
     public List<Ifsssection>? GetChildSection(int ParentId)
     {
+        if(ParentId == 0)
+        {
+            var resultAll = _dbContext.Ifsssections.Where(x => x.Ifssparent != null).ToList();
+            return resultAll;
+        }
         var result = _dbContext.Ifsssections.Where(x => x.Ifssparent == ParentId).ToList();
         return result;
     }
@@ -60,12 +82,12 @@ public class ContentRepository : IContentRepository
                 var resultAll = _dbContext.Ifctcontents.OrderByDescending(x => x.Ifctid).ToList();
                 return resultAll;
             }
-            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssid == sectionId).ToList();
+            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssparent == sectionId).ToList();
             if (parentCheck.Count > 0) return null;
             var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.IfctIfss == sectionId);
             if (sectionCheck == null) return null;
             var result = _dbContext.Ifctcontents.Where(x => x.IfctIfss == sectionId).OrderByDescending(x => x.Ifctid).ToList();
-            return null;
+            return result;
 
         }
         catch
