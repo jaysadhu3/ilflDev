@@ -20,19 +20,16 @@ export class HeaderComponent implements OnInit {
 
     this.contentService.GetParentSection().subscribe(res => {
       this.manuValue = res.body;
-      console.log(this.manuValue);
     });
 
     this.contentService.GetChildSection(0).subscribe(res => {
       this.subManuValue = res.body;
-      console.log(this.subManuValue);
     });
   }
 
   subManuList(id: number) {
     this.contentService.GetChildSection(id).subscribe(res => {
       this.subManuValue = res.body;
-      console.log(this.subManuValue);
     });
   }
 

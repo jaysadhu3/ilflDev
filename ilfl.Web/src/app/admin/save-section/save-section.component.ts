@@ -54,9 +54,7 @@ export class SaveSectionComponent implements OnInit{
   }
 
   processSave() {
-    console.log('in');
     if (this.sectionForm.valid) {
-      console.log('valid');
       this.section.ifssname = this.sectionForm.controls['menuName'].value;
       this.section.ifssparent = this.sectionForm.controls['parentId'].value;
 

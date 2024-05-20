@@ -20,7 +20,6 @@ export class UnclaimedDividendComponent {
     ngOnInit(): void {
         this.contentService.GetContent(12).subscribe(res => {
             this.tableValue = res.body;
-            console.log(res.body);
           });
     }
 

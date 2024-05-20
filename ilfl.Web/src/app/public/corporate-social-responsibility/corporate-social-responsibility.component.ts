@@ -20,7 +20,6 @@ export class CorporateSocialResponsibilityComponent {
     ngOnInit(): void {
         this.contentService.GetContent(14).subscribe(res => {
             this.tableValue = res.body;
-            console.log(res.body);
           });
     }
 

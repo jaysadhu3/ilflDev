@@ -62,18 +62,17 @@ export class ViewContentComponent implements OnInit{
   }
 
   deleteValue(id: number) {
-    this.toastr.confirmThis("hii", () => {
       this.contentService.DeleteContent(id).subscribe(res => {
         if (res.status == 200) {
           this.contentService.GetContent(+this.sectionForTable).subscribe(res => {
             this.tableValue = res.body;
             this.spinner.hide();
+            this.toastr.showInfo('Data deleted successfully','Data Deleted');
           });
         } else {
-          alert("Something went wrong");
+          this.toastr.showError('Somethin wrong with connection','Delete Error');
         }
       });
-    }, () => { });
 
   }
 

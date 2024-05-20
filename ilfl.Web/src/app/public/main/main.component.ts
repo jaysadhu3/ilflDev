@@ -15,6 +15,8 @@ export class MainComponent implements OnInit {
   content = '';
   manuValue: any = null;
   tableValue: any = [];
+  directorValue: any = [];
+  allSection: any = [];
   subManuValue: any = null;
   constructor(private contentService: ContentService,
     private spinner: NgxSpinnerService) {
@@ -25,13 +27,23 @@ export class MainComponent implements OnInit {
     this.contentService.GetParentSection().subscribe(res => {
       this.manuValue = res.body;
       this.spinner.hide();
-      console.log(this.manuValue);
     });
 
     this.contentService.GetChildSection(0).subscribe(res => {
       this.subManuValue = res.body;
       this.spinner.hide();
-      console.log(this.subManuValue);
+    });
+
+    this.contentService.GetAllSection().subscribe(res => {
+      if(res.status == 200) {
+        this.allSection = res.body;
+        this.spinner.hide();
+      }
+    });
+    
+    this.contentService.GetDirectorDetail().subscribe(res => {
+      this.directorValue = res.body;
+      this.spinner.hide();
     });
   }
 
@@ -39,7 +51,6 @@ export class MainComponent implements OnInit {
     this.contentService.GetChildSection(id).subscribe(res => {
       this.subManuValue = res.body;
       this.spinner.hide();
-      console.log(this.subManuValue);
     });
   }
 
@@ -48,7 +59,6 @@ export class MainComponent implements OnInit {
     this.contentService.GetContent(id).subscribe(res => {
       this.tableValue = res.body;
       this.spinner.hide();
-      console.log(res.body);
     });
   }
 

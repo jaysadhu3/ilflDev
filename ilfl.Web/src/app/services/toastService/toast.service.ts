@@ -37,12 +37,10 @@ export class NotificationService {
   }
 
   confirmThis(message: string, yesFn: () => void, noFn: () => void): any {
-    // console.log('in');
     this.setConfirmation(message, yesFn, noFn);
   }
 
   setConfirmation(message: string, yesFn: () => void, noFn: () => void): any {
-    console.log('in');
     const prop = this;
     this.subject.next({
       type: 'confirm',

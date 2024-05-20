@@ -20,7 +20,6 @@ export class FormMgt7Component {
     ngOnInit(): void {
         this.contentService.GetContent(13).subscribe(res => {
             this.tableValue = res.body;
-            console.log(res.body);
           });
     }
 
