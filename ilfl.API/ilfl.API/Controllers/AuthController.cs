@@ -46,7 +46,12 @@ public class AuthController : Controller
             }
 
             var isValid = _authService.IsValid(user);
-            return StatusCode(StatusCodes.Status200OK, isValid);
+            if (isValid) {
+                return StatusCode(StatusCodes.Status200OK, isValid);
+            } else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, isValid);
+            }
         }
         catch (Exception ex)
         {
