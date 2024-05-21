@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ilfl.Utilities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de01219930b09fba1e3ceb87dbd85a9242d62416")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44257633c73b4f89ee3438b8dc684ee378a7ff19")]
 [assembly: System.Reflection.AssemblyProductAttribute("ilfl.Utilities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ilfl.Utilities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Environments } from '../../../environments/environments';
+import { environment } from '../../../environments/environments';
 import { User } from '../../common/models/user';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   httpHeaders: HttpHeaders;
-  apiAddress = Environments.apiAddress + 'Auth/';
+  apiAddress = environment.apiAddress + 'Auth/';
   constructor(private httpClient: HttpClient) {
     this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json'});
    }

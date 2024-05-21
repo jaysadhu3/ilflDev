@@ -1,7 +1,7 @@
 import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Environments } from '../../../environments/environments';
+import { environment } from '../../../environments/environments';
 import { User } from '../../common/models/user';
 import { Content } from '../../common/models/content';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,7 +12,7 @@ import { Section } from '../../common/models/Section';
 })
 export class ContentService {
   httpHeaders: HttpHeaders;
-  apiAddress = Environments.apiAddress + 'Content/';
+  apiAddress = environment.apiAddress + 'Content/';
   constructor(private httpClient: HttpClient, private spinner: NgxSpinnerService) {
     this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json'});
    }
