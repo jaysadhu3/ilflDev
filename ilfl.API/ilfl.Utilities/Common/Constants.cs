@@ -1,4 +1,4 @@
-﻿namespace LearnerPortal.Utilities.Common;
+﻿namespace ilfl.Utilities.Common;
 
 public abstract class Constants
 {

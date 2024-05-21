@@ -1,4 +1,4 @@
-﻿namespace LearnerPortal.API.StartUp;
+﻿namespace ilfl.API.StartUp;
 
 /// <summary>
 /// CORS Configuration

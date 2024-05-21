@@ -7,7 +7,7 @@ using ilfl.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace LearnerPortal.API.StartUp;
+namespace ilfl.API.StartUp;
 
 /// <summary>
 /// Dependency Injection Setup
@@ -54,18 +54,18 @@ public static class DependencyInjectionSetup
         {
             c.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "LearnerPortal.API",
+                Title = "ilfl.API",
                 Version = "v1",
-                Description = "Learner Portal APIs",
+                Description = "ilfl APIs",
                 TermsOfService = new Uri(configuration["FrontEndBaseUrl"] ?? string.Empty),
                 Contact = new OpenApiContact
                 {
-                    Name = "Learner Portal",
+                    Name = "Ilfl",
                     //Email = "carl.couchman@civica.co.uk"
                 },
                 License = new OpenApiLicense
                 {
-                    Name = "Learner Portal API License",
+                    Name = "Ilfl API License",
                     Url = new Uri(configuration["FrontEndBaseUrl"] ?? string.Empty),
                 }
             });

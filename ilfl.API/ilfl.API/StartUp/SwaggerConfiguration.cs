@@ -1,6 +1,6 @@
 ﻿using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace LearnerPortal.API.StartUp;
+namespace ilfl.API.StartUp;
 
 /// <summary>
 /// Swagger Configuration

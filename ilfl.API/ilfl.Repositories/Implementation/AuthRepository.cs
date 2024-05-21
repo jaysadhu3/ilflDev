@@ -1,7 +1,7 @@
 ﻿using ilfl.Models.Models;
 using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
-using LearnerPortal.Utilities.Common;
+using ilfl.Utilities.Common;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace LearnerPortal.Utilities.Common;
+namespace ilfl.Utilities.Common;
 
 public class Common
 {

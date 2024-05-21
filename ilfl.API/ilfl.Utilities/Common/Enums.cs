@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace LearnerPortal.Utilities.Common;
+namespace ilfl.Utilities.Common;
 
 public static class Enums
 {

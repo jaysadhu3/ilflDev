@@ -1,4 +1,4 @@
-using LearnerPortal.API.StartUp;
+using ilfl.API.StartUp;
 using Microsoft.AspNetCore.CookiePolicy;
 
 var builder = WebApplication.CreateBuilder(args);
