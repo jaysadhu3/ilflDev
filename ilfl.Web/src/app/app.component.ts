@@ -24,13 +24,11 @@ export class AppComponent implements OnInit {
   title = 'Unclaimed Dividend | Inox Leasing and Finance Limited (ILFL)';
 
   addTag() {
-    let wssUrl = environment.apiAddress;
-    wssUrl = wssUrl.replace('https://','wss://');
     let FrontEndUrl = window.location.origin; 
     let BackEndUrl = environment.apiAddress; 
     this.metaService.addTag({ 
       httpEquiv: 'Content-Security-Policy', 
-      content: "script-src 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' ; script-src-elem 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' " + FrontEndUrl + " ; default-src 'self' " + BackEndUrl + " ; img-src 'self' data: https://cdn.jsdelivr.net/npm/emoji-datasource-twitter@14.0.0/img/twitter/sheets-256/64.png ; style-src   " + FrontEndUrl + " https://fonts.googleapis.com 'unsafe-inline' ; font-src 'self' data: https://fonts.gstatic.com ; base-uri " + FrontEndUrl + "; object-src 'none' ; connect-src 'self'  " + BackEndUrl +" "+ wssUrl + " ;" 
+      content: "script-src 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' ; script-src-elem 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' " + FrontEndUrl + " ;default-src 'self' " + BackEndUrl + " https://www.google.com/ ; img-src 'self' https://img.freepik.com data: https://img.freepik.com/ https://cdn.jsdelivr.net/; style-src  " + FrontEndUrl + " https://fonts.googleapis.com https://cdn.jsdelivr.net/ https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/ 'unsafe-inline'  ;font-src 'self' data: https://fonts.gstatic.com ; base-uri " + FrontEndUrl + ";frame-src 'self' https://api.ilfl.co.in/api/ https://www.google.com/ ;object-src 'none' ; connect-src 'self'  " + BackEndUrl +" ;" 
     });
   }
 }

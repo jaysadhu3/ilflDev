@@ -8,6 +8,7 @@ import { ContentService } from '../../services/content/content.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Section } from '../../common/models/Section';
 import { ToastrService } from 'ngx-toastr';
+import { SectionService } from '../../services/section/section.service';
 
 @Component({
   selector: 'app-save-section',
@@ -31,6 +32,7 @@ export class SaveSectionComponent implements OnInit{
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
+    private sectionService: SectionService,
     private router: Router, private spinner: NgxSpinnerService, private toastr: ToastrService
   ) {
     this.sectionForm = this.formbuilder.group({
@@ -47,7 +49,7 @@ export class SaveSectionComponent implements OnInit{
       this.spinner.hide();
     });
 
-    this.contentService.GetParentSection().subscribe(res => {
+    this.sectionService.GetParentSection().subscribe(res => {
       this.dropdownValue = res.body;
       this.spinner.hide();
     });
@@ -58,7 +60,7 @@ export class SaveSectionComponent implements OnInit{
       this.section.ifssname = this.sectionForm.controls['menuName'].value;
       this.section.ifssparent = this.sectionForm.controls['parentId'].value;
 
-      this.contentService.AddSection(this.section).subscribe(res => {
+      this.sectionService.AddSection(this.section).subscribe(res => {
         if (res.status === 201) {
           if (res.body) {
             this.router.navigate(['Admin/ViewMenu']);

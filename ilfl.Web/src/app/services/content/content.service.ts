@@ -27,9 +27,9 @@ export class ContentService {
     return this.httpClient.get<any>(this.apiAddress + 'GetDirectorDetail', {headers: this.httpHeaders, observe: 'response'});
    }
 
-   AddContent(content: Content): Observable<HttpResponse<any>> {
+   AddContent(fileData: FormData): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.post<any>(this.apiAddress + 'AddContent', JSON.stringify(content), {headers: this.httpHeaders, observe: 'response'});
+    return this.httpClient.post<any>(this.apiAddress + 'AddContent', fileData );
    }
 
    DeleteContent(id: Number): Observable<HttpResponse<any>> {
@@ -37,24 +37,9 @@ export class ContentService {
     return this.httpClient.delete<HttpResponse<any>>(this.apiAddress + 'DeleteContent', {headers: this.httpHeaders, observe: 'response', body: JSON.stringify(id)});
    }
 
-   GetChildSection(sectionId: Number): Observable<HttpResponse<any>> {
+   GetViewFile(filePath: string): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetChildSection/' + sectionId, {headers: this.httpHeaders, observe: 'response'});
-   }
-
-   GetParentSection(): Observable<HttpResponse<any>> {
-    this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetParentSection', {headers: this.httpHeaders, observe: 'response'});
-   }
-
-   AddSection(section: Section): Observable<HttpResponse<any>> {
-    this.spinner.show();
-    return this.httpClient.post<any>(this.apiAddress + 'AddSection', JSON.stringify(section), {headers: this.httpHeaders, observe: 'response'});
-   }
-
-   GetAllSection(): Observable<HttpResponse<any>> {
-    this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetAllSection', {headers: this.httpHeaders, observe: 'response'});
+    return this.httpClient.get<any>(this.apiAddress + 'GetViewFile/' + filePath, {headers: this.httpHeaders, observe: 'response'});
    }
    
 }

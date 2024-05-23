@@ -6,6 +6,8 @@ import { ContentService } from '../../services/content/content.service';
 import { NotificationService } from '../../services/toastService/toast.service';
 import { Content } from '../../common/models/content';
 import { CommonModule } from '@angular/common';
+import { SectionService } from '../../services/section/section.service';
+import { concat, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-view-content',
@@ -24,6 +26,7 @@ export class ViewContentComponent implements OnInit{
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
+    private sectionService: SectionService,
     private router: Router,
     private toastr: NotificationService,
     private spinner: NgxSpinnerService) {
@@ -38,7 +41,7 @@ export class ViewContentComponent implements OnInit{
     });
 
 
-    this.contentService.GetChildSection(0).subscribe(res => {
+    this.sectionService.GetChildSection(0).subscribe(res => {
       this.dropdownValue = res.body;
       this.spinner.hide();
     });
@@ -77,8 +80,14 @@ export class ViewContentComponent implements OnInit{
   }
 
   viewPDF(file: string) {
-    let base64 = this.moveDataUriPrefix(file);
-    this.openPdfInNewTab(base64);
+    let listValues: string[] = [];
+    this.contentService.GetViewFile(file).subscribe(res => {
+      listValues = res.body;
+      if (res.status == 200) {
+        this.openPdfInNewTab(listValues.join(""));
+      }
+      this.spinner.hide();
+    });
   }
 
   openPdfInNewTab(base64String: string) {
@@ -96,13 +105,4 @@ export class ViewContentComponent implements OnInit{
     // Open PDF in new tab
     window.open(url, '_blank');
   }
-
-  moveDataUriPrefix(base64String: string): string {
-    const prefixIndex = base64String.indexOf(';base64,');
-    if (prefixIndex !== -1) {
-      return base64String.slice(prefixIndex + 8); // Skip prefix and comma
-    }
-    return base64String;
-  }
-
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SectionService } from '../../services/section/section.service';
 
 @Component({
   selector: 'app-view-menu',
@@ -14,14 +14,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class ViewMenuComponent implements OnInit{
   allSection: any = [];
   constructor(private router: Router,
-    private Content: ContentService,
+    private sectionService: SectionService,
     private Spinner: NgxSpinnerService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.Content.GetAllSection().subscribe(res => {
+    this.sectionService.GetAllSection().subscribe(res => {
       if(res.status == 200) {
         this.allSection = res.body;
         this.Spinner.hide();

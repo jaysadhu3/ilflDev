@@ -1,16 +1,16 @@
 "use strict";
 let headerBox = document.querySelector('#header');
-let header_height = headerBox.clientHeight;
+// let header_height = headerBox.clientHeight;
 let top_menu = document.querySelector('.top_menu');
-let top_menu_height = top_menu.clientHeight;
+// let top_menu_height = top_menu.clientHeight;
 // document.write(header_height);
 // main banner height height and decrease header height and margin top(size : header height) START
-let css_mt_height = `margin-top: ${header_height}px;  `;
+// let css_mt_height = `margin-top: ${header_height}px;  `;
 let banner_box = document.getElementById('main_banner');
 if (banner_box) {
     // banner_box.style.cssText = css_mt_height;
 }
-let css_mt = `margin-top: ${header_height}px;`;
+// let css_mt = `margin-top: ${header_height}px;`;
 let other_banner = document.getElementById('other_banner');
 
 if (other_banner) {

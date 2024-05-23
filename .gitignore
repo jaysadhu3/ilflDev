@@ -11,3 +11,5 @@
 /ilfl.Web/.vscode
 /ilfl.API/ilfl.Utilities/bin
 /ilfl.API/ilfl.Utilities/obj
+/ilfl.API/ilfl.API/.config
+/ilfl.API/ilfl.API/Properties/PublishProfiles

@@ -12,16 +12,12 @@ public class ContentRepository : IContentRepository
         _dbContext = dbContext;
     }
 
-    public bool AddContent(Content content)
+    public bool AddContent(Ifctcontent content)
     {
         try
         {
             if (content == null) { return  false; }
-            var newContent = new Ifctcontent();
-            newContent.IfctIfss = content.Ifctsection;
-            newContent.Ifctfile = content.Ifctfile;
-            newContent.IfctdisplayName = content.IfctdisplayName;
-            _dbContext.Add(newContent);
+            _dbContext.Add(content);
             _dbContext.SaveChanges();
             return true;
         }
@@ -29,17 +25,6 @@ public class ContentRepository : IContentRepository
         {
             return false;
         }
-    }
-
-    public bool AddSection(Section section)
-    {
-        if (section == null) { return false; }
-        var newSection = new Ifsssection();
-        newSection.Ifssname = section.Ifssname;
-        newSection.Ifssparent = section.Ifssparent;
-        _dbContext.Add(newSection);
-        _dbContext.SaveChanges();
-        return true;
     }
 
     public void DeleteContent(int id)
@@ -53,23 +38,6 @@ public class ContentRepository : IContentRepository
     {
         var records = _dbContext.IfdddirectorDetails.ToList();
         return records;
-    }
-
-    public List<Ifsssection>? GetAllSection()
-    {
-        var result = _dbContext.Ifsssections.OrderByDescending(x => x.Ifssid).ToList();
-        return result;
-    }
-
-    public List<Ifsssection>? GetChildSection(int ParentId)
-    {
-        if(ParentId == 0)
-        {
-            var resultAll = _dbContext.Ifsssections.Where(x => x.Ifssparent != null).ToList();
-            return resultAll;
-        }
-        var result = _dbContext.Ifsssections.Where(x => x.Ifssparent == ParentId).ToList();
-        return result;
     }
 
     public List<Ifctcontent>? GetContent(int sectionId)
@@ -94,11 +62,5 @@ public class ContentRepository : IContentRepository
         {
             return null;
         }
-    }
-
-    public List<Ifsssection>? GetParentSection()
-    {
-        var result = _dbContext.Ifsssections.Where(x => x.Ifssparent == null).ToList();
-        return result;
     }
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../services/content/content.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SectionService } from '../../services/section/section.service';
 
 @Component({
   selector: 'app-main',
@@ -19,28 +20,29 @@ export class MainComponent implements OnInit {
   allSection: any = [];
   subManuValue: any = null;
   constructor(private contentService: ContentService,
+    private sectionService: SectionService,
     private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
 
-    this.contentService.GetParentSection().subscribe(res => {
+    this.sectionService.GetParentSection().subscribe(res => {
       this.manuValue = res.body;
       this.spinner.hide();
     });
 
-    this.contentService.GetChildSection(0).subscribe(res => {
+    this.sectionService.GetChildSection(0).subscribe(res => {
       this.subManuValue = res.body;
       this.spinner.hide();
     });
 
-    this.contentService.GetAllSection().subscribe(res => {
-      if(res.status == 200) {
+    this.sectionService.GetAllSection().subscribe(res => {
+      if (res.status == 200) {
         this.allSection = res.body;
         this.spinner.hide();
       }
     });
-    
+
     this.contentService.GetDirectorDetail().subscribe(res => {
       this.directorValue = res.body;
       this.spinner.hide();
@@ -48,7 +50,7 @@ export class MainComponent implements OnInit {
   }
 
   subManuList(id: number) {
-    this.contentService.GetChildSection(id).subscribe(res => {
+    this.sectionService.GetChildSection(id).subscribe(res => {
       this.subManuValue = res.body;
       this.spinner.hide();
     });
@@ -63,8 +65,14 @@ export class MainComponent implements OnInit {
   }
 
   viewPDF(file: string) {
-    let base64 = this.moveDataUriPrefix(file);
-    this.openPdfInNewTab(base64);
+    let listValues: string[] = [];
+    this.contentService.GetViewFile(file).subscribe(res => {
+      listValues = res.body;
+      if (res.status == 200) {
+        this.openPdfInNewTab(listValues.join(""));
+      }
+      this.spinner.hide();
+    });
   }
 
   openPdfInNewTab(base64String: string) {
@@ -82,13 +90,4 @@ export class MainComponent implements OnInit {
     // Open PDF in new tab
     window.open(url, '_blank');
   }
-
-  moveDataUriPrefix(base64String: string): string {
-    const prefixIndex = base64String.indexOf(';base64,');
-    if (prefixIndex !== -1) {
-        return base64String.slice(prefixIndex + 8); // Skip prefix and comma
-    }
-    return base64String;
-  }
-
 }

@@ -1,4 +1,5 @@
 ﻿using ilfl.Models.Models;
+using ilfl.Repositories.Entities;
 using ilfl.Services.Interface;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -47,15 +48,30 @@ public class ContentController : Controller
     /// <param name="content">content</param>
     /// <returns>boolean</returns>
     [HttpPost]
-    public IActionResult AddContent(Content content)
+    public async Task<IActionResult> AddContent([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section)
     {
         try
         {
-            if (!ModelState.IsValid) return StatusCode(StatusCodes.Status400BadRequest, ModelState);
+            if (file == null) { return StatusCode(StatusCodes.Status400BadRequest, "File is missing"); }
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], file.FileName);
+
+            var content = new Ifctcontent();
+            content.IfctdisplayName = displayName;
+            content.IfctIfss = Convert.ToInt32(section);
+            content.Ifctfile = file.FileName;
 
             var result = _contentService.AddContent(content);
 
-            return StatusCode(StatusCodes.Status201Created, result);
+            if (result)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
+            return StatusCode(StatusCodes.Status200OK,result);
         }
         catch (Exception ex)
         {
@@ -69,7 +85,7 @@ public class ContentController : Controller
     /// <param name="id"></param>
     /// <returns>Status codes</returns>
     [HttpDelete]
-    public IActionResult DeleteContent([FromBody]int id)
+    public IActionResult DeleteContent([FromBody] int id)
     {
         try
         {
@@ -94,72 +110,20 @@ public class ContentController : Controller
             var results = _contentService.DirectorDetail();
             return StatusCode(StatusCodes.Status200OK, results);
         }
-        catch(Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpGet]
-    public IActionResult GetParentSection()
-    {
-        try
-        {
-            var results = _contentService.GetParentSection();
-            return StatusCode(StatusCodes.Status200OK, results);
-        }
         catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
 
-    [HttpGet("{ParentId}")]
-    public IActionResult GetChildSection(int ParentId)
+    [HttpGet("{fileName}")]
+    public IActionResult GetViewFile(string fileName)
     {
-        try
-        {
-            var results = _contentService.GetChildSection(ParentId);
-            return StatusCode(StatusCodes.Status200OK, results);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
+        if (fileName == null) { return StatusCode(StatusCodes.Status404NotFound, "File not found"); }
+        var result = _contentService.GetViewFile(fileName);
 
-    [HttpPost]
-    public IActionResult AddSection(Section section)
-    {
-        try
-        {
-            if (!ModelState.IsValid) return StatusCode(StatusCodes.Status400BadRequest, ModelState);
+        var resultList = result.ToList();
 
-            if (section == null) { return  StatusCode(StatusCodes.Status404NotFound,"Details not found");}
-
-            var result = _contentService.AddSection(section);
-
-            return StatusCode(StatusCodes.Status201Created, result);
-
-
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpGet]
-    public IActionResult GetAllSection()
-    {
-        try
-        {
-            var results = _contentService.GetAllSection();
-            return StatusCode(StatusCodes.Status200OK, results);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        return StatusCode(StatusCodes.Status200OK, resultList);
     }
 }

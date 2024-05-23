@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SectionService } from '../../services/section/section.service';
 
 @Component({
   selector: 'app-save-content',
@@ -29,9 +30,11 @@ export class SaveContentComponent {
   tableValue: any = null;
   sectionForTable: string = '';
   dropdownValue: any = null;
+  finalForm = new FormData();
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
+    private sectionService: SectionService,
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService
   ) {
@@ -50,7 +53,7 @@ export class SaveContentComponent {
       this.spinner.hide();
     });
 
-    this.contentService.GetChildSection(0).subscribe(res => {
+    this.sectionService.GetChildSection(0).subscribe(res => {
       this.dropdownValue = res.body;
       this.spinner.hide();
     });
@@ -62,18 +65,18 @@ export class SaveContentComponent {
       this.content.Ifctsection = this.contentForm.controls['section'].value;
       this.content.Ifctfile = this.base64File;
 
-      this.contentService.AddContent(this.content).subscribe(res => {
-        if (res.status === 201) {
-          if (res.body) {
-            this.toastr.success("Details saved successfully", "success");
+      this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
+      this.finalForm.append('section', this.contentForm.controls['section'].value);
 
-            this.spinner.hide();
-            this.router.navigate(['Admin/ViewContent']);
-          } else {
-
-            this.spinner.hide();
-            this.toastr.error("Something wrong with information, Please check and submit again", "Information Error");
-          }
+      this.contentService.AddContent(this.finalForm).subscribe(res => {
+        console.log(res);
+        if (res) {
+          this.toastr.success("Details saved successfully", "success");
+          this.spinner.hide();
+          this.router.navigate(['Admin/ViewContent']);
+        } else {
+          this.spinner.hide();
+          this.toastr.error("Something wrong with information, Please check and submit again", "Information Error");
         }
       });
     } else {
@@ -84,6 +87,8 @@ export class SaveContentComponent {
   }
 
   async onFileSelection(event: any) {
+    
+    this.finalForm.delete('file');
     const file = event.target.files[0];
     if (file) {
       const filename = file.name;
@@ -93,6 +98,8 @@ export class SaveContentComponent {
         this.toastr.error("Only PDF file format is allowed.", "File Format Error");
         this.base64File = '';
         return;
+      } else {
+        this.finalForm.append('file', file, file.name);
       }
 
       const base64Data = await this.fileToBase64(file);

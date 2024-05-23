@@ -16,4 +16,8 @@
     <ProjectReference Include="..\ilfl.Services\ilfl.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="uploads\" />
+  </ItemGroup>
+
 </Project>

@@ -3,11 +3,6 @@ using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
 using ilfl.Services.Interface;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ilfl.Services.Implementation;
 
@@ -22,15 +17,12 @@ public class ContentService : IContentService
         _configuration = configuration;
     }
 
-    public bool AddContent(Content content)
+    public bool AddContent(Ifctcontent content)
     {
         return _contentRepository.AddContent(content);
     }
 
-    public bool AddSection(Section section)
-    {
-        return _contentRepository.AddSection(section);
-    }
+    
 
     public void DeleteContent(int id)
     {
@@ -42,23 +34,15 @@ public class ContentService : IContentService
         return _contentRepository.DirectorDetail();
     }
 
-    public List<Ifsssection>? GetAllSection()
-    {
-        return _contentRepository.GetAllSection();
-    }
-
-    public List<Ifsssection>? GetChildSection(int ParentId)
-    {
-        return _contentRepository.GetChildSection(ParentId);
-    }
-
     public List<Ifctcontent>? GetContent(int sectionId)
     {
         return _contentRepository.GetContent(sectionId);
     }
 
-    public List<Ifsssection>? GetParentSection()
+    public string GetViewFile(string fileName)
     {
-        return _contentRepository.GetParentSection();
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], fileName);
+        string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
+        return file;
     }
 }
