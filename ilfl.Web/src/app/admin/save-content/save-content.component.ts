@@ -69,7 +69,6 @@ export class SaveContentComponent {
       this.finalForm.append('section', this.contentForm.controls['section'].value);
 
       this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
-        // console.log(res);
         if (res) {
           this.toastr.success("Details saved successfully", "success");
           this.spinner.hide();
