@@ -1,15 +1,18 @@
 ﻿using ilfl.Models.Models;
 using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
+using Microsoft.Extensions.Configuration;
 
 namespace ilfl.Repositories.Implementation;
 
 public class ContentRepository : IContentRepository
 {
     private readonly AppDbContext _dbContext;
-    public ContentRepository(AppDbContext dbContext)
+    private readonly IConfiguration _configuration;
+    public ContentRepository(AppDbContext dbContext, IConfiguration configuration)
     {
         _dbContext = dbContext;
+        _configuration = configuration;
     }
 
     public bool AddContent(Ifctcontent content)
@@ -27,11 +30,29 @@ public class ContentRepository : IContentRepository
         }
     }
 
-    public void DeleteContent(int id)
+    public bool IsFileExist(string fileName)
+    {
+        var result = _dbContext.Ifctcontents.Where(x => x.Ifctfile == fileName).ToList();
+
+        if (result.Count == 0) { 
+            return false;
+        }
+        return true;
+    }
+
+    public string DeleteContent(int id)
     {
         var removedContent = _dbContext.Ifctcontents.Where(c => c.Ifctid == id).ToList();
+        var filePath = "";
+        if (removedContent.Count == 1) {
+            foreach (var item in removedContent)
+            {
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], item.Ifctfile);
+            }
+        }
         _dbContext.RemoveRange(removedContent);
         _dbContext.SaveChanges();
+        return filePath;
     }
 
     public List<IfdddirectorDetail>? DirectorDetail()
@@ -44,7 +65,6 @@ public class ContentRepository : IContentRepository
     {
         try
         {
-            if (sectionId == null) return null;
             if(sectionId == 0)
             {
                 var resultAll = _dbContext.Ifctcontents.OrderByDescending(x => x.Ifctid).ToList();

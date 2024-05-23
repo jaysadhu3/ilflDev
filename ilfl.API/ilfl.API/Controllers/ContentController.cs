@@ -34,10 +34,6 @@ public class ContentController : Controller
     [HttpGet("{sectionId}")]
     public IActionResult GetContent(int sectionId)
     {
-        if (sectionId == null)
-        {
-            return StatusCode(StatusCodes.Status404NotFound, "Section is missing");
-        }
         var result = _contentService.GetContent(sectionId);
         return StatusCode(StatusCodes.Status200OK, result);
     }
@@ -55,6 +51,12 @@ public class ContentController : Controller
             if (file == null) { return StatusCode(StatusCodes.Status400BadRequest, "File is missing"); }
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], file.FileName);
+
+             var isFileExist = _contentService.IsFileExist(file.FileName);
+
+            if(isFileExist) { 
+                return StatusCode(StatusCodes.Status208AlreadyReported,false); 
+            }
 
             var content = new Ifctcontent();
             content.IfctdisplayName = displayName;
@@ -84,17 +86,20 @@ public class ContentController : Controller
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Status codes</returns>
-    [HttpDelete]
-    public IActionResult DeleteContent([FromBody] int id)
+    [HttpDelete("{id}")]
+    public IActionResult DeleteContent(int id)
     {
         try
         {
-            if (id == null)
+            if (id < 0)
             {
                 return StatusCode(StatusCodes.Status404NotFound, "ID is empty");
             }
-            _contentService.DeleteContent(id);
-            return StatusCode(StatusCodes.Status200OK);
+            var filePath = _contentService.DeleteContent(id);
+
+            System.IO.File.Delete(filePath);
+
+            return StatusCode(StatusCodes.Status200OK, true);
         }
         catch (Exception ex)
         {

@@ -7,6 +7,7 @@ public interface IContentRepository
 {
     List<Ifctcontent>? GetContent(int sectionId);
     bool AddContent(Ifctcontent content);
-    void DeleteContent(int id);
+    string DeleteContent(int id);
     List<IfdddirectorDetail>? DirectorDetail();
+    bool IsFileExist(string fileName);
 }

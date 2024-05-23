@@ -24,9 +24,9 @@ public class ContentService : IContentService
 
     
 
-    public void DeleteContent(int id)
+    public string DeleteContent(int id)
     {
-        _contentRepository.DeleteContent(id);
+        return _contentRepository.DeleteContent(id);
     }
 
     public List<IfdddirectorDetail>? DirectorDetail()
@@ -44,5 +44,10 @@ public class ContentService : IContentService
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], fileName);
         string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
         return file;
+    }
+
+    public bool IsFileExist(string fileName)
+    {
+        return _contentRepository.IsFileExist(fileName);
     }
 }

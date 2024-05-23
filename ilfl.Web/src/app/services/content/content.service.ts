@@ -29,12 +29,12 @@ export class ContentService {
 
    AddContent(fileData: FormData): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.post<any>(this.apiAddress + 'AddContent', fileData );
+    return this.httpClient.post<HttpResponse<any>>(this.apiAddress + 'AddContent', fileData);
    }
 
-   DeleteContent(id: Number): Observable<HttpResponse<any>> {
+   DeleteContent(id: Number): Observable<any> {
     this.spinner.show();
-    return this.httpClient.delete<HttpResponse<any>>(this.apiAddress + 'DeleteContent', {headers: this.httpHeaders, observe: 'response', body: JSON.stringify(id)});
+    return this.httpClient.delete<HttpResponse<any>>(this.apiAddress + 'DeleteContent/' + id, {headers: this.httpHeaders, observe: 'response'});
    }
 
    GetViewFile(filePath: string): Observable<HttpResponse<any>> {

@@ -68,15 +68,19 @@ export class SaveContentComponent {
       this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
       this.finalForm.append('section', this.contentForm.controls['section'].value);
 
-      this.contentService.AddContent(this.finalForm).subscribe(res => {
-        console.log(res);
+      this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
+        // console.log(res);
         if (res) {
           this.toastr.success("Details saved successfully", "success");
           this.spinner.hide();
           this.router.navigate(['Admin/ViewContent']);
         } else {
           this.spinner.hide();
-          this.toastr.error("Something wrong with information, Please check and submit again", "Information Error");
+          if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
+            this.toastr.error("Display name is missing", "Information Error");
+          } else {
+            this.toastr.error("File name is already exist", "Information Error");
+          }
         }
       });
     } else {
