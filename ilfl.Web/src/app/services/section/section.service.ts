@@ -33,4 +33,9 @@ export class SectionService {
     return this.httpClient.get<any>(this.apiAddress + 'GetAllSection', {headers: this.httpHeaders, observe: 'response'});
    }
 
+   DeleteSection(id: Number): Observable<any> {
+    this.spinner.show();
+    return this.httpClient.delete<HttpResponse<any>>(this.apiAddress + 'DeleteSection/' + id, {headers: this.httpHeaders, observe: 'response'});
+   }
+
 }

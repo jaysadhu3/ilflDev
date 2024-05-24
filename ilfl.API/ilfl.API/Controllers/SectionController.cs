@@ -89,7 +89,7 @@ public class SectionController : Controller
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteContent(int id)
+    public IActionResult DeleteSection(int id)
     {
         try
         {
