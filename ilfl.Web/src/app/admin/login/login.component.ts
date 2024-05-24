@@ -48,25 +48,23 @@ export class LoginComponent implements OnInit {
     if (this.credentialForm.valid) {
       this.user.Ifulusername = this.credentialForm.controls['username'].value;
       this.user.Ifulpassword = this.credentialForm.controls['password'].value;
-      this.auth.validateUser(this.user).subscribe(res => {
-        console.log(JSON.stringify(res.body));
-        if (res.status === 200) {
-          if (res.body.isValid) {
-            sessionStorage.setItem('user', JSON.stringify(res.body));
-            this.spinner.hide();
-            this.router.navigate(['Admin/Dashboard']);
-          } else {
-            this.spinner.hide();
-            this.toastr.showError('Username or password is wrong','Details Error');
-          }
+      this.auth.validateUser(this.user).subscribe((res) => {
+        if (res.body.isValid) {
+          sessionStorage.setItem('user', JSON.stringify(res.body));
+          this.spinner.hide();
+          this.router.navigate(['Admin/Dashboard']);
         } else {
           this.spinner.hide();
-          this.toastr.showError('Username or password is wrong','Details Error');
+          this.toastr.showError('Username or password is wrong', 'Details Error');
         }
+        this.spinner.hide();
+      }, (error) => {
+        this.spinner.hide();
+        this.toastr.showError('Username or password is wrong', 'Details Error');
       });
     }
     else {
-      this.toastr.showError('Username or password is wrong','Details Error');
+      this.toastr.showError('Username or password is wrong', 'Details Error');
     }
 
   }

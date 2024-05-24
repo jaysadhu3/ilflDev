@@ -71,14 +71,19 @@ export class MainComponent implements OnInit {
   }
 
   viewPDF(file: string) {
-    let listValues: string[] = [];
-    this.contentService.GetViewFile(file).subscribe(res => {
-      listValues = res.body;
-      if (res.status == 200) {
-        this.openPdfInNewTab(listValues.join(""));
-      }
-      this.spinner.hide();
-    });
+    if (this.activeId == 14) {
+      let base64 = this.moveDataUriPrefix(file);
+      this.openPdfInNewTab(base64);
+    } else {
+      let listValues: string[] = [];
+      this.contentService.GetViewFile(file).subscribe(res => {
+        listValues = res.body;
+        if (res.status == 200) {
+          this.openPdfInNewTab(listValues.join(""));
+        }
+        this.spinner.hide();
+      });
+    }
   }
 
   openPdfInNewTab(base64String: string) {
@@ -96,4 +101,13 @@ export class MainComponent implements OnInit {
     // Open PDF in new tab
     window.open(url, '_blank');
   }
+
+  moveDataUriPrefix(base64String: string): string {
+    const prefixIndex = base64String.indexOf(';base64,');
+    if (prefixIndex !== -1) {
+      return base64String.slice(prefixIndex + 8); // Skip prefix and comma
+    }
+    return base64String;
+  }
+
 }
