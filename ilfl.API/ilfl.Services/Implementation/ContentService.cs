@@ -39,11 +39,15 @@ public class ContentService : IContentService
         return _contentRepository.GetContent(sectionId);
     }
 
-    public string GetViewFile(string fileName)
+    public string? GetViewFile(string fileName)
     {
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], fileName);
-        string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
-        return file;
+        if (System.IO.File.Exists(filePath)) {
+            string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
+            return file;
+        }
+        
+        return null;
     }
 
     public bool IsFileExist(string fileName)

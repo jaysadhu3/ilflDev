@@ -127,8 +127,12 @@ public class ContentController : Controller
         if (fileName == null) { return StatusCode(StatusCodes.Status404NotFound, "File not found"); }
         var result = _contentService.GetViewFile(fileName);
 
-        var resultList = result.ToList();
+        if (result != null)
+        {
+            var resultList = result.ToList();
+            return StatusCode(StatusCodes.Status200OK, resultList);
+        }
 
-        return StatusCode(StatusCodes.Status200OK, resultList);
+        return StatusCode(StatusCodes.Status200OK, result);
     }
 }

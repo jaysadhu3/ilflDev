@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../services/content/content.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SectionService } from '../../services/section/section.service';
+import { NotificationService } from '../../services/toastService/toast.service';
 
 @Component({
   selector: 'app-main',
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit {
   subSelectedMenuValue: any = null;
   constructor(private contentService: ContentService,
     private sectionService: SectionService,
+    private toastr: NotificationService,
     private spinner: NgxSpinnerService) {
   }
 
@@ -79,7 +81,15 @@ export class MainComponent implements OnInit {
       this.contentService.GetViewFile(file).subscribe(res => {
         listValues = res.body;
         if (res.status == 200) {
-          this.openPdfInNewTab(listValues.join(""));
+          if (listValues == null) {
+            this.toastr.showWarning('Can not read files.','Warning');
+          } else {
+            this.openPdfInNewTab(listValues.join(""));
+          }
+        } else {
+          if (listValues == null) {
+            this.toastr.showWarning('Please contact to administrator for this file.','Warning');
+          } 
         }
         this.spinner.hide();
       });
