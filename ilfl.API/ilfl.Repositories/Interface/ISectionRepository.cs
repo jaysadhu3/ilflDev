@@ -9,4 +9,5 @@ public interface ISectionRepository
     List<Ifsssection>? GetChildSection(int ParentId);
     List<Ifsssection>? GetAllSection();
     bool AddSection(Section section);
+    bool DeleteSection(int id);
 }

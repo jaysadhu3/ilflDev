@@ -2,9 +2,12 @@
 using ilfl.Repositories.Interface;
 using ilfl.Services.Interface;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +29,38 @@ public class AuthService : IAuthService
         return _authRepository.CreateUser(user);
     }
 
-    public bool IsValid(User user)
+    public UserWithToken? IsValid(User user)
     {
-        return _authRepository.IsValid(user);
+        var result = new UserWithToken();
+        result.IsValid = _authRepository.IsValid(user);
+        if (_authRepository.IsValid(user))
+        {
+            result.Token = GenerateJwtToken(user.Ifulusername);
+            return result;
+        }
+        result.Token = null;
+        return result;
+    }
+
+    public string GenerateJwtToken(string username)
+    {
+        var claims = new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Role, "Admin")
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: "ILFL",
+            audience: "ILFL_User",
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(60),
+            signingCredentials: creds);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

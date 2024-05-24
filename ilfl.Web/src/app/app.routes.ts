@@ -7,19 +7,16 @@ import { MainComponent } from './public/main/main.component';
 import { ViewContentComponent } from './admin/view-content/view-content.component';
 import { ViewMenuComponent } from './admin/view-menu/view-menu.component';
 import { SavePageContentComponent } from './admin/save-page-content/save-page-content.component';
+import { adminAuthGuard } from './guards/admin-auth.guard';
 
 export const routes: Routes = [
-    { path: '', component: MainComponent },
-    { path: 'Admin', component: LoginComponent },
     {
-        path: 'Admin', children: [
-            { path: 'Dashboard', component: DashboardComponent },
-            { path: 'AddContent', component: SaveContentComponent },
-            { path: 'AddMenu', component: SaveSectionComponent },
-            { path: 'ViewContent', component: ViewContentComponent },
-            { path: 'ViewMenu', component: ViewMenuComponent },
-            { path: 'SavePageContent', component: SavePageContentComponent },
-        ]
+        path: '',
+        loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
     },
-    { path: '**', redirectTo: '', pathMatch: 'full' },
+    { 
+        path: 'Admin',
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate: [adminAuthGuard]
+    }
 ];

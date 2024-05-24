@@ -8,6 +8,7 @@ import { Content } from '../../common/models/content';
 import { CommonModule } from '@angular/common';
 import { SectionService } from '../../services/section/section.service';
 import { concat, forkJoin } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-view-content',
@@ -28,6 +29,7 @@ export class ViewContentComponent implements OnInit{
     private contentService: ContentService,
     private sectionService: SectionService,
     private router: Router,
+    private authService: AuthService,
     private toastr: NotificationService,
     private spinner: NgxSpinnerService) {
 
@@ -48,7 +50,7 @@ export class ViewContentComponent implements OnInit{
   }
 
   signOut() {
-    this.router.navigate(['Admin']);
+    this.authService.signOut();
   }
 
   ViewTable(event: Event) {

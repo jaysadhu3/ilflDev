@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SectionService } from '../../services/section/section.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-save-content',
@@ -35,6 +36,7 @@ export class SaveContentComponent {
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
     private sectionService: SectionService,
+    private authService: AuthService,
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService
   ) {
@@ -70,7 +72,7 @@ export class SaveContentComponent {
 
       this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
         if (res) {
-          this.toastr.success("Details saved successfully", "success");
+          this.toastr.success("Details saved successfully", "Success");
           this.spinner.hide();
           this.router.navigate(['Admin/ViewContent']);
         } else {
@@ -123,7 +125,7 @@ export class SaveContentComponent {
   }
 
   signOut() {
-    this.router.navigate(['']);
+    this.authService.signOut();
   }
   backDashboard() {
     this.router.navigate(['Admin/ViewContent']);

@@ -9,4 +9,5 @@ public interface ISectionService
     List<Ifsssection>? GetChildSection(int ParentId);
     bool AddSection(Section section);
     List<Ifsssection>? GetAllSection();
+    bool DeleteSection(int id);
 }

@@ -14,11 +14,12 @@ import { SectionService } from '../../services/section/section.service';
 export class MainComponent implements OnInit {
   activeId: number = 1;
   content = '';
-  manuValue: any = null;
+  menuValue: any = null;
   tableValue: any = [];
   directorValue: any = [];
   allSection: any = [];
-  subManuValue: any = null;
+  subMenuValue: any = null;
+  subSelectedMenuValue: any = null;
   constructor(private contentService: ContentService,
     private sectionService: SectionService,
     private spinner: NgxSpinnerService) {
@@ -27,12 +28,12 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
 
     this.sectionService.GetParentSection().subscribe(res => {
-      this.manuValue = res.body;
+      this.menuValue = res.body;
       this.spinner.hide();
     });
 
     this.sectionService.GetChildSection(0).subscribe(res => {
-      this.subManuValue = res.body;
+      this.subMenuValue = res.body;
       this.spinner.hide();
     });
 
@@ -51,7 +52,7 @@ export class MainComponent implements OnInit {
 
   subManuList(id: number) {
     this.sectionService.GetChildSection(id).subscribe(res => {
-      this.subManuValue = res.body;
+      this.subMenuValue = res.body;
       this.spinner.hide();
     });
   }
@@ -60,6 +61,11 @@ export class MainComponent implements OnInit {
     this.activeId = id;
     this.contentService.GetContent(id).subscribe(res => {
       this.tableValue = res.body;
+      this.spinner.hide();
+    });
+
+    this.sectionService.GetChildSection(id).subscribe(res => {
+      this.subSelectedMenuValue = res.body;
       this.spinner.hide();
     });
   }

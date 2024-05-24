@@ -45,12 +45,12 @@ public class AuthController : Controller
                 return StatusCode(StatusCodes.Status400BadRequest, "Username and Password is missing.");
             }
 
-            var isValid = _authService.IsValid(user);
-            if (isValid) {
-                return StatusCode(StatusCodes.Status200OK, isValid);
+            var userDetails = _authService.IsValid(user);
+            if (userDetails.IsValid) {
+                return StatusCode(StatusCodes.Status200OK, userDetails);
             } else
             {
-                return StatusCode(StatusCodes.Status400BadRequest, isValid);
+                return StatusCode(StatusCodes.Status400BadRequest, userDetails);
             }
         }
         catch (Exception ex)

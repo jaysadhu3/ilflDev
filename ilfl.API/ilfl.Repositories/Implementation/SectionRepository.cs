@@ -23,6 +23,14 @@ public class SectionRepository: ISectionRepository
         return true;
     }
 
+    public bool DeleteSection(int id)
+    {
+        var removedSection = _dbContext.Ifsssections.Where(c => c.Ifssid == id).ToList();
+        _dbContext.RemoveRange(removedSection);
+        _dbContext.SaveChanges();
+        return true;
+    }
+
     public List<Ifsssection>? GetAllSection()
     {
         var result = _dbContext.Ifsssections.OrderByDescending(x => x.Ifssid).ToList();

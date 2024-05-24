@@ -17,7 +17,6 @@ public static class CorsConfiguration
         app.UseCors(options =>
         {
             options.AllowAnyHeader().WithOrigins(configuration["FrontEndBaseUrl"] ?? string.Empty).WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD").AllowCredentials();
-            options.AllowAnyHeader().WithOrigins(configuration["StaffHubFrontEndBaseUrl"] ?? string.Empty).WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD").AllowCredentials();
         });
 
         return app;

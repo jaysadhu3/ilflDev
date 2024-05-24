@@ -88,4 +88,24 @@ public class SectionController : Controller
         }
     }
 
+    [HttpDelete("{id}")]
+    public IActionResult DeleteContent(int id)
+    {
+        try
+        {
+            if (id < 0)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, "ID is empty");
+            }
+            var result = _sectionService.DeleteSection(id);
+
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+
 }

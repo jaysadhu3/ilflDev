@@ -3,6 +3,8 @@ using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
 using ilfl.Services.Interface;
 using Microsoft.Extensions.Configuration;
+using static System.Collections.Specialized.BitVector32;
+using Section = ilfl.Models.Models.Section;
 
 namespace ilfl.Services.Implementation;
 
@@ -20,6 +22,11 @@ public class SectionService: ISectionService
     public bool AddSection(Section section)
     {
         return _sectionRepository.AddSection(section);
+    }
+
+    public bool DeleteSection(int id)
+    {
+        return _sectionRepository.DeleteSection(id);
     }
 
     public List<Ifsssection>? GetAllSection()

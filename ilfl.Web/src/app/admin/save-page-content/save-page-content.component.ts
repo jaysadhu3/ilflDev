@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-save-page-content',
@@ -10,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class SavePageContentComponent {
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService) {
 
   }
   signOut() {
-    this.router.navigate(['Admin']);
+    this.authService.signOut();
   }
 }

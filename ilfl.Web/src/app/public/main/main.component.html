@@ -50,18 +50,18 @@
                         <div class="container">
                             <ul
                                 class="navbar-nav header_ul w-100 justify-content-xl-between position-relative mr-auto mb-2 mb-xl-0">
-                                <li *ngFor="let value of manuValue" class="nav-item dropdown">
+                                <li *ngFor="let value of menuValue" class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle curser-pointer"
                                         (click)="changeContent(value.ifssid)"
                                         *ngIf="value.ifssparent == null">{{value.ifssname}}</a>
                                     <div class="dropdown-toggles   mobile_dropdown_Arrow d-xl-none"
                                         data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                        *ngFor="let valueSub of subManuValue"><i class="fa-solid fa-circle-arrow-down"
+                                        *ngFor="let valueSub of subMenuValue"><i class="fa-solid fa-circle-arrow-down"
                                             *ngIf="value.ifssid == valueSub.ifssparent"></i></div>
 
                                     <ul class="dropdown-menu shadow  fade-up mb-3">
 
-                                        <li class="" *ngFor="let valueSub of subManuValue">
+                                        <li class="" *ngFor="let valueSub of subMenuValue">
                                             <a (click)="changeContent(valueSub.ifssid)"
                                                 class="dropdown-item curser-pointer"
                                                 *ngIf="value.ifssid == valueSub.ifssparent">{{valueSub.ifssname}}</a>
@@ -448,7 +448,7 @@
                                 <div class="h3 theme_pink_txt sec_head font_exo2_extrabold mb-3"> INVESTORS RELATIONS
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-3 col-md-4 d-flex" *ngFor="let subManu of subManuValue">
+                            <div class="col-sm-6 mb-3 col-md-4 d-flex" *ngFor="let subManu of subSelectedMenuValue">
                                 <a (click)="changeContent(subManu.ifssid)" *ngIf="subManu.ifssparent == 4"
                                     class="cust_home_link w-100 rounded-2 curser-pointer" contenteditable="false"
                                     style="cursor: pointer;">{{subManu.ifssname}}</a>
@@ -1325,7 +1325,7 @@
                 </section>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 mb-3 col-md-4 d-flex" *ngFor="let subManu of subManuValue">
+                        <div class="col-sm-6 mb-3 col-md-4 d-flex" *ngFor="let subManu of subSelectedMenuValue">
                             <a (click)="changeContent(subManu.ifssid)" *ngIf="subManu.ifssparent == section.ifssid"
                                 class="cust_home_link w-100 rounded-2 curser-pointer" contenteditable="false"
                                 style="cursor: pointer;">{{subManu.ifssname}}</a>

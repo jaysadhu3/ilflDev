@@ -8,6 +8,7 @@ import { ContentService } from '../../services/content/content.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/toastService/toast.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,11 +24,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class DashboardComponent{
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    private authService: AuthService) {
 
   }
 
   signOut() {
-    this.router.navigate(['Admin']);
+    this.authService.signOut();
   }
 }

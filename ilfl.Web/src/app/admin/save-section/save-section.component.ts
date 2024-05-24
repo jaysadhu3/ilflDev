@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Section } from '../../common/models/Section';
 import { ToastrService } from 'ngx-toastr';
 import { SectionService } from '../../services/section/section.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-save-section',
@@ -33,6 +34,7 @@ export class SaveSectionComponent implements OnInit{
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
     private sectionService: SectionService,
+    private authService: AuthService,
     private router: Router, private spinner: NgxSpinnerService, private toastr: ToastrService
   ) {
     this.sectionForm = this.formbuilder.group({
@@ -76,7 +78,7 @@ export class SaveSectionComponent implements OnInit{
   }
 
   signOut() {
-    this.router.navigate(['']);
+    this.authService.signOut();
   }
   backDashboard() {
     this.router.navigate(['Admin/ViewMenu']);
