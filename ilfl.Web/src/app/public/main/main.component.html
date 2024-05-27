@@ -499,52 +499,9 @@
                         </div>
                     </section>
                 </div>
-                <div *ngIf="activeId == 14">
-                    <section class="pb-0">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 col-xl-7 mx-auto">
-                                    <div class="h3 theme_pink_txt sec_head font_exo2_extrabold mb-3">
-                                        RESIGNATION OF DIRECTORS
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
-                    <section class="pt-0">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 col-xl-7 mx-auto">
-                                    <div class="table-responsive">
-
-
-                                        <table class="table table-bordered table-hover border-secondary">
-                                            <tbody>
-                                                <tr *ngFor="let value of directorValue">
-                                                    <td>{{value.ifddname}}</td>
-                                                    <td>{{value.ifddposition}}</td>
-                                                    <td class="text-center"><a (click)="viewPDF(value.ifddfile)"
-                                                            contenteditable="false" style="cursor: pointer;">
-                                                            <img class="pdf_icon" src="./assets/img/pdf-icon.png"
-                                                                alt="pdficon">
-                                                        </a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </section>
-                </div>
 
                 <section class="pb-0"
-                    *ngIf="activeId != 1 && activeId != 2 && activeId != 3 && activeId != 13 && activeId != 14">
+                    *ngIf="activeId != 1 && activeId != 2 && activeId != 3 && activeId != 13">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 col-xl-7 mx-auto">
@@ -559,7 +516,7 @@
                     </div>
                 </section>
 
-                <section class="pt-0" *ngIf="activeId != 1 && activeId != 2 && activeId != 3 && activeId != 13 && activeId != 14">
+                <section class="pt-0" *ngIf="activeId != 1 && activeId != 2 && activeId != 3 && activeId != 13">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 col-xl-7 mx-auto">
@@ -570,6 +527,7 @@
                                         <tbody>
                                             <tr *ngFor="let value of tableValue">
                                                 <td scope="row">{{value.ifctdisplayName}}</td>
+                                                <td scope="row" *ngIf="value.ifctdescription != null">{{value.ifctdescription}}</td>
                                                 <td class="text-center"><a (click)="viewPDF(value.ifctfile)"
                                                         contenteditable="false" style="cursor: pointer;">
                                                         <img class="pdf_icon" src="./assets/img/pdf-icon.png"

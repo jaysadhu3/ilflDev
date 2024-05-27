@@ -88,11 +88,11 @@ public class ContentController : Controller
     /// <param name="id"></param>
     /// <returns>Status codes</returns>
     [HttpDelete("{id}")]
-    public IActionResult DeleteContent(int id)
+    public IActionResult DeleteContent(int id)  
     {
         try
         {
-            if (id < 0)
+            if (id <= 0)
             {
                 return StatusCode(StatusCodes.Status404NotFound, "ID is empty");
             }

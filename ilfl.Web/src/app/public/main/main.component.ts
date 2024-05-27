@@ -73,27 +73,22 @@ export class MainComponent implements OnInit {
   }
 
   viewPDF(file: string) {
-    if (this.activeId == 14) {
-      let base64 = this.moveDataUriPrefix(file);
-      this.openPdfInNewTab(base64);
-    } else {
-      let listValues: string[] = [];
-      this.contentService.GetViewFile(file).subscribe(res => {
-        listValues = res.body;
-        if (res.status == 200) {
-          if (listValues == null) {
-            this.toastr.showWarning('Can not read files.','Warning');
-          } else {
-            this.openPdfInNewTab(listValues.join(""));
-          }
+    let listValues: string[] = [];
+    this.contentService.GetViewFile(file).subscribe(res => {
+      listValues = res.body;
+      if (res.status == 200) {
+        if (listValues == null) {
+          this.toastr.showWarning('Can not read files.', 'Warning');
         } else {
-          if (listValues == null) {
-            this.toastr.showWarning('Please contact to administrator for this file.','Warning');
-          } 
+          this.openPdfInNewTab(listValues.join(""));
         }
-        this.spinner.hide();
-      });
-    }
+      } else {
+        if (listValues == null) {
+          this.toastr.showWarning('Please contact to administrator for this file.', 'Warning');
+        }
+      }
+      this.spinner.hide();
+    });
   }
 
   openPdfInNewTab(base64String: string) {
