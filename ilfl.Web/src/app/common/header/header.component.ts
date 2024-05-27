@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,24 +14,14 @@ export class HeaderComponent implements OnInit {
 
   manuValue: any = null;
   subManuValue: any = null;
-  constructor(private contentService: ContentService) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
 
-    this.contentService.GetParentSection().subscribe(res => {
-      this.manuValue = res.body;
-    });
-
-    this.contentService.GetChildSection(0).subscribe(res => {
-      this.subManuValue = res.body;
-    });
   }
 
-  subManuList(id: number) {
-    this.contentService.GetChildSection(id).subscribe(res => {
-      this.subManuValue = res.body;
-    });
+  signOut() {
+    this.authService.signOut();
   }
-
 }

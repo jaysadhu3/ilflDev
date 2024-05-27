@@ -23,3 +23,7 @@
 .navbar-nav > .nav-item::before {
     background-color: black !important;
 }
+
+.spacing {
+    margin: 1rem 1rem 0 1rem;
+}

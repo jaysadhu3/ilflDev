@@ -10,6 +10,7 @@ import { Section } from '../../common/models/Section';
 import { ToastrService } from 'ngx-toastr';
 import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
   selector: 'app-save-section',
@@ -18,7 +19,7 @@ import { AuthService } from '../../services/auth/auth.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule],
+    HttpClientModule, HeaderComponent],
   providers: [HttpClientModule],
   templateUrl: './save-section.component.html',
   styleUrl: './save-section.component.css'

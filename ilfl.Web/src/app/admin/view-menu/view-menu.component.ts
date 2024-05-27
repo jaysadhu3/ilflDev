@@ -5,11 +5,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { NotificationService } from '../../services/toastService/toast.service';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
   selector: 'app-view-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './view-menu.component.html',
   styleUrl: './view-menu.component.css'
 })

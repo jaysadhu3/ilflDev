@@ -44,7 +44,7 @@ public class ContentController : Controller
     /// <param name="content">content</param>
     /// <returns>boolean</returns>
     [HttpPost]
-    public async Task<IActionResult> AddContent([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section)
+    public async Task<IActionResult> AddContent([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section, [FromForm] string description)
     {
         try
         {
@@ -62,6 +62,7 @@ public class ContentController : Controller
             content.IfctdisplayName = displayName;
             content.IfctIfss = Convert.ToInt32(section);
             content.Ifctfile = file.FileName;
+            content.Ifctdescription = description;
 
             var result = _contentService.AddContent(content);
 

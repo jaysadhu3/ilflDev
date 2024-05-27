@@ -13,6 +13,8 @@ public partial class Ifctcontent
 
     public string IfctdisplayName { get; set; }
 
+    public string Ifctdescription { get; set; }
+
     public string Ifctfile { get; set; }
 
     public virtual Ifsssection IfctIfssNavigation { get; set; }

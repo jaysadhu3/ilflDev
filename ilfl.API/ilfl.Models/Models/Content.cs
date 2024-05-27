@@ -11,6 +11,7 @@ public class Content
     public int Ifctid { get; set; }
 
     public required string IfctdisplayName { get; set; }
+    public string? Ifctdescription { get; set; }
 
     public required int Ifctsection { get; set; }
 

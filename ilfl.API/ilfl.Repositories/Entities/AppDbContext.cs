@@ -31,6 +31,10 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.Ifctid).HasColumnName("IFCTId");
             entity.Property(e => e.IfctIfss).HasColumnName("IFCT_IFSS");
+            entity.Property(e => e.Ifctdescription)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("IFCTDescription");
             entity.Property(e => e.IfctdisplayName)
                 .IsRequired()
                 .HasMaxLength(100)

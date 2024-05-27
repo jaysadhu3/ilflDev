@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../../services/toastService/toast.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../../services/auth/auth.service';
+import { HeaderComponent } from '../../common/header/header.component';
+import { SectionService } from '../../services/section/section.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,16 +19,35 @@ import { AuthService } from '../../services/auth/auth.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule],
+    HttpClientModule, HeaderComponent],
   providers: [HttpClientModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit {
+
+  MenuCount: number = 0;
+  ContentCount: number = 0;
 
   constructor(private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private sectionService: SectionService,
+    private conentService: ContentService,
+  private spinner: NgxSpinnerService) {
 
+
+  }
+  ngOnInit(): void {
+    this.sectionService.GetAllSection().subscribe(res => {
+      let result: [] = res.body;
+      this.MenuCount = result.length;
+      this.spinner.hide();
+    });
+    this.conentService.GetContent(0).subscribe(res => {
+      let result: [] = res.body;
+      this.ContentCount = result.length;
+      this.spinner.hide();
+    });
   }
 
   signOut() {

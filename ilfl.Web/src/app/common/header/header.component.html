@@ -1,128 +1,25 @@
-<header id="header" class=" position-relative header py-3 py-xl-0" data-aos="fade-in" data-aos-delay="500">
-    <div class="top_menu">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center w-100 d-xl-none">
-                <div>
-                    <a class="navbar-brand  m-0" href="">
-                        <img [src]="'assets/img/inoxgfl-logo.png'" alt=""
-                            class="logo position-relative heaer_logo_scroll">
-                    </a>
-                    <div class="h6 mb-0 mt-2 violet-clr font_exo2_extrabold">
-                        INOX LEASING &amp; FINANCE LIMITED
-                    </div>
-                </div>
-
-                <button class="btn   navbar-toggler ms-sm-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    <i class="fa-solid fa-bars-staggered"></i>
-                </button>
-            </div>
-            <div class=" d-none d-xl-flex align-items-center flex-wrap justify-content-between w-100 py-2 py-lg-3">
-                <div>
-                    <a class="navbar-brand " href="">
-                        <img [src]="'assets/img/inoxgfl-logo.png'" alt="" class="logo position-relative">
-                    </a>
-                </div>
-                <div>
-                    <div class="h1 violet-clr font_exo2_extrabold">
-                        INOX LEASING & FINANCE LIMITED
-                    </div>
-                </div>
-            </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img alt="Brand" src="./assets/img/x-marks.png" height="25px">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Admin/Dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Admin/ViewMenu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Admin/ViewContent">Content</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <button class="btn btn-outline-success" (click)="signOut()">Sign Out</button>
         </div>
+      </div>
     </div>
-
-    <nav class="navbar navbar-expand-xl  py-0 ">
-        <div class="w-100 ">
-
-
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header p-0 pt-4 pe-3">
-                    <a class="navbar-brand " href="">
-                        <!-- <img src="./assets/img/logo-blue.png" alt="" class="logo position-relative"> -->
-                    </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-
-                <div class="offcanvas-body px-0 d-xl-flex flex-column align-items-lg-end justify-content-lg-end">
-                    <div class="header_bg w-100">
-                        <div class="container">
-
-
-                            <!-- <div
-                                class=" d-flex d-xl-none align-items-center flex-wrap justify-content-between w-100 py-2 py-lg-3">
-                                <div>
-                                    <a  class="navbar-brand " href="">
-                                        <img src="./assets/img/inoxgfl-logo.png" alt=""
-                                            class="logo position-relative">
-                                    </a>
-                                </div>
-                                <div>
-                                    <div class="h1 violet-clr font_exo2_extrabold">
-                                        INOX LEASING & FINANCE LIMITED
-                                    </div>
-                                </div>
-                            </div> -->
-                            <ul
-                                class="navbar-nav header_ul w-100 justify-content-xl-between position-relative mr-auto mb-2 mb-xl-0">
-                                <li *ngFor="let value of manuValue" class="nav-item">
-                                    <a class="nav-link " href="{{value.ifsspath}}">{{value.ifssname}}</a>
-                                </li>
-                                <li *ngFor="let value of manuValue" class="nav-item dropdown">
-
-                                    <a class="nav-link dropdown-toggle" href="{{value.ifsspath}}">{{value.ifssname}}</a>
-                                    <div class="dropdown-toggles   mobile_dropdown_Arrow d-xl-none"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                        *ngFor="let subValue of subManuValue"><i class="fa-solid fa-circle-arrow-down"
-                                            *ngIf="subValue.ifssparent == value.ifssid"></i></div>
-
-                                    <ul class="dropdown-menu shadow  fade-up mb-3" *ngFor="let subValue of subManuValue">
-
-                                        <li class="" *ngif="subValue.ifssparent == value.ifssid">
-                                            <a href="Annual-Report" class="dropdown-item  ">Annual
-                                                Report</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="Audited-Accounts-Of-Subsidiaries" class="dropdown-item  ">Audited
-                                                Accounts
-                                                of
-                                                Subsidiaries</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="E-Voting-Results" class="dropdown-item  ">E-Voting
-                                                Results</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="Notice-To-Shareholders" class="dropdown-item  ">Notice to
-                                                Shareholders</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="Transfer-Of-Shares-To-iepf" class="dropdown-item  ">Transfer
-                                                of
-                                                Shares
-                                                to
-                                                IEPF</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="Unclaimed-Dividend" class="dropdown-item  ">Unclaimed
-                                                Dividend</a>
-                                        </li>
-                                        <li class="">
-                                            <a class="dropdown-item " href="Corporate-Overview">Corporate
-                                                Overview</a>
-                                        </li>
-                                        <li class="">
-                                            <a class="dropdown-item  " href="Form-MGT-7">Form MGT – 7</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+  </nav>

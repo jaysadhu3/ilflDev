@@ -10,6 +10,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
   selector: 'app-save-content',
@@ -19,7 +20,8 @@ import { AuthService } from '../../services/auth/auth.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule],
+    ToastrModule,
+    HeaderComponent],
   providers: [HttpClientModule],
   templateUrl: './save-content.component.html',
   styleUrl: './save-content.component.css'
@@ -43,6 +45,7 @@ export class SaveContentComponent {
     this.contentForm = this.formbuilder.group({
       displayName: [null, [Validators.required]],
       section: [null, [Validators.required]],
+      description: [null],
       file: [null, [Validators.required]]
     });
 
@@ -69,6 +72,7 @@ export class SaveContentComponent {
 
       this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
       this.finalForm.append('section', this.contentForm.controls['section'].value);
+      this.finalForm.append('description', this.contentForm.controls['description'].value);
 
       this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
         if (res) {
@@ -124,9 +128,6 @@ export class SaveContentComponent {
     });
   }
 
-  signOut() {
-    this.authService.signOut();
-  }
   backDashboard() {
     this.router.navigate(['Admin/ViewContent']);
   }

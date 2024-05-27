@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 import { SectionService } from '../../services/section/section.service';
 import { concat, forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
   selector: 'app-view-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './view-content.component.html',
   styleUrl: './view-content.component.css'
 })
