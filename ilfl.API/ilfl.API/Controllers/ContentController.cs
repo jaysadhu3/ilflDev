@@ -52,10 +52,11 @@ public class ContentController : Controller
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], file.FileName);
 
-             var isFileExist = _contentService.IsFileExist(file.FileName);
+            var isFileExist = _contentService.IsFileExist(file.FileName);
 
-            if(isFileExist) { 
-                return StatusCode(StatusCodes.Status208AlreadyReported,false); 
+            if (isFileExist)
+            {
+                return StatusCode(StatusCodes.Status208AlreadyReported, false);
             }
 
             var content = new Ifctcontent();
@@ -74,7 +75,7 @@ public class ContentController : Controller
                 }
             }
 
-            return StatusCode(StatusCodes.Status200OK,result);
+            return StatusCode(StatusCodes.Status200OK, result);
         }
         catch (Exception ex)
         {
@@ -87,8 +88,8 @@ public class ContentController : Controller
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Status codes</returns>
-    [HttpDelete("{id}")]
-    public IActionResult DeleteContent(int id)  
+    [HttpGet("{id")]
+    public IActionResult DeleteContent(int id)
     {
         try
         {

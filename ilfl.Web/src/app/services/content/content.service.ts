@@ -2,10 +2,7 @@ import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
-import { User } from '../../common/models/user';
-import { Content } from '../../common/models/content';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Section } from '../../common/models/Section';
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +31,11 @@ export class ContentService {
 
    DeleteContent(id: Number): Observable<any> {
     this.spinner.show();
-    return this.httpClient.delete<HttpResponse<any>>(this.apiAddress + 'DeleteContent/' + id, {headers: this.httpHeaders, observe: 'response'});
+    return this.httpClient.get<HttpResponse<any>>(this.apiAddress + 'DeleteContent/' + id, {headers: this.httpHeaders, observe: 'response'});
    }
 
    GetViewFile(filePath: string): Observable<HttpResponse<any>> {
     this.spinner.show();
     return this.httpClient.get<any>(this.apiAddress + 'GetViewFile/' + filePath, {headers: this.httpHeaders, observe: 'response'});
-   }
-   
+   }   
 }

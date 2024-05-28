@@ -42,7 +42,8 @@ public class ContentService : IContentService
     public string? GetViewFile(string fileName)
     {
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], fileName);
-        if (System.IO.File.Exists(filePath)) {
+        if (System.IO.File.Exists(filePath))
+        {
             string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
             return file;
         }
