@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://api.ilfl.co.in/api",
+        "secure": true,
+        "logLevel": "debug"
+    }
+}

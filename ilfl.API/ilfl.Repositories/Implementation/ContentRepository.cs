@@ -19,7 +19,7 @@ public class ContentRepository : IContentRepository
     {
         try
         {
-            if (content == null) { return  false; }
+            if (content == null) { return false; }
             _dbContext.Add(content);
             _dbContext.SaveChanges();
             return true;
@@ -34,7 +34,8 @@ public class ContentRepository : IContentRepository
     {
         var result = _dbContext.Ifctcontents.Where(x => x.Ifctfile == fileName).ToList();
 
-        if (result.Count == 0) { 
+        if (result.Count == 0)
+        {
             return false;
         }
         return true;
@@ -42,16 +43,14 @@ public class ContentRepository : IContentRepository
 
     public string DeleteContent(int id)
     {
-        var removedContent = _dbContext.Ifctcontents.Where(c => c.Ifctid == id).ToList();
+        var removedContent = _dbContext.Ifctcontents.Where(c => c.Ifctid == id).FirstOrDefault();
         var filePath = "";
-        if (removedContent.Count == 1) {
-            foreach (var item in removedContent)
-            {
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], item.Ifctfile);
-            }
+        if (removedContent != null)
+        {
+            filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], removedContent.Ifctfile);
+            _dbContext.Remove(removedContent);
+            _dbContext.SaveChanges();
         }
-        _dbContext.RemoveRange(removedContent);
-        _dbContext.SaveChanges();
         return filePath;
     }
 
@@ -65,7 +64,7 @@ public class ContentRepository : IContentRepository
     {
         try
         {
-            if(sectionId == 0)
+            if (sectionId == 0)
             {
                 var resultAll = _dbContext.Ifctcontents.OrderByDescending(x => x.Ifctid).ToList();
                 return resultAll;

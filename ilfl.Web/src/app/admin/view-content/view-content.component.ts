@@ -18,7 +18,7 @@ import { HeaderComponent } from '../../common/header/header.component';
   templateUrl: './view-content.component.html',
   styleUrl: './view-content.component.css'
 })
-export class ViewContentComponent implements OnInit{
+export class ViewContentComponent implements OnInit {
   content: Content = new Content();
   base64File: string = '';
   tableValue: any = null;
@@ -68,17 +68,17 @@ export class ViewContentComponent implements OnInit{
   }
 
   deleteValue(id: number) {
-      this.contentService.DeleteContent(id).subscribe(res => {
-        if (res.status == 200) {
-          this.contentService.GetContent(+this.sectionForTable).subscribe(res => {
-            this.tableValue = res.body;
-            this.spinner.hide();
-            this.toastr.showInfo('Data deleted successfully','Data Deleted');
-          });
-        } else {
-          this.toastr.showError('Somethin wrong with connection','Delete Error');
-        }
-      });
+    this.contentService.DeleteContent(id).subscribe(res => {
+      if (res.status == 200) {
+        this.contentService.GetContent(+this.sectionForTable).subscribe(res => {
+          this.tableValue = res.body;
+          this.spinner.hide();
+          this.toastr.showInfo('Data deleted successfully', 'Data Deleted');
+        });
+      } else {
+        this.toastr.showError('Somethin wrong with connection', 'Delete Error');
+      }
+    });
 
   }
 
