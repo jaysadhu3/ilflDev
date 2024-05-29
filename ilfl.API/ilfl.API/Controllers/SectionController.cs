@@ -88,7 +88,7 @@ public class SectionController : Controller
         }
     }
 
-    [HttpDelete("{id}")]
+    [HttpGet("{id}")]
     public IActionResult DeleteSection(int id)
     {
         try

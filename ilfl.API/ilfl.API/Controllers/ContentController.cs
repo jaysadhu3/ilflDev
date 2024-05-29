@@ -88,7 +88,7 @@ public class ContentController : Controller
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Status codes</returns>
-    [HttpGet("{id")]
+    [HttpGet("{id}")]
     public IActionResult DeleteContent(int id)
     {
         try
