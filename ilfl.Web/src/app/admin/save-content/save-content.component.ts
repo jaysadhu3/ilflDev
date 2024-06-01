@@ -72,7 +72,11 @@ export class SaveContentComponent {
 
       this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
       this.finalForm.append('section', this.contentForm.controls['section'].value);
-      this.finalForm.append('description', this.contentForm.controls['description'].value);
+      if( this.contentForm.controls['description'].value == null || this.contentForm.controls['description'].value == '') {
+        this.finalForm.append('description','');
+      } else {
+        this.finalForm.append('description',this.contentForm.controls['description'].value);
+      }
 
       this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
         if (res) {

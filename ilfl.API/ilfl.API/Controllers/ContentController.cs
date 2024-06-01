@@ -44,7 +44,7 @@ public class ContentController : Controller
     /// <param name="content">content</param>
     /// <returns>boolean</returns>
     [HttpPost]
-    public async Task<IActionResult> AddContent([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section, [FromForm] string description)
+    public async Task<IActionResult> AddContent([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section, [FromForm] string? description)
     {
         try
         {
