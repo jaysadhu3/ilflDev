@@ -25,10 +25,10 @@ public class SectionRepository: ISectionRepository
 
     public bool DeleteSection(int id)
     {
-        var removedSection = _dbContext.Ifsssections.Where(c => c.Ifssid == id).ToList();
-        if (removedSection.Count > 0)
+        var removedSection = _dbContext.Ifsssections.Where(c => c.Ifssid == id).FirstOrDefault();
+        if (removedSection != null)
         {
-            _dbContext.RemoveRange(removedSection);
+            _dbContext.Remove(removedSection);
             _dbContext.SaveChanges();
             return true;
         }
