@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
+import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
 
 @Component({
   selector: 'app-save-section',
@@ -19,7 +20,7 @@ import { HeaderComponent } from '../../common/header/header.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule, HeaderComponent],
+    HttpClientModule, HeaderAdminComponent],
   providers: [HttpClientModule],
   templateUrl: './save-section.component.html',
   styleUrl: './save-section.component.css'

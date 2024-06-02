@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
 import { SectionService } from '../../services/section/section.service';
+import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ import { SectionService } from '../../services/section/section.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule, HeaderComponent],
+    HttpClientModule, HeaderAdminComponent],
   providers: [HttpClientModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

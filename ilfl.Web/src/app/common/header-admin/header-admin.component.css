@@ -1,0 +1,8 @@
+
+.navbar .nav-item:hover > .nav-link {
+    color: rgba(0, 0, 0, 0.534) !important;
+  }
+
+.navbar-nav > .nav-item::before {
+    background-color: black !important;
+}

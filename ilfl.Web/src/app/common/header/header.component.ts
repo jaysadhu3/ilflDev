@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth/auth.service';
+import { SectionService } from '../../services/section/section.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,25 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  manuValue: any = null;
-  subManuValue: any = null;
-  constructor(private authService: AuthService) {
+  menuValue: any = null;
+  subMenuValue: any = null;
+  constructor(private sectionService: SectionService,
+    private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
 
+    this.sectionService.GetParentSection().subscribe(res => {
+      this.menuValue = res.body;
+      this.spinner.hide();
+    });
+
+    this.sectionService.GetChildSection(0).subscribe(res => {
+      this.subMenuValue = res.body;
+      this.spinner.hide();
+    });
   }
 
-  signOut() {
-    this.authService.signOut();
-  }
+  changeContent(id: number) {}
+
 }

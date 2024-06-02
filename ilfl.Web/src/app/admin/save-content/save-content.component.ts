@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
+import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
 
 @Component({
   selector: 'app-save-content',
@@ -21,7 +22,7 @@ import { HeaderComponent } from '../../common/header/header.component';
     FormsModule,
     HttpClientModule,
     ToastrModule,
-    HeaderComponent],
+    HeaderAdminComponent],
   providers: [HttpClientModule],
   templateUrl: './save-content.component.html',
   styleUrl: './save-content.component.css'

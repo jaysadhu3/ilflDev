@@ -10,11 +10,12 @@ import { SectionService } from '../../services/section/section.service';
 import { concat, forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
+import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
 
 @Component({
   selector: 'app-view-content',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderAdminComponent],
   templateUrl: './view-content.component.html',
   styleUrl: './view-content.component.css'
 })
