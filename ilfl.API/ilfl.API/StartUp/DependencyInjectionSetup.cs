@@ -43,11 +43,13 @@ public static class DependencyInjectionSetup
         services.AddTransient<IAuthRepository, AuthRepository>();
         services.AddTransient<IContentRepository, ContentRepository>();
         services.AddTransient<ISectionRepository, SectionRepository>();
+        services.AddTransient<IPageContentRepository, PageContentRepository>();
 
         // Services Binding
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<IContentService, ContentService>();
         services.AddTransient<ISectionService, SectionService>();
+        services.AddTransient<IPageContentService, PageContentService>();
         services.AddControllers();
         
         services.AddEndpointsApiExplorer();

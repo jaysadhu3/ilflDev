@@ -1,4 +1,48 @@
-<app-header></app-header>
-<div>
-    <h1>This Page is under development.</h1>
+<app-header-admin></app-header-admin>
+<div class="main-con">
+  <form #contentform="ngForm" [formGroup]="contentForm" (ngSubmit)="processSave()">
+    <div class="row mb-1">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Menu (Page)<span class="required">*</span></label>
+      <div class="col-sm-10">
+        <select class="form-select form-control" id="section" name="section" formControlName="section"
+          aria-label="Default select example">
+          <option value="null" selected>Select Menu</option>
+          <option *ngFor="let value of dropdownValue" value="{{value.ifssid}}">
+            {{value.ifssname}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <!-- <div class="row mb-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Content to Display<span class="required">*</span></label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="displayName" name="displayName" formControlName="displayName"
+          placeholder="Content to Display (PDF Name)">
+      </div>
+    </div> -->
+    <div class="row mb-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="description" name="description" formControlName="description"
+          placeholder="Description">
+      </div>
+    </div>
+    <!-- <div class="row mb-1">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Select File<span class="required">*</span></label>
+      <div class="col-sm-10">
+        <div class="mb-1">
+          <input type="file" id="file" name="file" formControlName="file" class="form-control input-upload"
+            (change)="onFileSelection($event)" placeholder="Select File">
+        </div>
+      </div>
+    </div> -->
+    <div class="row col-4">
+      <div class=" col-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <div class=" col-2">
+        <button type="button" class="btn btn-secondary" (click)="backDashboard()">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>

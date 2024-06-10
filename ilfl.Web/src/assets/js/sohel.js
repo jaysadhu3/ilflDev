@@ -112,45 +112,45 @@ window.addEventListener('scroll', function() {
 //     }
 // });
 // lighbox gallery 
-lightGallery(document.getElementById('lightgallery'));
+// lightGallery(document.getElementById('lightgallery'));
 // lighbox gallery 
-var swiper = new Swiper(".testimonials", {
+// var swiper = new Swiper(".testimonials", {
 
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    centeredSlides: true,
-    // autoplay: {
-    //     delay: 3000, // 5 seconds delay between each slide
-    //     disableOnInteraction: false, // Autoplay will not stop on user interaction
-    // },
-    loop: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-    },
-    slidesPerView: 1, // Show one slide at a time
-    spaceBetween: 0, // Add space between slides
-    breakpoints: {
-        // When window width is >= 768px
-        0: {
-            slidesPerView: 1,
-        },
-        // When window width is >= 992px
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     centeredSlides: true,
+//     // autoplay: {
+//     //     delay: 3000, // 5 seconds delay between each slide
+//     //     disableOnInteraction: false, // Autoplay will not stop on user interaction
+//     // },
+//     loop: true,
+//     pagination: {
+//         el: ".swiper-pagination",
+//         clickable: true
+//     },
+//     slidesPerView: 1, // Show one slide at a time
+//     spaceBetween: 0, // Add space between slides
+//     breakpoints: {
+//         // When window width is >= 768px
+//         0: {
+//             slidesPerView: 1,
+//         },
+//         // When window width is >= 992px
 
-        // // When window width is >= 1200px
-        // 992: {
-        //     slidesPerView: 2,
-        // },
-        // 1399: {
-        //     slidesPerView: 3,
-        // },
-        // 1800: {
-        //     slidesPerView: 3,
-        // },
-    },
-});
+//         // // When window width is >= 1200px
+//         // 992: {
+//         //     slidesPerView: 2,
+//         // },
+//         // 1399: {
+//         //     slidesPerView: 3,
+//         // },
+//         // 1800: {
+//         //     slidesPerView: 3,
+//         // },
+//     },
+// });
 
 
 // form validation
@@ -161,100 +161,100 @@ var swiper = new Swiper(".testimonials", {
 // if (inquire_form) {
 
 // }
-$(function() {
-    jQuery.validator.addMethod("phone_regex", function(value, element) {
-        return this.optional(element) || /^[0-9\.\-_]{10,30}$/i.test(value);
-    }, "Please enter only numeric value");
-    jQuery.validator.addMethod("pcode_regex", function(value, element) {
-        return this.optional(element) || /^[0-9\.\-_]{6,6}$/i.test(value);
-    }, "Please enter only numeric value");
-    jQuery.validator.addMethod("childage_regex", function(value, element) {
-        return this.optional(element) || /^[0-9\.\-_]{1,2}$/i.test(value);
-    }, "Please enter only numeric value");
-    jQuery.validator.addMethod("childage_between", function(value, element) {
-        // Convert age value to integer
-        var age = parseInt(value);
-        // Check if age is between 5 and 50 (inclusive)
-        return age >= 1 && age <= 26;
-    }, "Please enter a child age between 1 and 26.");
-    jQuery.validator.addMethod("validate_email", function(value, element) {
-        if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }, "Please enter a valid Email.");
+// $(function() {
+//     jQuery.validator.addMethod("phone_regex", function(value, element) {
+//         return this.optional(element) || /^[0-9\.\-_]{10,30}$/i.test(value);
+//     }, "Please enter only numeric value");
+//     jQuery.validator.addMethod("pcode_regex", function(value, element) {
+//         return this.optional(element) || /^[0-9\.\-_]{6,6}$/i.test(value);
+//     }, "Please enter only numeric value");
+//     jQuery.validator.addMethod("childage_regex", function(value, element) {
+//         return this.optional(element) || /^[0-9\.\-_]{1,2}$/i.test(value);
+//     }, "Please enter only numeric value");
+//     jQuery.validator.addMethod("childage_between", function(value, element) {
+//         // Convert age value to integer
+//         var age = parseInt(value);
+//         // Check if age is between 5 and 50 (inclusive)
+//         return age >= 1 && age <= 26;
+//     }, "Please enter a child age between 1 and 26.");
+//     jQuery.validator.addMethod("validate_email", function(value, element) {
+//         if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }, "Please enter a valid Email.");
 
-    $.validator.addMethod("aplhabateonly", function(value, element) {
-        return this.optional(element) || /^[a-zA-Z.,'"\- ]*$/.test(value);
-    }, "Please enter only alphabetical characters (a-z)");
-    $.validator.addMethod("letterswithbasicpunc", function(value, element) {
-        return this.optional(element) || /^[a-zA-Z.,'"\- ]*$/.test(value);
-    }, "Please enter only alphabetical characters (a-z).");
-});
-$(document).ready(function() {
-    $("#enroll_form").validate({
-        rules: {
-            fname: {
-                required: true,
-                minlength: 1,
-                maxlength: 50,
-                letterswithbasicpunc: true
-            },
-            selectOption: {
-                required: true,
+//     $.validator.addMethod("aplhabateonly", function(value, element) {
+//         return this.optional(element) || /^[a-zA-Z.,'"\- ]*$/.test(value);
+//     }, "Please enter only alphabetical characters (a-z)");
+//     $.validator.addMethod("letterswithbasicpunc", function(value, element) {
+//         return this.optional(element) || /^[a-zA-Z.,'"\- ]*$/.test(value);
+//     }, "Please enter only alphabetical characters (a-z).");
+// });
+// $(document).ready(function() {
+//     $("#enroll_form").validate({
+//         rules: {
+//             fname: {
+//                 required: true,
+//                 minlength: 1,
+//                 maxlength: 50,
+//                 letterswithbasicpunc: true
+//             },
+//             selectOption: {
+//                 required: true,
 
-            },
+//             },
 
-            message: {
-                maxlength: 100
-            },
-            email: {
-                required: true,
-                validate_email: true
-            },
-            phone: {
-                required: true,
-                minlength: 10,
-                maxlength: 10,
-                phone_regex: true,
-            },
+//             message: {
+//                 maxlength: 100
+//             },
+//             email: {
+//                 required: true,
+//                 validate_email: true
+//             },
+//             phone: {
+//                 required: true,
+//                 minlength: 10,
+//                 maxlength: 10,
+//                 phone_regex: true,
+//             },
 
-        },
-        messages: {
-            fname: {
-                required: "Please enter your Name",
-            },
-            selectOption: {
-                required: "Please choose any Program",
-            },
+//         },
+//         messages: {
+//             fname: {
+//                 required: "Please enter your Name",
+//             },
+//             selectOption: {
+//                 required: "Please choose any Program",
+//             },
 
-            email: {
-                required: "Please enter a valid email address",
-                validate_email: "Please enter a valid email address"
-            },
-            phone: {
-                required: "Please enter a valid phone number",
-            },
+//             email: {
+//                 required: "Please enter a valid email address",
+//                 validate_email: "Please enter a valid email address"
+//             },
+//             phone: {
+//                 required: "Please enter a valid phone number",
+//             },
 
-        },
-        submitHandler: function(form) {
-            // var $captcha = $('#recaptcha');
-            // var response = grecaptcha.getResponse();
+//         },
+//         submitHandler: function(form) {
+//             // var $captcha = $('#recaptcha');
+//             // var response = grecaptcha.getResponse();
 
-            // if (response.length === 0) {
-            //     alert("Captcha is mandatory");
-            //     if (!$captcha.hasClass("error")) {
-            //         $captcha.addClass("error");
-            //     }
-            //     return false
-            // } else {
-            //     form.submit();
-            // }
-            form.submit();
-        }
-    });
-});
+//             // if (response.length === 0) {
+//             //     alert("Captcha is mandatory");
+//             //     if (!$captcha.hasClass("error")) {
+//             //         $captcha.addClass("error");
+//             //     }
+//             //     return false
+//             // } else {
+//             //     form.submit();
+//             // }
+//             form.submit();
+//         }
+//     });
+// });
 
 
 // if (banner_box) {
@@ -321,26 +321,26 @@ $(document).ready(function() {
         }
     });
 
-    // get the path element
-    var path = $(".progress-circle path");
+    // // get the path element
+    // var path = $(".progress-circle path");
 
-    // get the total length of the path
-    var pathLength = path[0].getTotalLength();
+    // // get the total length of the path
+    // var pathLength = path[0].getTotalLength();
 
-    // set the initial value of stroke-dashoffset to the total length
-    path.css("stroke-dashoffset", pathLength);
+    // // set the initial value of stroke-dashoffset to the total length
+    // path.css("stroke-dashoffset", pathLength);
 
-    // track the scroll position and update the stroke-dashoffset
-    $(document).scroll(function() {
-        var scrollPercentage = ($(window).scrollTop() / ($(document).height() - $(window).height())) * 100;
-        var dashoffset = pathLength * (1 - scrollPercentage / 100);
-        path.css("stroke-dashoffset", dashoffset);
-    });
-    var btn = $('.progress-wrap');
-    btn.on('click', function(e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: 0 }, '300');
-    });
+    // // track the scroll position and update the stroke-dashoffset
+    // $(document).scroll(function() {
+    //     var scrollPercentage = ($(window).scrollTop() / ($(document).height() - $(window).height())) * 100;
+    //     var dashoffset = pathLength * (1 - scrollPercentage / 100);
+    //     path.css("stroke-dashoffset", dashoffset);
+    // });
+    // var btn = $('.progress-wrap');
+    // btn.on('click', function(e) {
+    //     e.preventDefault();
+    //     $('html, body').animate({ scrollTop: 0 }, '300');
+    // });
 
 });
 

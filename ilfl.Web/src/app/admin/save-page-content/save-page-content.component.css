@@ -1,4 +1,11 @@
 .main-con {
+    padding: 15px;
+}
+
+.required {
+    color: red;
+}
+.main-con {
     padding: 5px;
 }
 

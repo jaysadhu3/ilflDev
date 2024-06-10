@@ -16,4 +16,6 @@ public partial class Ifsssection
     public string Ifsspath { get; set; }
 
     public virtual ICollection<Ifctcontent> Ifctcontents { get; set; } = new List<Ifctcontent>();
+
+    public virtual ICollection<IfpcpageContent> IfpcpageContents { get; set; } = new List<IfpcpageContent>();
 }

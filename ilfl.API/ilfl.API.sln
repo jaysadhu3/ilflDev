@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ilfl.Repositories", "ilfl.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ilfl.Services", "ilfl.Services\ilfl.Services.csproj", "{B556F14F-CDF5-403B-A779-5FBF83F9DF4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ilfl.Utilities", "ilfl.Utilities\ilfl.Utilities.csproj", "{BD097FB0-7A50-4983-B3FD-5B5B278CF919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ilfl.Utilities", "ilfl.Utilities\ilfl.Utilities.csproj", "{BD097FB0-7A50-4983-B3FD-5B5B278CF919}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

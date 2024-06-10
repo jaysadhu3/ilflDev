@@ -63,7 +63,7 @@ public class ContentController : Controller
             content.IfctdisplayName = displayName;
             content.IfctIfss = Convert.ToInt32(section);
             content.Ifctfile = file.FileName;
-            content.Ifctdescription = description;
+            //content.Ifctdescription = description;
 
             var result = _contentService.AddContent(content);
 

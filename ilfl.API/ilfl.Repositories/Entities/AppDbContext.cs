@@ -17,6 +17,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<IfdddirectorDetail> IfdddirectorDetails { get; set; }
 
+    public virtual DbSet<IfpcpageContent> IfpcpageContents { get; set; }
+
     public virtual DbSet<Ifsssection> Ifsssections { get; set; }
 
     public virtual DbSet<Ifuluser> Ifulusers { get; set; }
@@ -31,10 +33,6 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.Ifctid).HasColumnName("IFCTId");
             entity.Property(e => e.IfctIfss).HasColumnName("IFCT_IFSS");
-            entity.Property(e => e.Ifctdescription)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("IFCTDescription");
             entity.Property(e => e.IfctdisplayName)
                 .IsRequired()
                 .HasMaxLength(100)
@@ -71,6 +69,24 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("IFDDPosition");
+        });
+
+        modelBuilder.Entity<IfpcpageContent>(entity =>
+        {
+            entity.HasKey(e => e.Ifpcid);
+
+            entity.ToTable("IFPCPageContent");
+
+            entity.Property(e => e.Ifpcid).HasColumnName("IFPCId");
+            entity.Property(e => e.IfpcHtmlContent)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_HTML_Content");
+            entity.Property(e => e.IfpcIfssid).HasColumnName("IFPC_IFSSId");
+
+            entity.HasOne(d => d.IfpcIfss).WithMany(p => p.IfpcpageContents)
+                .HasForeignKey(d => d.IfpcIfssid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IFPCPageContent_IFPCPageContent");
         });
 
         modelBuilder.Entity<Ifsssection>(entity =>
