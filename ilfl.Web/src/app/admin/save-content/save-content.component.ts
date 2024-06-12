@@ -33,7 +33,7 @@ export class SaveContentComponent {
   base64File: string = '';
   tableValue: any = null;
   sectionForTable: string = '';
-  dropdownValue: any = null;
+  dropdownValue: any = [];
   finalForm = new FormData();
 
   constructor(private formbuilder: FormBuilder,
@@ -59,8 +59,13 @@ export class SaveContentComponent {
       this.spinner.hide();
     });
 
-    this.sectionService.GetChildSection(0).subscribe(res => {
-      this.dropdownValue = res.body;
+    this.sectionService.GetAllSection().subscribe(res => {
+      let menuitemList = res.body;
+      menuitemList.forEach((element: any) => {
+        if (!element.ifssisPageEditable) {
+          this.dropdownValue.push(element);
+        }
+      });
       this.spinner.hide();
     });
   }
