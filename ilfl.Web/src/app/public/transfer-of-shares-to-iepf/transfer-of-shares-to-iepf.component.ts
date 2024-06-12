@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../../common/header/header.component";
 import { CommonModule } from '@angular/common';
 import { ContentService } from '../../services/content/content.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../services/toastService/toast.service';
 
 @Component({
     selector: 'app-transfer-of-shares-to-iepf',
@@ -13,7 +15,9 @@ import { ContentService } from '../../services/content/content.service';
 export class TransferOfSharesToIEPFComponent {
 
     tableValue: any = [];
-    constructor(private contentService: ContentService) {
+    constructor(private contentService: ContentService,
+      private spinner: NgxSpinnerService,
+      private toastr: NotificationService) {
 
     }
 
@@ -23,32 +27,25 @@ export class TransferOfSharesToIEPFComponent {
         });
     }
 
-  viewPDF(file: string) {
-    let base64 = this.moveDataUriPrefix(file);
-    this.openPdfInNewTab(base64);
-  }
-
-  openPdfInNewTab(base64String: string) {
-    const binaryString = window.atob(base64String);
-    const binaryLen = binaryString.length;
-    const bytes = new Uint8Array(binaryLen);
-
-    for (let i = 0; i < binaryLen; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
+    viewPDF(file: string) {
+      let listValues: string[] = [];
+      this.contentService.GetViewFile(file).subscribe(res => {
+  
+        window.open(res.body, '_blank');
+        listValues = res.body;
+        if (res.status == 200) {
+          if (listValues == null) {
+            this.toastr.showWarning('Can not read files.', 'Warning');
+          } else {
+  
+            window.open(listValues.join(""), '_blank');
+          }
+        } else {
+          if (listValues == null) {
+            this.toastr.showWarning('Please contact to administrator for this file.', 'Warning');
+          }
+        }
+        this.spinner.hide();
+      });
     }
-
-    const blob = new Blob([bytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-
-    // Open PDF in new tab
-    window.open(url, '_blank');
-  }
-
-  moveDataUriPrefix(base64String: string): string {
-    const prefixIndex = base64String.indexOf(';base64,');
-    if (prefixIndex !== -1) {
-        return base64String.slice(prefixIndex + 8); // Skip prefix and comma
-    }
-    return base64String;
-  }
 }

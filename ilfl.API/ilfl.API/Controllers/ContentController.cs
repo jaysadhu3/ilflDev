@@ -1,5 +1,4 @@
-﻿using ilfl.Models.Models;
-using ilfl.Repositories.Entities;
+﻿using ilfl.Repositories.Entities;
 using ilfl.Services.Interface;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +49,7 @@ public class ContentController : Controller
         {
             if (file == null) { return StatusCode(StatusCodes.Status400BadRequest, "File is missing"); }
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], file.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _configuration["FileFolderName"], file.FileName);
 
             var isFileExist = _contentService.IsFileExist(file.FileName);
 
@@ -102,20 +101,6 @@ public class ContentController : Controller
             System.IO.File.Delete(filePath);
 
             return StatusCode(StatusCodes.Status200OK, true);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpGet]
-    public IActionResult GetDirectorDetail()
-    {
-        try
-        {
-            var results = _contentService.DirectorDetail();
-            return StatusCode(StatusCodes.Status200OK, results);
         }
         catch (Exception ex)
         {

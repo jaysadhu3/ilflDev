@@ -12,30 +12,32 @@ export class SectionService {
   httpHeaders: HttpHeaders;
   apiAddress = environment.apiAddress + 'Section/';
   constructor(private httpClient: HttpClient, private spinner: NgxSpinnerService) {
-    this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json'});
-   }GetChildSection(sectionId: Number): Observable<HttpResponse<any>> {
-    this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetChildSection/' + sectionId, {headers: this.httpHeaders, observe: 'response'});
-   }
+    this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json' });
+  }
 
-   GetParentSection(): Observable<HttpResponse<any>> {
+  GetChildSection(sectionId: Number): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetParentSection', {headers: this.httpHeaders, observe: 'response'});
-   }
+    return this.httpClient.get<any>(this.apiAddress + 'GetChildSection/' + sectionId, { headers: this.httpHeaders, observe: 'response' });
+  }
 
-   AddSection(section: Section): Observable<HttpResponse<any>> {
+  GetParentSection(): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.post<any>(this.apiAddress + 'AddSection', JSON.stringify(section), {headers: this.httpHeaders, observe: 'response'});
-   }
+    return this.httpClient.get<any>(this.apiAddress + 'GetParentSection', { headers: this.httpHeaders, observe: 'response' });
+  }
 
-   GetAllSection(): Observable<HttpResponse<any>> {
+  AddSection(section: Section): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetAllSection', {headers: this.httpHeaders, observe: 'response'});
-   }
+    return this.httpClient.post<any>(this.apiAddress + 'AddSection', JSON.stringify(section), { headers: this.httpHeaders, observe: 'response' });
+  }
 
-   DeleteSection(id: Number): Observable<any> {
+  GetAllSection(): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.get<HttpResponse<any>>(this.apiAddress + 'DeleteSection/' + id, {headers: this.httpHeaders, observe: 'response'});
-   }
+    return this.httpClient.get<any>(this.apiAddress + 'GetAllSection', { headers: this.httpHeaders, observe: 'response' });
+  }
+
+  DeleteSection(id: Number): Observable<any> {
+    this.spinner.show();
+    return this.httpClient.get<HttpResponse<any>>(this.apiAddress + 'DeleteSection/' + id, { headers: this.httpHeaders, observe: 'response' });
+  }
 
 }

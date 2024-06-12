@@ -11,6 +11,9 @@ import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
 import { SectionMenu } from '../../common/models/SectionMenu';
+import { Editor, NgxEditorModule, Toolbar, toDoc, toHTML } from 'ngx-editor';
+import { PageContent } from '../../common/models/pageContent';
+import { PageContentService } from '../../services/pageContent/page-content.service';
 
 @Component({
   selector: 'app-save-content',
@@ -21,70 +24,73 @@ import { SectionMenu } from '../../common/models/SectionMenu';
     FormsModule,
     HttpClientModule,
     ToastrModule,
+    NgxEditorModule,
     HeaderAdminComponent],
   providers: [HttpClientModule],
   templateUrl: './save-page-content.component.html',
   styleUrl: './save-page-content.component.css'
 })
 export class SavePageContentComponent {
+  editor: Editor = new Editor();
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+  html: '' | undefined;
   contentForm: FormGroup;
-  content: Content = new Content();
+  pageContent: PageContent = new PageContent();
   base64File: string = '';
   tableValue: any = null;
   sectionForTable: string = '';
-  dropdownValue: any = null;
+  dropdownValue: any = [];
   finalForm = new FormData();
 
   constructor(private formbuilder: FormBuilder,
-    private contentService: ContentService,
     private sectionService: SectionService,
     private authService: AuthService,
+    private pageContentService: PageContentService,
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService
   ) {
     this.contentForm = this.formbuilder.group({
-      displayName: [null, [Validators.required]],
       section: [null, [Validators.required]],
-      description: [null],
+      content: [null],
     });
   }
   signOut() {
     this.authService.signOut();
   }
   ngOnInit(): void {
-    this.sectionService.GetChildSection(0).subscribe(res => {
-      let menuitemList = res.body as SectionMenu[];
-      // console.log(menuitemList);
-      // this.dropdownValue = menuitemList.filter(x=> x.ifssId == 1 || x.ifssId == 2 || x.ifssId == 3);
-      this.dropdownValue = res.body;
+    this.sectionService.GetAllSection().subscribe(res => {
+      let menuitemList = res.body;
+      menuitemList.forEach((element: any) => {
+        if (element.ifssisPageEditable) {
+          this.dropdownValue.push(element);
+        }
+      });
       this.spinner.hide();
     });
   }
 
   processSave() {
     if (this.contentForm.valid) {
-      this.content.IfctdisplayName = this.contentForm.controls['displayName'].value;
-      this.content.Ifctsection = this.contentForm.controls['section'].value;
-      this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
-      this.finalForm.append('section', this.contentForm.controls['section'].value);
-      if( this.contentForm.controls['description'].value == null || this.contentForm.controls['description'].value == '') {
-        this.finalForm.append('description','');
-      } else {
-        this.finalForm.append('description',this.contentForm.controls['description'].value);
-      }
-
-      this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
+      this.pageContent.menuId = this.contentForm.controls['section'].value;
+      this.pageContent.htmlPageContent = toHTML(this.contentForm.controls['content'].value);
+      console.log(this.pageContent);
+      this.pageContentService.SavePageContent(this.pageContent).subscribe((res: any) => {
         if (res) {
           this.toastr.success("Details saved successfully", "Success");
           this.spinner.hide();
           this.router.navigate(['Admin/ViewContent']);
         } else {
           this.spinner.hide();
-          if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
-            this.toastr.error("Display name is missing", "Information Error");
-          } else {
-            this.toastr.error("File name is already exist", "Information Error");
-          }
+          this.toastr.error("Please fill all the required fields.", "Information Error");
         }
       });
     } else {
@@ -96,4 +102,18 @@ export class SavePageContentComponent {
   backDashboard() {
     this.router.navigate(['Admin/ViewContent']);
   }
+
+  SetSelectedValue() {
+    this.pageContentService.GetPageContent(this.contentForm.controls['section'].value).subscribe(res => {
+      let content = res.body;
+      if(content[0].ifpcHtmlContent != undefined) {
+         let htmlValue = content[0].ifpcHtmlContent;
+        console.log(); 
+        this.editor.setContent(htmlValue);
+        //this.contentForm.patchValue({content: content[0].ifpcHtmlContent});
+      }
+    });
+    this.spinner.hide();
+  }
 }
+

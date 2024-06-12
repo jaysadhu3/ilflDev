@@ -47,17 +47,11 @@ public class ContentRepository : IContentRepository
         var filePath = "";
         if (removedContent != null)
         {
-            filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], removedContent.Ifctfile);
+            filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _configuration["FileFolderName"], removedContent.Ifctfile);
             _dbContext.Remove(removedContent);
             _dbContext.SaveChanges();
         }
         return filePath;
-    }
-
-    public List<IfdddirectorDetail>? DirectorDetail()
-    {
-        var records = _dbContext.IfdddirectorDetails.ToList();
-        return records;
     }
 
     public List<Ifctcontent>? GetContent(int sectionId)

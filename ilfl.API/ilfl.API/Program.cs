@@ -28,6 +28,8 @@ app.ConfigurationCors(builder.Configuration);
 
 app.UseAuthorization();
 
+app.UseStaticFiles();
+
 app.MapControllers();
 
 app.Run();

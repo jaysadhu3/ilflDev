@@ -8,7 +8,6 @@ public interface IContentService
     List<Ifctcontent>? GetContent(int sectionId);
     bool AddContent(Ifctcontent content);
     string DeleteContent(int id);
-    List<IfdddirectorDetail>? DirectorDetail();
     string GetViewFile(string filePath);
     bool IsFileExist(string fileName);
 }

@@ -29,11 +29,6 @@ public class ContentService : IContentService
         return _contentRepository.DeleteContent(id);
     }
 
-    public List<IfdddirectorDetail>? DirectorDetail()
-    {
-        return _contentRepository.DirectorDetail();
-    }
-
     public List<Ifctcontent>? GetContent(int sectionId)
     {
         return _contentRepository.GetContent(sectionId);
@@ -41,14 +36,14 @@ public class ContentService : IContentService
 
     public string? GetViewFile(string fileName)
     {
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileFolderName"], fileName);
-        if (System.IO.File.Exists(filePath))
-        {
-            string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
-            return file;
-        }
+        var filePath = Path.Combine(_configuration["BackEndUrl"], _configuration["FileFolderName"], fileName);
+        //if (System.IO.File.Exists(filePath))
+        //{
+        //    string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
+        //    return file;
+        //}
         
-        return null;
+        return filePath;
     }
 
     public bool IsFileExist(string fileName)

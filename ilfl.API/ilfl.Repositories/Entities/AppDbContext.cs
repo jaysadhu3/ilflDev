@@ -15,8 +15,6 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Ifctcontent> Ifctcontents { get; set; }
 
-    public virtual DbSet<IfdddirectorDetail> IfdddirectorDetails { get; set; }
-
     public virtual DbSet<IfpcpageContent> IfpcpageContents { get; set; }
 
     public virtual DbSet<Ifsssection> Ifsssections { get; set; }
@@ -33,6 +31,10 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.Ifctid).HasColumnName("IFCTId");
             entity.Property(e => e.IfctIfss).HasColumnName("IFCT_IFSS");
+            entity.Property(e => e.Ifctdescription)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("IFCTDescription");
             entity.Property(e => e.IfctdisplayName)
                 .IsRequired()
                 .HasMaxLength(100)
@@ -47,28 +49,6 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.IfctIfss)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IFCT_IFSS");
-        });
-
-        modelBuilder.Entity<IfdddirectorDetail>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("IFDDDirectorDetails");
-
-            entity.Property(e => e.Ifddfile)
-                .IsRequired()
-                .IsUnicode(false)
-                .HasColumnName("IFDDFile");
-            entity.Property(e => e.Ifddname)
-                .IsRequired()
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("IFDDName");
-            entity.Property(e => e.Ifddposition)
-                .IsRequired()
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("IFDDPosition");
         });
 
         modelBuilder.Entity<IfpcpageContent>(entity =>
@@ -96,6 +76,9 @@ public partial class AppDbContext : DbContext
             entity.ToTable("IFSSSection");
 
             entity.Property(e => e.Ifssid).HasColumnName("IFSSId");
+            entity.Property(e => e.IfssisPageEditable)
+                .HasDefaultValue(false)
+                .HasColumnName("IFSSIsPageEditable");
             entity.Property(e => e.Ifssname)
                 .IsRequired()
                 .HasMaxLength(100)

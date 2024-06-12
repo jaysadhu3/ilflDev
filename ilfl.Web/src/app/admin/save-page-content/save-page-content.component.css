@@ -30,3 +30,18 @@
 .navbar-nav > .nav-item::before {
     background-color: black !important;
 }
+
+.editor {
+    height: 300px;
+}
+
+::ng-deep { /* to penetrate <ngx-editor> CSS styling */
+
+    .NgxEditor {
+      height: 400px !important;
+    }
+  
+    .NgxEditor__Content {
+      min-height: 400px; /* make all of the editor area clickable */
+    }
+  }

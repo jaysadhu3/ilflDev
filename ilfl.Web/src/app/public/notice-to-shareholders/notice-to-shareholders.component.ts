@@ -2,53 +2,50 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../../common/header/header.component";
 import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../services/toastService/toast.service';
 
 @Component({
-    selector: 'app-notice-to-shareholders',
-    standalone: true,
-    templateUrl: './notice-to-shareholders.component.html',
-    styleUrl: './notice-to-shareholders.component.css',
-    imports: [HeaderComponent, CommonModule]
+  selector: 'app-notice-to-shareholders',
+  standalone: true,
+  templateUrl: './notice-to-shareholders.component.html',
+  styleUrl: './notice-to-shareholders.component.css',
+  imports: [HeaderComponent, CommonModule]
 })
 export class NoticeToShareholdersComponent {
 
-    tableValue: any = [];
-    constructor(private contentService: ContentService) {
+  tableValue: any = [];
+  constructor(private contentService: ContentService,
+    private spinner: NgxSpinnerService,
+    private toastr: NotificationService) {
 
-    }
+  }
 
-    ngOnInit(): void {
-        this.contentService.GetContent(8).subscribe(res => {
-            this.tableValue = res.body;
-          });
-    }
+  ngOnInit(): void {
+    this.contentService.GetContent(8).subscribe(res => {
+      this.tableValue = res.body;
+    });
+  }
 
   viewPDF(file: string) {
-    let base64 = this.moveDataUriPrefix(file);
-    this.openPdfInNewTab(base64);
-  }
+    let listValues: string[] = [];
+    this.contentService.GetViewFile(file).subscribe(res => {
 
-  openPdfInNewTab(base64String: string) {
-    const binaryString = window.atob(base64String);
-    const binaryLen = binaryString.length;
-    const bytes = new Uint8Array(binaryLen);
+      window.open(res.body, '_blank');
+      listValues = res.body;
+      if (res.status == 200) {
+        if (listValues == null) {
+          this.toastr.showWarning('Can not read files.', 'Warning');
+        } else {
 
-    for (let i = 0; i < binaryLen; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-
-    const blob = new Blob([bytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-
-    // Open PDF in new tab
-    window.open(url, '_blank');
-  }
-
-  moveDataUriPrefix(base64String: string): string {
-    const prefixIndex = base64String.indexOf(';base64,');
-    if (prefixIndex !== -1) {
-        return base64String.slice(prefixIndex + 8); // Skip prefix and comma
-    }
-    return base64String;
+          window.open(listValues.join(""), '_blank');
+        }
+      } else {
+        if (listValues == null) {
+          this.toastr.showWarning('Please contact to administrator for this file.', 'Warning');
+        }
+      }
+      this.spinner.hide();
+    });
   }
 }

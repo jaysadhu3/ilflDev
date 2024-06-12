@@ -19,10 +19,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[IFDDDirectorDetails]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[IFPCPageContent]",
          "ObjectType": 0
       },
@@ -37,7 +33,6 @@
    ],
    "UiHint": null,
    "UncountableWords": null,
-   "UseAsyncStoredProcedureCalls": true,
    "UseBoolPropertiesWithoutDefaultSql": true,
    "UseDatabaseNames": false,
    "UseDateOnlyTimeOnly": true,
