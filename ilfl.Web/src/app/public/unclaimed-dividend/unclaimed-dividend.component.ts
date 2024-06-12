@@ -30,8 +30,6 @@ export class UnclaimedDividendComponent {
     viewPDF(file: string) {
       let listValues: string[] = [];
       this.contentService.GetViewFile(file).subscribe(res => {
-  
-        window.open(res.body, '_blank');
         listValues = res.body;
         if (res.status == 200) {
           if (listValues == null) {
