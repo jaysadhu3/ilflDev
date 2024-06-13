@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class PageContentService {
   httpHeaders: HttpHeaders;
-  apiAddress = environment.apiAddress + 'PageContent/';
+  apiAddress = environment.apiAddress + 'api/PageContent/';
   constructor(private httpClient: HttpClient, private spinner: NgxSpinnerService) {
     this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json'});
   }

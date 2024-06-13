@@ -10,7 +10,7 @@ import { Section } from '../../common/models/Section';
 })
 export class SectionService {
   httpHeaders: HttpHeaders;
-  apiAddress = environment.apiAddress + 'Section/';
+  apiAddress = environment.apiAddress + 'api/Section/';
   constructor(private httpClient: HttpClient, private spinner: NgxSpinnerService) {
     this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json' });
   }

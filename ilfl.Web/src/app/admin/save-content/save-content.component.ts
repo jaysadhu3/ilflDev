@@ -61,11 +61,13 @@ export class SaveContentComponent {
 
     this.sectionService.GetAllSection().subscribe(res => {
       let menuitemList = res.body;
+      let selectedList: any[] = [];
       menuitemList.forEach((element: any) => {
         if (!element.ifssisPageEditable) {
-          this.dropdownValue.push(element);
+          selectedList.push(element);
         }
       });
+      this.dropdownValue = selectedList.sort((a, b) => a.ifssid - b.ifssid);
       this.spinner.hide();
     });
   }

@@ -69,11 +69,13 @@ export class SavePageContentComponent {
   ngOnInit(): void {
     this.sectionService.GetAllSection().subscribe(res => {
       let menuitemList = res.body;
+      let selectedList: any[] = [];
       menuitemList.forEach((element: any) => {
         if (element.ifssisPageEditable) {
-          this.dropdownValue.push(element);
+          selectedList.push(element);
         }
       });
+      this.dropdownValue = selectedList.sort((a, b) => a.ifssid - b.ifssid);
       this.spinner.hide();
     });
   }
@@ -82,7 +84,6 @@ export class SavePageContentComponent {
     if (this.contentForm.valid) {
       this.pageContent.menuId = this.contentForm.controls['section'].value;
       this.pageContent.htmlPageContent = toHTML(this.contentForm.controls['content'].value);
-      console.log(this.pageContent);
       this.pageContentService.SavePageContent(this.pageContent).subscribe((res: any) => {
         if (res) {
           this.toastr.success("Details saved successfully", "Success");

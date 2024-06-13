@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AuthService {
   httpHeaders: HttpHeaders;
-  apiAddress = environment.apiAddress + 'Auth/';
+  apiAddress = environment.apiAddress + 'api/Auth/';
   constructor(private httpClient: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService

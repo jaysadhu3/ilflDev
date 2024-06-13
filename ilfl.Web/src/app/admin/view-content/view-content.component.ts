@@ -11,6 +11,7 @@ import { concat, forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
 import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-view-content',
@@ -91,8 +92,8 @@ export class ViewContentComponent implements OnInit {
         if (listValues == null) {
           this.toastr.showWarning('Can not read files.', 'Warning');
         } else {
-
-          window.open(listValues.join(""), '_blank');
+          let url = environment.apiAddress + listValues.join("");
+          window.open(url , '_blank');
         }
       } else {
         if (listValues == null) {

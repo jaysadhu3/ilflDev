@@ -4,6 +4,7 @@ import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
 import { NotificationService } from '../../services/toastService/toast.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from '../../../environments/environments';
 
 @Component({
     selector: 'app-annual-report',
@@ -36,8 +37,8 @@ export class AnnualReportComponent implements OnInit {
         if (listValues == null) {
           this.toastr.showWarning('Can not read files.', 'Warning');
         } else {
-
-          window.open(listValues.join(""), '_blank');
+          let url = environment.apiAddress + listValues.join("");
+          window.open(url , '_blank');
         }
       } else {
         if (listValues == null) {

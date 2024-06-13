@@ -4,6 +4,7 @@ import { ContentService } from '../../services/content/content.service';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../../services/toastService/toast.service';
+import { environment } from '../../../environments/environments';
 
 @Component({
     selector: 'app-unclaimed-dividend',
@@ -35,8 +36,8 @@ export class UnclaimedDividendComponent {
           if (listValues == null) {
             this.toastr.showWarning('Can not read files.', 'Warning');
           } else {
-  
-            window.open(listValues.join(""), '_blank');
+            let url = environment.apiAddress + listValues.join("");
+            window.open(url , '_blank');
           }
         } else {
           if (listValues == null) {

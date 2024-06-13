@@ -36,12 +36,7 @@ public class ContentService : IContentService
 
     public string? GetViewFile(string fileName)
     {
-        var filePath = Path.Combine(_configuration["BackEndUrl"], _configuration["FileFolderName"], fileName);
-        //if (System.IO.File.Exists(filePath))
-        //{
-        //    string file = Convert.ToBase64String(File.ReadAllBytes(filePath));
-        //    return file;
-        //}
+        var filePath = Path.Combine( _configuration["FileFolderName"], fileName);
         
         return filePath;
     }

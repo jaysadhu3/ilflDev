@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ContentService {
   httpHeaders: HttpHeaders;
-  apiAddress = environment.apiAddress + 'Content/';
+  apiAddress = environment.apiAddress + 'api/Content/';
   constructor(private httpClient: HttpClient, private spinner: NgxSpinnerService) {
     this.httpHeaders = new HttpHeaders({ 'content-type': 'application/json'});
    }
