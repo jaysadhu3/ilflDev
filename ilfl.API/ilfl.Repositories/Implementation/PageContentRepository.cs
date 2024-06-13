@@ -23,41 +23,18 @@ public class PageContentRepository : IPageContentRepository
         return true;
     }
 
-    public List<IfpcpageContent>? GetContent(int pageContentId)
-    {
-        try
-        {
-            if (pageContentId == 0)
-            {
-                var resultAll = _dbContext.IfpcpageContents.OrderByDescending(x => x.Ifpcid).ToList();
-                return resultAll;
-            }
-            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssid == pageContentId).ToList();
-            if (parentCheck.Count > 0) return null;
-            var sectionCheck = _dbContext.IfpcpageContents.FirstOrDefault(x => x.Ifpcid == pageContentId);
-            if (sectionCheck == null) return null;
-            var result = _dbContext.IfpcpageContents.Where(x => x.Ifpcid == pageContentId).OrderByDescending(x => x.IfpcIfssid).ToList();
-            return result;
-
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    List<IfpcpageContent>? IPageContentRepository.GetContent(int pageContentId)
+    List<IfpcpageContent>? IPageContentRepository.GetContent(int menuId)
     {
         try
         {
             var result = new List<IfpcpageContent>();
-            if (pageContentId == 0)
+            if (menuId == 0)
             {
-                result = _dbContext.IfpcpageContents.OrderByDescending(x => x.Ifpcid).ThenBy(x => x.Ifpcid).ToList();
+                result = _dbContext.IfpcpageContents.OrderByDescending(x => x.IfpcIfssid).ThenBy(x => x.Ifpcid).ToList();
             }
             else
             {
-                result = _dbContext.IfpcpageContents.Where(x => x.Ifpcid == pageContentId).ToList();
+                result = _dbContext.IfpcpageContents.Where(x => x.IfpcIfssid == menuId).ToList();
             }
             return result;
 

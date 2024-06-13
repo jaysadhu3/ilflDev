@@ -16,9 +16,9 @@ public class PageContentService : IPageContentService
         _configuration = configuration;
     }
 
-    public List<IfpcpageContent>? GetContent(int pageContentId)
+    public List<IfpcpageContent>? GetContent(int menuId)
     {
-        return _pagecontentRepository.GetContent(pageContentId);
+        return _pagecontentRepository.GetContent(menuId);
     }
 
     public int SavePageContent(IfpcpageContent pageContent)

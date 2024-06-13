@@ -104,16 +104,23 @@ export class SavePageContentComponent {
   }
 
   SetSelectedValue() {
-    this.pageContentService.GetPageContent(this.contentForm.controls['section'].value).subscribe(res => {
-      let content = res.body;
-      if(content[0].ifpcHtmlContent != undefined) {
-         let htmlValue = content[0].ifpcHtmlContent;
-        console.log(); 
-        this.editor.setContent(htmlValue);
-        //this.contentForm.patchValue({content: content[0].ifpcHtmlContent});
-      }
-    });
-    this.spinner.hide();
+    if (this.contentForm.controls['section'].value > 0) {
+      this.pageContentService.GetPageContent(this.contentForm.controls['section'].value).subscribe(res => {
+        if (res != null && res != undefined && res.body != '' && res.body != null && res.body != undefined) {
+          let content = res.body;
+          if (content[0].ifpcHtmlContent != undefined) {
+            let htmlValue = content[0].ifpcHtmlContent;
+            this.editor.setContent(htmlValue);
+          } else {
+            this.editor.setContent('');
+          }
+        } else {
+          this.editor.setContent('');
+        }
+      });
+      this.spinner.hide();
+    }
+
   }
 }
 

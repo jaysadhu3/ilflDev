@@ -29,12 +29,12 @@ public class PageContentController : Controller
     /// <summary>
     ///     Retrive content as per section
     /// </summary>
-    /// <param name="sectionId">section</param>
+    /// <param name="menuId">section</param>
     /// <returns>Content</returns>
-    [HttpGet("{pageContentId}")]
-    public IActionResult GetPageContent(int pageContentId)
+    [HttpGet("{menuId}")]
+    public IActionResult GetPageContent(int menuId)
     {
-        var result = _pagecontentService.GetContent(pageContentId);
+        var result = _pagecontentService.GetContent(menuId);
         return StatusCode(StatusCodes.Status200OK, result);
     }
 

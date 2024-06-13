@@ -162,7 +162,5 @@ INSERT [dbo].[IFCTContent] ([IFCTId], [IFCT_IFSS], [IFCTDisplayName], [IFCTDescr
 GO
 INSERT [dbo].[IFCTContent] ([IFCTId], [IFCT_IFSS], [IFCTDisplayName], [IFCTDescription], [IFCTFile]) VALUES (69, 14, N'Mr. Deepak Asher', N'Whole-time Director', N'resignation-of-director-deepak-asher.pdf')
 GO
-INSERT [dbo].[IFCTContent] ([IFCTId], [IFCT_IFSS], [IFCTDisplayName], [IFCTDescription], [IFCTFile]) VALUES (77, 5, N'2011-12', NULL, N'Jaykumar Sadhu.pdf')
-GO
 SET IDENTITY_INSERT [dbo].[IFCTContent] OFF
 GO

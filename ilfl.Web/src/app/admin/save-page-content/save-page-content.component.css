@@ -5,6 +5,7 @@
 .required {
     color: red;
 }
+
 .main-con {
     padding: 5px;
 }
@@ -23,11 +24,11 @@
     cursor: pointer;
 }
 
-.navbar .nav-item:hover > .nav-link {
+.navbar .nav-item:hover>.nav-link {
     color: rgba(0, 0, 0, 0.534) !important;
-  }
+}
 
-.navbar-nav > .nav-item::before {
+.navbar-nav>.nav-item::before {
     background-color: black !important;
 }
 
@@ -35,13 +36,13 @@
     height: 300px;
 }
 
-::ng-deep { /* to penetrate <ngx-editor> CSS styling */
+::ng-deep .NgxEditor__Content {
+    min-height: 400px !important;
+    /* make all of the editor area clickable */
+}
 
-    .NgxEditor {
-      height: 400px !important;
-    }
-  
-    .NgxEditor__Content {
-      min-height: 400px; /* make all of the editor area clickable */
-    }
-  }
+::ng-deep .NgxEditor__MenuBar {
+    border: 1px solid rgb(180, 180, 180);
+    margin-bottom: 4px;
+    border-radius: 6px;
+}

@@ -20,8 +20,8 @@ export class PageContentService {
     return this.httpClient.post<any>(this.apiAddress + 'SavePageContent ', pageContent, { headers: this.httpHeaders, observe: 'response' });
   }
 
-  GetPageContent(sectionId: Number): Observable<HttpResponse<any>> {
+  GetPageContent(menuId: Number): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.get<any>(this.apiAddress + 'GetPageContent/' + sectionId, { headers: this.httpHeaders, observe: 'response' });
+    return this.httpClient.get<any>(this.apiAddress + 'GetPageContent/' + menuId, { headers: this.httpHeaders, observe: 'response' });
   }
 }
