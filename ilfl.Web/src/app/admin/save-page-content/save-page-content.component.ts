@@ -60,7 +60,7 @@ export class SavePageContentComponent {
   ) {
     this.contentForm = this.formbuilder.group({
       section: [null, [Validators.required]],
-      content: [null],
+      content: [''],
     });
   }
   signOut() {
@@ -83,12 +83,12 @@ export class SavePageContentComponent {
   processSave() {
     if (this.contentForm.valid) {
       this.pageContent.menuId = this.contentForm.controls['section'].value;
-      this.pageContent.htmlPageContent = toHTML(this.contentForm.controls['content'].value);
+      console.log(this.contentForm.controls['content'].value);
+      this.pageContent.htmlPageContent = this.contentForm.controls['content'].value;
       this.pageContentService.SavePageContent(this.pageContent).subscribe((res: any) => {
         if (res) {
           this.toastr.success("Details saved successfully", "Success");
           this.spinner.hide();
-          this.router.navigate(['Admin/ViewContent']);
         } else {
           this.spinner.hide();
           this.toastr.error("Please fill all the required fields.", "Information Error");
