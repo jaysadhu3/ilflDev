@@ -19,9 +19,10 @@ export class AboutComponent {
     constructor(private pageContentService: PageContentService,
         private spinner: NgxSpinnerService,
         private toastr: NotificationService) {
-        this.pageContentService.GetPageContent(13).subscribe(res => {
+        this.pageContentService.GetPageContent(2).subscribe(res => {
             if (res != null && res != undefined && res.body != '' && res.body != null && res.body != undefined) {
                 let content = res.body;
+                console.log(content[0].ifpcHtmlContent);
                 if (content[0].ifpcHtmlContent != undefined) {
                     this.html = content[0].ifpcHtmlContent;
                 } else {
