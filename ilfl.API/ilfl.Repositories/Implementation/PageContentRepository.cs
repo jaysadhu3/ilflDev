@@ -57,7 +57,13 @@ public class PageContentRepository : IPageContentRepository
             var result = _dbContext.IfpcpageContents.FirstOrDefault(c => c.IfpcIfssid == pageContent.IfpcIfssid);
             if (result != null)
             {
-                result.IfpcHtmlContent = pageContent.IfpcHtmlContent;
+                result.IfpcContent1 = pageContent.IfpcContent1;
+                result.IfpcContent2 = pageContent.IfpcContent2;
+                result.IfpcContent3 = pageContent.IfpcContent3;
+                result.IfpcContent4 = pageContent.IfpcContent4;
+                result.IfpcContent5 = pageContent.IfpcContent5;
+                result.IfpcContent6 = pageContent.IfpcContent6;
+                result.IfpcContent7 = pageContent.IfpcContent7;
                 _dbContext.IfpcpageContents.Update(result);
                 _dbContext.SaveChanges();
                 returnValue = result.Ifpcid;

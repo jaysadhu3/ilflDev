@@ -32,6 +32,12 @@ import { PageContentService } from '../../services/pageContent/page-content.serv
 })
 export class SavePageContentComponent {
   editor: Editor = new Editor();
+  editor2: Editor = new Editor();
+  editor3: Editor = new Editor();
+  editor4: Editor = new Editor();
+  editor5: Editor = new Editor();
+  editor6: Editor = new Editor();
+  editor7: Editor = new Editor();
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -60,7 +66,13 @@ export class SavePageContentComponent {
   ) {
     this.contentForm = this.formbuilder.group({
       section: [null, [Validators.required]],
-      content: [''],
+      content1: ['<p></p>'],
+      content2: ['<p></p>'],
+      content3: ['<p></p>'],
+      content4: ['<p></p>'],
+      content5: ['<p></p>'],
+      content6: ['<p></p>'],
+      content7: ['<p></p>'],
     });
   }
   signOut() {
@@ -83,8 +95,13 @@ export class SavePageContentComponent {
   processSave() {
     if (this.contentForm.valid) {
       this.pageContent.menuId = this.contentForm.controls['section'].value;
-      console.log(this.contentForm.controls['content'].value);
-      this.pageContent.htmlPageContent = this.contentForm.controls['content'].value;
+      this.pageContent.IfpcContent1 = this.contentForm.controls['content1'].value;
+      this.pageContent.IfpcContent2 = this.contentForm.controls['content2'].value;
+      this.pageContent.IfpcContent3 = this.contentForm.controls['content3'].value;
+      this.pageContent.IfpcContent4 = this.contentForm.controls['content4'].value;
+      this.pageContent.IfpcContent5 = this.contentForm.controls['content5'].value;
+      this.pageContent.IfpcContent6 = this.contentForm.controls['content6'].value;
+      this.pageContent.IfpcContent7 = this.contentForm.controls['content7'].value;
       this.pageContentService.SavePageContent(this.pageContent).subscribe((res: any) => {
         if (res) {
           this.toastr.success("Details saved successfully", "Success");
@@ -109,14 +126,21 @@ export class SavePageContentComponent {
       this.pageContentService.GetPageContent(this.contentForm.controls['section'].value).subscribe(res => {
         if (res != null && res != undefined && res.body != '' && res.body != null && res.body != undefined) {
           let content = res.body;
-          if (content[0].ifpcHtmlContent != undefined) {
-            let htmlValue = content[0].ifpcHtmlContent;
-            this.editor.setContent(htmlValue);
-          } else {
-            this.editor.setContent('');
-          }
+          this.editor.setContent(content[0].ifpcContent1);
+          this.editor2.setContent(content[0].ifpcContent2);
+          this.editor3.setContent(content[0].ifpcContent3);
+          this.editor4.setContent(content[0].ifpcContent4);
+          this.editor5.setContent(content[0].ifpcContent5);
+          this.editor6.setContent(content[0].ifpcContent6);
+          this.editor7.setContent(content[0].ifpcContent7);
         } else {
           this.editor.setContent('');
+          this.editor2.setContent('');
+          this.editor3.setContent('');
+          this.editor4.setContent('');
+          this.editor5.setContent('');
+          this.editor6.setContent('');
+          this.editor7.setContent('');
         }
       });
       this.spinner.hide();

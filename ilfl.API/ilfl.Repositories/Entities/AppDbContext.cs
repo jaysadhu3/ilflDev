@@ -58,9 +58,27 @@ public partial class AppDbContext : DbContext
             entity.ToTable("IFPCPageContent");
 
             entity.Property(e => e.Ifpcid).HasColumnName("IFPCId");
-            entity.Property(e => e.IfpcHtmlContent)
+            entity.Property(e => e.IfpcContent1)
                 .IsUnicode(false)
-                .HasColumnName("IFPC_HTML_Content");
+                .HasColumnName("IFPC_Content_1");
+            entity.Property(e => e.IfpcContent2)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_2");
+            entity.Property(e => e.IfpcContent3)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_3");
+            entity.Property(e => e.IfpcContent4)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_4");
+            entity.Property(e => e.IfpcContent5)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_5");
+            entity.Property(e => e.IfpcContent6)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_6");
+            entity.Property(e => e.IfpcContent7)
+                .IsUnicode(false)
+                .HasColumnName("IFPC_Content_7");
             entity.Property(e => e.IfpcIfssid).HasColumnName("IFPC_IFSSId");
 
             entity.HasOne(d => d.IfpcIfss).WithMany(p => p.IfpcpageContents)

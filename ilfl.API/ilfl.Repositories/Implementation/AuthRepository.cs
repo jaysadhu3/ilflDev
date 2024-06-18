@@ -3,11 +3,6 @@ using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
 using ilfl.Utilities.Common;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ilfl.Repositories.Implementation;
 
@@ -30,14 +25,21 @@ public class AuthRepository : IAuthRepository
             if (user == null) return false;
             var encryptUser = common.EncryptAsync(user.Ifulusername, passKey);
             var encryptSecretKey = common.EncryptAsync(user.Ifulpassword, passKey);
-            var ilflUser = new Ifuluser
+
+            var userList = _dbContext.Ifulusers.Where(x => x.Ifulusername == encryptUser.Result).ToList();
+            if (userList.Count == 0)
             {
-                Ifulusername = encryptUser.Result,
-                Ifulpassword = encryptSecretKey.Result
-            };
-            _dbContext.Add(ilflUser);
-            _dbContext.SaveChanges();
-            return true;
+                var ilflUser = new Ifuluser
+                {
+                    Ifulusername = encryptUser.Result,
+                    Ifulpassword = encryptSecretKey.Result
+                };
+                _dbContext.Add(ilflUser);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+            
         }
         catch
         {

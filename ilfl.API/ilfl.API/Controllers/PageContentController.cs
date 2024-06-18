@@ -63,7 +63,13 @@ public class PageContentController : Controller
             //}
             var objPageContent = new IfpcpageContent();
             objPageContent.IfpcIfssid = pageConent.MenuId;
-            objPageContent.IfpcHtmlContent = pageConent.HtmlPageContent;
+            objPageContent.IfpcContent1 = pageConent.IfpcContent1;
+            objPageContent.IfpcContent2 = pageConent.IfpcContent2;
+            objPageContent.IfpcContent3 = pageConent.IfpcContent3;
+            objPageContent.IfpcContent4 = pageConent.IfpcContent4;
+            objPageContent.IfpcContent5 = pageConent.IfpcContent5;
+            objPageContent.IfpcContent6 = pageConent.IfpcContent6;
+            objPageContent.IfpcContent7 = pageConent.IfpcContent7;
             var result = _pagecontentService.SavePageContent(objPageContent);
             return StatusCode(StatusCodes.Status200OK, result);
         }

@@ -37,7 +37,7 @@
 }
 
 ::ng-deep .NgxEditor__Content {
-    min-height: 400px !important;
+    min-height: 300px !important;
     /* make all of the editor area clickable */
 }
 
