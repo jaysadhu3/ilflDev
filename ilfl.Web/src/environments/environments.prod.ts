@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiAddress: "https://api.ilfl.co.in/api/"
+    apiAddress: "https://api.ilfl.co.in/"
 }

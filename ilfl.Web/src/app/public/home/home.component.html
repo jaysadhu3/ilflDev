@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-12 d-flex mb-4 " *ngIf="html2 != blank">
+                <div class="col-12 d-flex mb-4 " *ngIf="html2 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
                         <div [innerHTML]="html2"></div>
                     </div>
@@ -41,31 +41,31 @@
 
 
 
-                <div class="col-12  d-flex mb-4  " *ngIf="html3 != blank">
+                <div class="col-12  d-flex mb-4  " *ngIf="html3 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
                         <div [innerHTML]="html3"></div>
                     </div>
                 </div>
-                <div class="col-12   d-flex mb-4  " *ngIf="html4 != blank">
+                <div class="col-12   d-flex mb-4  " *ngIf="html4 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
                         <div [innerHTML]="html4"></div>
                     </div>
                 </div>
 
 
-                <div class="col-12   d-flex mb-4  " *ngIf="html5 != blank">
+                <div class="col-12   d-flex mb-4  " *ngIf="html5 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
                         <div [innerHTML]="html5"></div>
                     </div>
                 </div>
-                <div class="col-12   d-flex mb-4  " *ngIf="html6 != blank">
+                <div class="col-12   d-flex mb-4  " *ngIf="html6 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
                         <div [innerHTML]="html6"></div>
                     </div>
                 </div>
-                <div class="col-12   d-flex mb-4  " *ngIf="html7 != blank">
+                <div class="col-12   d-flex mb-4  " *ngIf="html7 != ''">
                     <div class="all_company_box w-100 p-3 rounded-4">
-                        {{html7}}
+                        <div [innerHTML]="html7"></div>
                     </div>
                 </div>
             </div>
