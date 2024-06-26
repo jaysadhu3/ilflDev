@@ -1,4 +1,6 @@
-﻿using ilfl.Repositories.Entities;
+﻿using ilfl.Models.Models;
+using ilfl.Repositories.Entities;
+using ilfl.Services.Implementation;
 using ilfl.Services.Interface;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +36,13 @@ public class ContentController : Controller
     public IActionResult GetContent(int sectionId)
     {
         var result = _contentService.GetContent(sectionId);
+        return StatusCode(StatusCodes.Status200OK, result);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetContentById(int id)
+    {
+        var result = _contentService.GetContentById(id);
         return StatusCode(StatusCodes.Status200OK, result);
     }
 
@@ -121,5 +130,33 @@ public class ContentController : Controller
         }
 
         return StatusCode(StatusCodes.Status200OK, result);
+    }
+
+    /// <summary>
+    /// Update content menthod.
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    [HttpPut]
+    public async Task<IActionResult> UpdateContent([FromForm] string displayName, [FromForm] string section, [FromForm] string? description, [FromForm] int id)
+    {
+        try
+        {
+            if (displayName == null || section == null || id > 0)
+            {
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            var objContent = new Ifctcontent();
+            objContent.Ifctid = id;
+            objContent.IfctIfss = Convert.ToInt32(section);
+            objContent.IfctdisplayName = displayName;
+            objContent.Ifctdescription = description;
+            var result = _contentService.UpdateContent(objContent);
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
     }
 }

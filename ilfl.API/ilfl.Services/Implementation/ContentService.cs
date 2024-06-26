@@ -34,6 +34,11 @@ public class ContentService : IContentService
         return _contentRepository.GetContent(sectionId);
     }
 
+    public Ifctcontent? GetContentById(int contentId)
+    {
+        return _contentRepository.GetContentById(contentId);
+    }
+
     public string? GetViewFile(string fileName)
     {
         var filePath = Path.Combine( _configuration["FileFolderName"], fileName);
@@ -44,5 +49,10 @@ public class ContentService : IContentService
     public bool IsFileExist(string fileName)
     {
         return _contentRepository.IsFileExist(fileName);
+    }
+
+    public int UpdateContent(Ifctcontent content)
+    {
+        return _contentRepository.UpdateContent(content);
     }
 }

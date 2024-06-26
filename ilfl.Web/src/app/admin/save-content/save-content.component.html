@@ -27,7 +27,7 @@
           placeholder="Description">
       </div>
     </div>
-    <div class="row mb-1">
+    <div class="row mb-1" [hidden]="editableValue != null">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Select File<span class="required">*</span></label>
       <div class="col-sm-10">
         <div class="mb-1">

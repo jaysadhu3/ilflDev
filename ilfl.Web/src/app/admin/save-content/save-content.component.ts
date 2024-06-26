@@ -35,6 +35,7 @@ export class SaveContentComponent {
   sectionForTable: string = '';
   dropdownValue: any = [];
   finalForm = new FormData();
+  editableValue: any;
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
@@ -47,7 +48,7 @@ export class SaveContentComponent {
       displayName: [null, [Validators.required]],
       section: [null, [Validators.required]],
       description: [null],
-      file: [null, [Validators.required]]
+      file: [null]
     });
 
   }
@@ -69,37 +70,65 @@ export class SaveContentComponent {
       });
       this.dropdownValue = selectedList.sort((a, b) => a.ifssid - b.ifssid);
       this.spinner.hide();
+
+      this.editableValue = sessionStorage.getItem('editId');
+      if (this.editableValue != null) {
+        let id = +this.editableValue;
+        this.contentService.GetContentById(id).subscribe(res => {
+          let result = res.body;
+          this.contentForm.controls['displayName'].setValue(result.ifctdisplayName);
+          this.contentForm.controls['section'].setValue(result.ifctIfss);
+          this.contentForm.controls['description'].setValue(result.ifctdescription);
+        });
+        this.spinner.hide();
+      } else {
+        this.contentForm.controls['file'].setValidators(Validators.required);
+        this.contentForm.controls['file'].updateValueAndValidity();
+      }
     });
   }
 
   processSave() {
     if (this.contentForm.valid) {
-      this.content.IfctdisplayName = this.contentForm.controls['displayName'].value;
-      this.content.Ifctsection = this.contentForm.controls['section'].value;
-      this.content.Ifctfile = this.base64File;
-
       this.finalForm.append('displayName', this.contentForm.controls['displayName'].value);
       this.finalForm.append('section', this.contentForm.controls['section'].value);
-      if( this.contentForm.controls['description'].value == null || this.contentForm.controls['description'].value == '') {
-        this.finalForm.append('description','');
+      if (this.contentForm.controls['description'].value == null || this.contentForm.controls['description'].value == '') {
+        this.finalForm.append('description', '');
       } else {
-        this.finalForm.append('description',this.contentForm.controls['description'].value);
+        this.finalForm.append('description', this.contentForm.controls['description'].value);
       }
-
-      this.contentService.AddContent(this.finalForm).subscribe((res:any) => {
-        if (res) {
-          this.toastr.success("Details saved successfully", "Success");
-          this.spinner.hide();
-          this.router.navigate(['Admin/ViewContent']);
-        } else {
-          this.spinner.hide();
-          if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
-            this.toastr.error("Display name is missing", "Information Error");
+      if (this.editableValue == null) {
+        this.contentService.AddContent(this.finalForm).subscribe((res: any) => {
+          if (res) {
+            this.toastr.success("Details saved successfully", "Success");
+            this.spinner.hide();
+            this.router.navigate(['Admin/ViewContent']);
           } else {
-            this.toastr.error("File name is already exist", "Information Error");
+            this.spinner.hide();
+            if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
+              this.toastr.error("Display name is missing", "Information Error");
+            } else {
+              this.toastr.error("File name is already exist", "Information Error");
+            }
           }
-        }
-      });
+        });
+      } else {
+        this.finalForm.append('id', this.editableValue);
+        this.contentService.UpdateContent(this.finalForm).subscribe((res: any) => {
+          if (res) {
+            this.toastr.success("Details saved successfully", "Success");
+            this.spinner.hide();
+            this.router.navigate(['Admin/ViewContent']);
+          } else {
+            this.spinner.hide();
+            if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
+              this.toastr.error("Display name is missing", "Information Error");
+            } else {
+              this.toastr.error("File name is already exist", "Information Error");
+            }
+          }
+        });
+      }
     } else {
 
       this.spinner.hide();
@@ -108,7 +137,7 @@ export class SaveContentComponent {
   }
 
   async onFileSelection(event: any) {
-    
+
     this.finalForm.delete('file');
     const file = event.target.files[0];
     if (file) {

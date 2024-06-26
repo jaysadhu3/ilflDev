@@ -2,6 +2,7 @@
 using ilfl.Repositories.Entities;
 using ilfl.Repositories.Interface;
 using Microsoft.Extensions.Configuration;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ilfl.Repositories.Implementation;
 
@@ -41,6 +42,31 @@ public class ContentRepository : IContentRepository
         return true;
     }
 
+    public int UpdateContent(Ifctcontent content)
+    {
+        var returnValue = 0;
+        try
+        {
+            if (content == null || content.Ifctid < 1) { return returnValue; }
+
+            var result = _dbContext.Ifctcontents.FirstOrDefault(c => c.Ifctid == content.Ifctid);
+            if (result != null)
+            {
+                result.IfctdisplayName = content.IfctdisplayName;
+                result.IfctIfss = content.IfctIfss;
+                result.Ifctdescription = content.Ifctdescription;
+                _dbContext.Ifctcontents.Update(result);
+                _dbContext.SaveChanges();
+                returnValue = result.Ifctid;
+            }
+            return returnValue;
+        }
+        catch
+        {
+            return returnValue;
+        }
+    }
+
     public string DeleteContent(int id)
     {
         var removedContent = _dbContext.Ifctcontents.Where(c => c.Ifctid == id).FirstOrDefault();
@@ -68,6 +94,24 @@ public class ContentRepository : IContentRepository
             var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.IfctIfss == sectionId);
             if (sectionCheck == null) return null;
             var result = _dbContext.Ifctcontents.Where(x => x.IfctIfss == sectionId).OrderByDescending(x => x.Ifctid).ToList();
+            return result;
+
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public Ifctcontent? GetContentById(int contentId)
+    {
+        try
+        {
+            if (contentId == 0)
+            {
+                return null;
+            }
+            var result = _dbContext.Ifctcontents.FirstOrDefault(x => x.Ifctid == contentId);
             return result;
 
         }

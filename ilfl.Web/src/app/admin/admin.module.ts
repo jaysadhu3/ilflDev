@@ -16,7 +16,7 @@ const routes: Routes = [
   {
       path: '', children: [
           { path: 'Dashboard', component: DashboardComponent },
-          { path: 'AddContent', component: SaveContentComponent },
+          { path: 'SaveContent', component: SaveContentComponent },
           { path: 'AddMenu', component: SaveSectionComponent },
           { path: 'ViewContent', component: ViewContentComponent },
           { path: 'ViewMenu', component: ViewMenuComponent },

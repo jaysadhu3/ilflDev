@@ -19,6 +19,11 @@ export class ContentService {
     return this.httpClient.get<any>(this.apiAddress + 'GetContent/' + section, {headers: this.httpHeaders, observe: 'response'});
    }
 
+   GetContentById(id: number): Observable<HttpResponse<any>> {
+    this.spinner.show();
+    return this.httpClient.get<any>(this.apiAddress + 'GetContentById/' + id, {headers: this.httpHeaders, observe: 'response'});
+   }
+
    GetDirectorDetail(): Observable<HttpResponse<any>> {
     this.spinner.show();
     return this.httpClient.get<any>(this.apiAddress + 'GetDirectorDetail', {headers: this.httpHeaders, observe: 'response'});
@@ -27,6 +32,11 @@ export class ContentService {
    AddContent(fileData: FormData): Observable<HttpResponse<any>> {
     this.spinner.show();
     return this.httpClient.post<HttpResponse<any>>(this.apiAddress + 'AddContent', fileData);
+   }
+
+   UpdateContent(fileData: FormData): Observable<HttpResponse<any>> {
+    this.spinner.show();
+    return this.httpClient.put<HttpResponse<any>>(this.apiAddress + 'UpdateContent', fileData);
    }
 
    DeleteContent(id: Number): Observable<any> {

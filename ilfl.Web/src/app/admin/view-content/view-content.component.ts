@@ -50,6 +50,8 @@ export class ViewContentComponent implements OnInit {
       this.dropdownValue = res.body;
       this.spinner.hide();
     });
+    
+    sessionStorage.removeItem('editId');
   }
 
   signOut() {
@@ -102,5 +104,10 @@ export class ViewContentComponent implements OnInit {
       }
       this.spinner.hide();
     });
+  }
+
+  updateContent(id: number) {
+    sessionStorage.setItem('editId', id.toString());
+    this.router.navigate(['Admin/SaveContent']);
   }
 }
