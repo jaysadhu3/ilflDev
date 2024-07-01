@@ -121,11 +121,7 @@ export class SaveContentComponent {
             this.router.navigate(['Admin/ViewContent']);
           } else {
             this.spinner.hide();
-            if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
-              this.toastr.error("Display name is missing", "Information Error");
-            } else {
-              this.toastr.error("File name is already exist", "Information Error");
-            }
+            this.toastr.error("Details are missing", "Information Error");
           }
         });
       }

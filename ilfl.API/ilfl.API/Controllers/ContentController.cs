@@ -137,14 +137,14 @@ public class ContentController : Controller
     /// </summary>
     /// <param name="content"></param>
     /// <returns></returns>
-    [HttpPut]
-    public async Task<IActionResult> UpdateContent([FromForm] string displayName, [FromForm] string section, [FromForm] string? description, [FromForm] int id)
+    [HttpPost]
+    public Task<IActionResult> UpdateContent([FromForm] string displayName, [FromForm] string section, [FromForm] string? description, [FromForm] int id)
     {
         try
         {
-            if (displayName == null || section == null || id > 0)
+            if (displayName != null && section != null && id < 1)
             {
-                return StatusCode(StatusCodes.Status204NoContent);
+                return Task.FromResult<IActionResult>(StatusCode(StatusCodes.Status204NoContent));
             }
             var objContent = new Ifctcontent();
             objContent.Ifctid = id;
@@ -152,11 +152,11 @@ public class ContentController : Controller
             objContent.IfctdisplayName = displayName;
             objContent.Ifctdescription = description;
             var result = _contentService.UpdateContent(objContent);
-            return StatusCode(StatusCodes.Status200OK, result);
+            return Task.FromResult<IActionResult>(StatusCode(StatusCodes.Status200OK, result));
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            return Task.FromResult<IActionResult>(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
         }
     }
 }

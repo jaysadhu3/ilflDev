@@ -36,7 +36,7 @@ export class ContentService {
 
    UpdateContent(fileData: FormData): Observable<HttpResponse<any>> {
     this.spinner.show();
-    return this.httpClient.put<HttpResponse<any>>(this.apiAddress + 'UpdateContent', fileData);
+    return this.httpClient.post<HttpResponse<any>>(this.apiAddress + 'UpdateContent', fileData);
    }
 
    DeleteContent(id: Number): Observable<any> {
