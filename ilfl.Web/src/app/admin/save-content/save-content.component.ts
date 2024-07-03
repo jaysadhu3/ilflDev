@@ -120,7 +120,6 @@ export class SaveContentComponent {
       } else {
         this.finalForm.append('id', this.editableValue);
         let file = this.finalForm.get('file')?.toString();
-        console.log(file);
         if(file == null) {
           this.contentService.UpdateContent(this.finalForm).subscribe((res: any) => {
             if (res) {
