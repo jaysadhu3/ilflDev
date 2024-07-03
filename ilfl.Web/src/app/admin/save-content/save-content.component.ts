@@ -12,6 +12,8 @@ import { SectionService } from '../../services/section/section.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { HeaderComponent } from '../../common/header/header.component';
 import { HeaderAdminComponent } from '../../common/header-admin/header-admin.component';
+import { environment } from '../../../environments/environments';
+import { NotificationService } from '../../services/toastService/toast.service';
 
 @Component({
   selector: 'app-save-content',
@@ -35,14 +37,16 @@ export class SaveContentComponent {
   sectionForTable: string = '';
   dropdownValue: any = [];
   finalForm = new FormData();
-  editableValue: any;
+  editableValue: any = null;
+  filename: string = '';
 
   constructor(private formbuilder: FormBuilder,
     private contentService: ContentService,
     private sectionService: SectionService,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService, private spinner: NgxSpinnerService
+    private toastr: ToastrService,
+    private toastr2: NotificationService, private spinner: NgxSpinnerService
   ) {
     this.contentForm = this.formbuilder.group({
       displayName: [null, [Validators.required]],
@@ -76,6 +80,7 @@ export class SaveContentComponent {
         let id = +this.editableValue;
         this.contentService.GetContentById(id).subscribe(res => {
           let result = res.body;
+          this.filename = result.ifctfile;
           this.contentForm.controls['displayName'].setValue(result.ifctdisplayName);
           this.contentForm.controls['section'].setValue(result.ifctIfss);
           this.contentForm.controls['description'].setValue(result.ifctdescription);
@@ -114,16 +119,35 @@ export class SaveContentComponent {
         });
       } else {
         this.finalForm.append('id', this.editableValue);
-        this.contentService.UpdateContent(this.finalForm).subscribe((res: any) => {
-          if (res) {
-            this.toastr.success("Details saved successfully", "Success");
-            this.spinner.hide();
-            this.router.navigate(['Admin/ViewContent']);
-          } else {
-            this.spinner.hide();
-            this.toastr.error("Details are missing", "Information Error");
-          }
-        });
+        let file = this.finalForm.get('file')?.toString();
+        console.log(file);
+        if(file == null) {
+          this.contentService.UpdateContent(this.finalForm).subscribe((res: any) => {
+            if (res) {
+              this.toastr.success("Details saved successfully", "Success");
+              this.spinner.hide();
+              this.router.navigate(['Admin/ViewContent']);
+            } else {
+              this.spinner.hide();
+              if (this.contentForm.controls['displayName'].value == '' || this.contentForm.controls['displayName'].value == null) {
+                this.toastr.error("Display name is missing", "Information Error");
+              } else {
+                this.toastr.error("File name is already exist", "Information Error");
+              }
+            }
+          });
+        } else {
+          this.contentService.UpdateContentwithFile(this.finalForm).subscribe((res: any) => {
+            if (res) {
+              this.toastr.success("Details saved successfully", "Success");
+              this.spinner.hide();
+              this.router.navigate(['Admin/ViewContent']);
+            } else {
+              this.spinner.hide();
+              this.toastr.error("Details are missing", "Information Error");
+            }
+          });
+        }
       }
     } else {
 
@@ -164,8 +188,34 @@ export class SaveContentComponent {
       reader.readAsDataURL(file);
     });
   }
+  
+  viewPDF(file: string) {
+    let listValues: string[] = [];
+    this.contentService.GetViewFile(file).subscribe(res => {
+      listValues = res.body;
+      if (res.status == 200) {
+        if (listValues == null) {
+          this.toastr2.showWarning('Can not read files.', 'Warning');
+        } else {
+          let url = environment.apiAddress + listValues.join("");
+          window.open(url , '_blank');
+        }
+      } else {
+        if (listValues == null) {
+          this.toastr2.showWarning('Please contact to administrator for this file.', 'Warning');
+        }
+      }
+      this.spinner.hide();
+    });
+  }
 
   backDashboard() {
     this.router.navigate(['Admin/ViewContent']);
+  }
+
+  deleteFile() {
+    this.filename = '';
+    this.contentForm.controls['file'].setValidators(Validators.required);
+    this.contentForm.controls['file'].updateValueAndValidity();
   }
 }

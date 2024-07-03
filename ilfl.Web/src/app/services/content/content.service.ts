@@ -39,6 +39,11 @@ export class ContentService {
     return this.httpClient.post<HttpResponse<any>>(this.apiAddress + 'UpdateContent', fileData);
    }
 
+   UpdateContentwithFile(fileData: FormData): Observable<HttpResponse<any>> {
+    this.spinner.show();
+    return this.httpClient.post<HttpResponse<any>>(this.apiAddress + 'UpdateContentwithFile', fileData);
+   }
+
    DeleteContent(id: Number): Observable<any> {
     this.spinner.show();
     return this.httpClient.get<HttpResponse<any>>(this.apiAddress + 'DeleteContent/' + id, {headers: this.httpHeaders, observe: 'response'});

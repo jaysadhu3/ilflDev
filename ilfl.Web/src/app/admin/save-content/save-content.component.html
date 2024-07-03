@@ -27,12 +27,23 @@
           placeholder="Description">
       </div>
     </div>
-    <div class="row mb-1" [hidden]="editableValue != null">
+    <div class="row mb-1" >
       <label for="inputPassword3" class="col-sm-2 col-form-label">Select File<span class="required">*</span></label>
       <div class="col-sm-10">
-        <div class="mb-1">
+        <div class="mb-1" [hidden]="filename != ''">
           <input type="file" id="file" name="file" formControlName="file" class="form-control input-upload"
             (change)="onFileSelection($event)" placeholder="Select File">
+        </div>
+        <div class="mb-1" [hidden]="filename == ''">
+          <div class="row col-4">
+            <div class=" col-2">
+              <i class="bi bi-filetype-pdf curser-pointer" (click)="viewPDF(filename)"
+                style=" display: flex; font-size: 2rem; color: red;"></i>
+            </div>
+            <div class=" col-2">
+              <button type="button" class="btn btn-danger" (click)="deleteFile()">Delete</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

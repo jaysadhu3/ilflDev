@@ -52,6 +52,12 @@ public class ContentRepository : IContentRepository
             var result = _dbContext.Ifctcontents.FirstOrDefault(c => c.Ifctid == content.Ifctid);
             if (result != null)
             {
+                if(!string.IsNullOrEmpty(content.Ifctfile))
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _configuration["FileFolderName"], result.Ifctfile);
+                    File.Delete(filePath);
+                    result.Ifctfile = content.Ifctfile;
+                }
                 result.IfctdisplayName = content.IfctdisplayName;
                 result.IfctIfss = content.IfctIfss;
                 result.Ifctdescription = content.Ifctdescription;

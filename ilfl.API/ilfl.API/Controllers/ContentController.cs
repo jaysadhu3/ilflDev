@@ -159,4 +159,51 @@ public class ContentController : Controller
             return Task.FromResult<IActionResult>(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
         }
     }
+
+    /// <summary>
+    /// Update content menthod.
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<IActionResult> UpdateContentwithFile([FromForm] IFormFile file, [FromForm] string displayName, [FromForm] string section, [FromForm] string? description, [FromForm] int id)
+    {
+        try
+        {
+            if (file == null) { return StatusCode(StatusCodes.Status400BadRequest, "File is missing"); }
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _configuration["FileFolderName"], file.FileName);
+
+            var isFileExist = _contentService.IsFileExist(file.FileName);
+
+            if (isFileExist)
+            {
+                return StatusCode(StatusCodes.Status208AlreadyReported, false);
+            }
+
+            if (displayName != null && section != null && id < 1)
+            {
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            var objContent = new Ifctcontent();
+            objContent.Ifctid = id;
+            objContent.IfctIfss = Convert.ToInt32(section);
+            objContent.Ifctfile = file.FileName;
+            objContent.IfctdisplayName = displayName;
+            objContent.Ifctdescription = description;
+            var result = _contentService.UpdateContent(objContent);
+            if(result > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
 }
