@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     let BackEndUrl = environment.apiAddress; 
     this.metaService.addTag({ 
       httpEquiv: 'Content-Security-Policy', 
-      content: "script-src 'strict-dynamic' 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' http: https:; script-src-elem 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' " + FrontEndUrl + " ; default-src 'self' " + BackEndUrl + " https://www.google.com/ ; img-src 'self' https://img.freepik.com data: https://img.freepik.com/ https://cdn.jsdelivr.net/; style-src  " + FrontEndUrl + " https://fonts.googleapis.com https://cdn.jsdelivr.net/ https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/ 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net/ https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/; base-uri " + FrontEndUrl + "; frame-src 'self' https://api.ilfl.co.in/api/ https://www.google.com/ ; object-src 'none' ; connect-src 'self' " + BackEndUrl +" ;" 
+      content: "script-src 'strict-dynamic' 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' http: https:; script-src-elem 'nonce-k6hT0Qc1zR7fW3vD' 'unsafe-inline' " + FrontEndUrl + " ; style-src  " + FrontEndUrl + " https://fonts.googleapis.com https://cdn.jsdelivr.net/ https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/ 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net/ https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/; base-uri " + FrontEndUrl + "; frame-src 'self' https://api.ilfl.co.in/api/ https://www.google.com/ ; object-src 'none' ; connect-src 'self' " + BackEndUrl +" ;" 
     });
   }
 }
