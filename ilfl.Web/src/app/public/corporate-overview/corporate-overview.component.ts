@@ -10,4 +10,11 @@ import { HeaderComponent } from "../../common/header/header.component";
 })
 export class CorporateOverviewComponent {
 
+
+    scrollToTopPage() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 }

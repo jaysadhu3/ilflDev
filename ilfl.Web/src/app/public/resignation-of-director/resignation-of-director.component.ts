@@ -47,4 +47,11 @@ export class ResignationOfDirectorComponent {
         this.spinner.hide();
       });
     }
+
+    scrollToTopPage() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 }

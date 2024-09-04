@@ -47,4 +47,11 @@ export class NoticeToShareholdersComponent {
       this.spinner.hide();
     });
   }
+
+  scrollToTopPage() {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
 }
