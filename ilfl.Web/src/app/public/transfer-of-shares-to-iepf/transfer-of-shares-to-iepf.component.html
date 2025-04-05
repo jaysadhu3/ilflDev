@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-8 col-xl-7 mx-auto">
                     <div class="h3 theme_pink_txt sec_head font_exo2_extrabold mb-3">
-                        TRANSFER OF SHARES TO IEPF
+                        SHARES TRANSFERRED TO IEPF
 
                     </div>
 
@@ -25,6 +25,7 @@
             </div>
         </div>
     </section>
+
     <section class="pt-0">
         <div class="container">
             <div class="row">
@@ -36,7 +37,51 @@
 
                         <table class="table table-bordered table-hover border-secondary">
                             <tbody>
-                                <tr *ngFor="let value of tableValue">
+                                <tr *ngFor="let value of shareTransferred">
+                                    <td scope="row">{{value.ifctdisplayName}}</td>
+                                    <td scope="row" *ngIf="value.ifctdescription != null">{{value.ifctdescription}}</td>
+                                    <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"
+                                            style="cursor: pointer;">
+                                            <img class="pdf_icon" src="./assets/img/pdf-icon.png" alt="pdficon">
+                                        </a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-xl-7 mx-auto">
+                    <div class="h3 theme_pink_txt sec_head font_exo2_extrabold mb-3">
+                        SHARES TO BE TRANSFERRED TO IEPF
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-xl-7 mx-auto">
+                    <div class="table-responsive">
+
+
+
+
+                        <table class="table table-bordered table-hover border-secondary">
+                            <tbody>
+                                <tr *ngFor="let value of shareToBeTransferred">
                                     <td scope="row">{{value.ifctdisplayName}}</td>
                                     <td scope="row" *ngIf="value.ifctdescription != null">{{value.ifctdescription}}</td>
                                     <td class="text-center"><a (click)="viewPDF(value.ifctfile)" contenteditable="false"

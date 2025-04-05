@@ -95,7 +95,7 @@ public class ContentRepository : IContentRepository
                 var resultAll = _dbContext.Ifctcontents.OrderByDescending(x => x.Ifctid).ToList();
                 return resultAll;
             }
-            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssparent == sectionId).ToList();
+            var parentCheck = _dbContext.Ifsssections.Where(x => x.Ifssid == sectionId && x.Ifssparent == null).ToList();
             if (parentCheck.Count > 0) return null;
             var sectionCheck = _dbContext.Ifctcontents.FirstOrDefault(x => x.IfctIfss == sectionId);
             if (sectionCheck == null) return null;

@@ -15,7 +15,8 @@ import { environment } from '../../../environments/environments';
 })
 export class TransferOfSharesToIEPFComponent {
 
-    tableValue: any = [];
+    shareTransferred: any = [];
+    shareToBeTransferred: any = [];
     constructor(private contentService: ContentService,
       private spinner: NgxSpinnerService,
       private toastr: NotificationService) {
@@ -23,9 +24,13 @@ export class TransferOfSharesToIEPFComponent {
     }
 
     ngOnInit(): void {
-      this.contentService.GetContent(9).subscribe(res => {
-          this.tableValue = res.body;
+      this.contentService.GetContent(27).subscribe(res => {
+          this.shareTransferred = res.body;
         });
+        
+      this.contentService.GetContent(28).subscribe(res => {
+        this.shareToBeTransferred = res.body;
+      });
     }
 
     viewPDF(file: string) {
